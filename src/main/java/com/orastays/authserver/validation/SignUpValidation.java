@@ -1,14 +1,19 @@
 package com.orastays.authserver.validation;
 
-import java.security.Principal;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.orastays.authserver.exceptions.FormExceptions;
+import com.orastays.authserver.helper.AuthConstant;
+import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
 
 @Component
@@ -17,58 +22,69 @@ public class SignUpValidation extends AuthorizeUserValidation {
 
 	private static final Logger logger = LogManager.getLogger(SignUpValidation.class);
 	
-	public void validateAddUser(String authorization, Principal user, UserModel userModel) throws FormExceptions {
+	public void validateSignUp(UserModel userModel) throws FormExceptions {
 
 		if (logger.isDebugEnabled()) {
-			logger.debug("validateAddUser -- Start");
+			logger.debug("validateSignUp -- Start");
 		}
 
-		/*Util.printLog(userModel, AuthConstant.INCOMING, "Add User");
+		Util.printLog(userModel, AuthConstant.INCOMING, "Sign Up", request);
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
-		UserModel adminUserModel = getUserDetails(authorization, user);
-		userModel.setCreatedBy(Long.parseLong(adminUserModel.getUserId()));
-		userModel.setCreatedDate(Util.getCurrentDateTime());
-		userModel.setStatus(1);
-		if (Util.isEmpty(userModel.getEmployeeId())) {
-			exceptions.put(messageUtil.getBundle("user.employeeId.null.code"), new Exception(messageUtil.getBundle("user.employeeId.null.message")));
-		} else {
-			if(Objects.nonNull(userService.fetchUserDetails(userModel.getEmployeeId()))) {
-				exceptions.put(messageUtil.getBundle("user.alreadypresent.code"), new Exception(messageUtil.getBundle("user.alreadypresent.message")));
+		if(Objects.nonNull(userModel)) {
+			
+			// Validate Name of the user
+			if(StringUtils.isBlank(userModel.getName())) {
+				exceptions.put(messageUtil.getBundle("user.name.null.code"), new Exception(messageUtil.getBundle("user.name.null.message")));
+			} else {
+				if(!Util.checkAlphabet(userModel.getName())) {
+					exceptions.put(messageUtil.getBundle("user.name.invalid.code"), new Exception(messageUtil.getBundle("user.name.invalid.message")));
+				}
 			}
-		}
-		
-		List<UserVsRoleModel> userVsRoleModels = userModel.getUserVsRoleModels();
-		if (!(Objects.nonNull(userVsRoleModels) && !userVsRoleModels.isEmpty())) {
-			exceptions.put(messageUtil.getBundle("role.notpresent.code"), new Exception(messageUtil.getBundle("role.notpresent.message")));
-		} else {
-			for(int i = 0; i < userVsRoleModels.size(); i++) {
-				UserVsRoleModel userVsRoleModel = userVsRoleModels.get(i);
-				if(Objects.nonNull(userVsRoleModel)) {
-					
-					if(Objects.nonNull(userVsRoleModel.getRoleModel())) {
-						if(Util.isEmpty(userVsRoleModel.getRoleModel().getRoleId())) {
-							exceptions.put(messageUtil.getBundle("role.notpresent.code"), new Exception(messageUtil.getBundle("role.notpresent.message")));
-						} else {
-							if(Objects.isNull(roleDAO.find(Long.parseLong(userVsRoleModel.getRoleModel().getRoleId())))) {
-								exceptions.put(messageUtil.getBundle("role.invalid.code"), new Exception(messageUtil.getBundle("role.invalid.message")));
-							}
-						}
-					} else {
-						exceptions.put(messageUtil.getBundle("role.notpresent.code"), new Exception(messageUtil.getBundle("role.notpresent.message")));
+			
+			// Validate Country Code
+			if(Objects.nonNull(userModel.getCountryModel())) {
+				if(StringUtils.isBlank(userModel.getCountryModel().getCountryId())) {
+					exceptions.put(messageUtil.getBundle("country.id.null.code"), new Exception(messageUtil.getBundle("country.id.null.message")));
+				} else {
+					if(Objects.isNull(countryDAO.find(Long.parseLong(userModel.getCountryModel().getCountryId())))) {
+						exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
+					}
+				}
+			}
+			
+			// Validate Mobile Number of the User
+			if(StringUtils.isBlank(userModel.getMobileNumber())) {
+				exceptions.put(messageUtil.getBundle("user.mobile.null.code"), new Exception(messageUtil.getBundle("user.mobile.null.message")));
+			} else {
+				if(Util.checkMobileNumber(userModel.getMobileNumber())) {
+					exceptions.put(messageUtil.getBundle("user.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.mobile.invalid.message")));
+				} else {
+					if(Objects.nonNull(signUpService.fetchUserByMobileNumber(userModel.getMobileNumber()))) {
+						exceptions.put(messageUtil.getBundle("user.mobile.present.code"), new Exception(messageUtil.getBundle("user.mobile.present.message")));
 					}
 					
+				}
+			}
+			
+			// Validate Email ID of the User
+			if(StringUtils.isBlank(userModel.getEmailId())) {
+				exceptions.put(messageUtil.getBundle("user.email.null.code"), new Exception(messageUtil.getBundle("user.email.null.message")));
+			} else {
+				if(Util.checkEmail(userModel.getEmailId())) {
+					exceptions.put(messageUtil.getBundle("user.email.invalid.code"), new Exception(messageUtil.getBundle("user.email.invalid.message")));
 				} else {
-					exceptions.put(messageUtil.getBundle("role.notpresent.code"), new Exception(messageUtil.getBundle("role.notpresent.message")));
+					if(Objects.nonNull(signUpService.fetchUserByEmail(userModel.getEmailId()))) {
+						exceptions.put(messageUtil.getBundle("user.email.present.code"), new Exception(messageUtil.getBundle("user.email.present.message")));
+					}
 				}
 			}
 		}
 		
 		if (exceptions.size() > 0)
-			throw new FormExceptions(exceptions);*/
-
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateAddUser -- End");
-		}
+			throw new FormExceptions(exceptions);
 		
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateSignUp -- End");
+		}
 	}
 }

@@ -1,0 +1,32 @@
+2018-12-01 15:58:04.567  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.c.SignUpController                 : signUp -- START
+2018-12-01 15:58:04.686  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.s.i.SignUpServiceImpl              : signUp -- START
+2018-12-01 15:58:04.695 DEBUG Avirup-Laptop --- [nio-8080-exec-8] c.o.a.v.SignUpValidation                 : validateSignUp -- Start
+2018-12-01 15:58:04.703 DEBUG Avirup-Laptop --- [nio-8080-exec-8] c.o.a.h.Util                             : Incoming JSON String (Sign Up) == >>{"status":null,"createdDate":null,"createdBy":null,"modifiedDate":null,"modifiedBy":null,"userToken":null,"userId":null,"name":"Avirup Pal","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":null,"isMobileVerified":null,"otp":null,"countryModel":{"status":null,"createdDate":null,"createdBy":null,"modifiedDate":null,"modifiedBy":null,"userToken":null,"countryId":"1","countryName":null,"countryCode":null},"userVsTypeModels":null}
+2018-12-01 15:58:04.872  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.s.i.SignUpServiceImpl              : fetchUserByMobileNumber -- START
+2018-12-01 15:58:04.920  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-01 15:58:04.920  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-01 15:58:04.920  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.s.i.SignUpServiceImpl              : fetchUserByMobileNumber -- END
+2018-12-01 15:58:04.920  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.s.i.SignUpServiceImpl              : fetchUserByEmail -- START
+2018-12-01 15:58:04.932  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-01 15:58:04.932  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-01 15:58:04.932  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.s.i.SignUpServiceImpl              : fetchUserByEmail -- END
+2018-12-01 15:58:04.937 DEBUG Avirup-Laptop --- [nio-8080-exec-8] c.o.a.h.Util                             : Outgoing JSON String (Sign Up) == >>{"responseCode":"302","responseMessage":"Invalid Name","responseBody":null}
+2018-12-01 15:58:04.938  INFO Avirup-Laptop --- [nio-8080-exec-8] c.o.a.c.SignUpController                 : signUp -- END
+2018-12-01 16:06:37.612  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.SignUpController                 : signUp -- START
+2018-12-01 16:06:37.738  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.s.i.SignUpServiceImpl              : signUp -- START
+2018-12-01 16:06:37.749 DEBUG Avirup-Laptop --- [nio-8080-exec-1] c.o.a.v.SignUpValidation                 : validateSignUp -- Start
+2018-12-01 16:06:37.821 DEBUG Avirup-Laptop --- [nio-8080-exec-1] c.o.a.h.Util                             : Incoming JSON String (Sign Up) == >>{"status":null,"createdDate":null,"createdBy":null,"modifiedDate":null,"modifiedBy":null,"userToken":null,"userId":null,"name":"Avirup Pal","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":null,"isMobileVerified":null,"otp":null,"countryModel":{"status":null,"createdDate":null,"createdBy":null,"modifiedDate":null,"modifiedBy":null,"userToken":null,"countryId":"1","countryName":null,"countryCode":null},"userVsTypeModels":null}
+2018-12-01 16:06:38.009  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.s.i.SignUpServiceImpl              : fetchUserByMobileNumber -- START
+2018-12-01 16:06:38.073  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-01 16:06:38.073  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-01 16:06:38.073  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.s.i.SignUpServiceImpl              : fetchUserByMobileNumber -- END
+2018-12-01 16:06:38.074  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.s.i.SignUpServiceImpl              : fetchUserByEmail -- START
+2018-12-01 16:06:38.078  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-01 16:06:38.078  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-01 16:06:38.078  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.s.i.SignUpServiceImpl              : fetchUserByEmail -- END
+2018-12-01 16:06:38.078 DEBUG Avirup-Laptop --- [nio-8080-exec-1] c.o.a.v.SignUpValidation                 : validateSignUp -- End
+2018-12-01 16:06:38.079  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.UserConverter                    : modelToEntity -- START
+2018-12-01 16:06:38.358  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.UserConverter                    : modelToEntity -- END
+2018-12-01 16:06:39.349  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.s.i.SignUpServiceImpl              : signUp -- END
+2018-12-01 16:06:39.404 DEBUG Avirup-Laptop --- [nio-8080-exec-1] c.o.a.h.Util                             : Outgoing JSON String (Sign Up) == >>{"responseCode":"200","responseMessage":"OK","responseBody":"User Added Successfully"}
+2018-12-01 16:06:39.406  INFO Avirup-Laptop --- [nio-8080-exec-1] c.o.a.c.SignUpController                 : signUp -- END

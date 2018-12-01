@@ -17,6 +17,7 @@ import lombok.ToString;
 public class UserModel extends CommonModel {
 
 	private String userId;
+	private String name;
 	private String mobileNumber;
 	private String emailId;
 	private String isEmailVerified;

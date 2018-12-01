@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,10 +15,12 @@ import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orastays.authserver.dao.CountryDAO;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.MessageUtil;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
+import com.orastays.authserver.service.SignUpService;
 
 @Component
 public class AuthorizeUserValidation {
@@ -25,6 +29,15 @@ public class AuthorizeUserValidation {
 	
 	@Autowired
 	protected MessageUtil messageUtil;
+	
+	@Autowired
+	protected SignUpService signUpService;
+	
+	@Autowired
+	protected CountryDAO countryDAO;
+	
+	@Autowired
+	protected HttpServletRequest request;
 	
 	public UserModel getUserDetails(String authorization, Principal user) throws FormExceptions {
 

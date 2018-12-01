@@ -918,7 +918,7 @@ public class Util {
 
 	public static boolean checkMobileNumber(String mobileNumber) {
 
-		String mobileNumberPattern = "((?=.*\\d)(?=.*[0-9])(?=.*[+]).{12,14})";
+		String mobileNumberPattern = "((?=.*\\d)(?=.*[0-9])(?=.*[+]).{10,14})";
 		Pattern pattern = Pattern.compile(mobileNumberPattern);
 		Matcher matcher = pattern.matcher(mobileNumber);
 		return matcher.matches();
@@ -1131,11 +1131,7 @@ public class Util {
 
 	public static boolean checkAlphabet(String text) {
 
-		if (!text.matches("[A-Za-z]*")) {
-			return true;
-		} else {
-			return false;
-		}
+		return text.matches("^[^0-9][A-Z a-z]+$");
 	}
 
 	public static String authGenerator(String credentials) {
@@ -1184,23 +1180,38 @@ public class Util {
 			return null;
 	}
 	
-	public static void printLog(Object model, String type, String apiName) {
+	public static void printLog(Object model, String type, String apiName, HttpServletRequest request) {
 		
 		try {
 			
 			if (logger.isDebugEnabled()) {
-				logger.debug(type+" JSON String ("+apiName+") == >>"+ new ObjectMapper().writeValueAsString(model));
+				logger.debug(type+" -- " + apiName +  " -- " + request.getRemoteAddr() + " -- " 
+				+ new ObjectMapper().writeValueAsString(model) );
 			}
-			System.out.println(type+" JSON String ("+apiName+") == >>"+ new ObjectMapper().writeValueAsString(model));
+			System.out.println(type+" -- " + apiName +  " -- " + request.getRemoteAddr() + " -- " 
+					+ new ObjectMapper().writeValueAsString(model) );
 			
 		} catch (Exception e) {
 		}
+	}
+	
+	public static boolean checkEmail(String emailId) {
+		
+		String emailPattern = "(^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$)";
+		Pattern pattern = Pattern.compile(emailPattern);
+		Matcher matcher = pattern.matcher(emailId);
+		return matcher.matches();
+	}
+	
+	public static int generateOTP() {
+		
+		return (int)(Math.random() *  9000) + 1000;
 	}
 
 	public static void main(String[] args) {
 
 		try {
-			System.out.println(getCurrentDateTime());
+			System.out.println(checkAlphabet("Avirup Pal123"));
 		} catch (Exception e) {
 
 		}
