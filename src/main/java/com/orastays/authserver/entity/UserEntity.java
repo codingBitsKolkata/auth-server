@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -40,23 +41,41 @@ public class UserEntity extends CommonEntity {
 
 	@Column(name = "email_id")
 	private String emailId;
-	
+
 	@Column(name = "is_email_verified")
 	private String isEmailVerified;
-	
+
 	@Column(name = "is_mobile_verified")
 	private String isMobileVerified;
-	
+
 	@Column(name = "otp")
 	private String otp;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "country_id", nullable = false)
 	private CountryEntity countryEntity;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
 	private List<UserVsTypeEntity> userVsTypeEntities;
-	
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private List<UserActivityEntity> userActivityEntities;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private List<UserVsLanguageEntity> userVsLanguageEntities;
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private UserVsInfoEntity userVsInfoEntity;
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private UserVsIdentityEntity userVsIdentityEntity;
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private HostVsAccountEntity hostVsAccountEntity;
+
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private LoginDetailsEntity loginDetailsEntity;
+
 	@Override
 	public String toString() {
 		return Long.toString(userId);
