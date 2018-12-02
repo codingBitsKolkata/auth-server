@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class MasterIdentityEntity extends CommonEntity {
+public class IdentityEntity extends CommonEntity {
 
 	private static final long serialVersionUID = -7368788269931727804L;
 

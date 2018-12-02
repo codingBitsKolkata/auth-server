@@ -31,7 +31,7 @@ public class UserVsIdentityEntity extends CommonEntity {
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "identity_id", nullable = false)
-	private MasterIdentityEntity masterIdentityEntity;
+	private IdentityEntity masterIdentityEntity;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "user_id", nullable = false)
