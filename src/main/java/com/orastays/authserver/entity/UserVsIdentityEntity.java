@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,7 +34,7 @@ public class UserVsIdentityEntity extends CommonEntity {
 	@JoinColumn(name = "identity_id", nullable = false)
 	private IdentityEntity masterIdentityEntity;
 	
-	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
+	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "user_id", nullable = false)
 	private UserEntity userEntity;
 	

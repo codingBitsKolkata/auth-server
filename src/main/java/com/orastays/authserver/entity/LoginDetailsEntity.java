@@ -38,6 +38,9 @@ public class LoginDetailsEntity extends CommonEntity {
 
 	@Column(name = "device_id")
 	private String deviceId;
+	
+	@Column(name = "session_token")
+	private String sessionToken;
 
 	@Override
 	public String toString() {
