@@ -12,7 +12,8 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 @ToString
-public class IdentityModel extends CommonModel{
-	private Long identityId;
+public class IdentityModel extends CommonModel {
+	
+	private String identityId;
 	private String name;
 }

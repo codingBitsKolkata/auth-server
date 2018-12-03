@@ -20,5 +20,6 @@ public class CommonModel {
 	private String modifiedDate;
 	private Long modifiedBy;
 	private String userToken;
-
+	private String ip;
+	private String deviceId;
 }

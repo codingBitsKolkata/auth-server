@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 public class UserVsTypeModel extends CommonModel {
 
-	private Long userVsTypeId;
+	private String userVsTypeId;
 	private UserModel userModel;
 	private UserTypeModel userTypeModel;
 }

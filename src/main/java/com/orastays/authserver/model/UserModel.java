@@ -25,5 +25,11 @@ public class UserModel extends CommonModel {
 	private String otp;
 	private CountryModel countryModel;
 	private List<UserVsTypeModel> userVsTypeModels;
+	private List<UserActivityModel> UserActivityModels;
+	private List<UserVsLanguageModel> UserVsLanguageModels;
+	private UserVsInfoModel userVsInfoModel;
+	private List<UserVsIdentityModel> UserVsIdentityModels;
+	private HostVsAccountModel hostVsAccountModel;
+	private List<LoginDetailsModel> loginDetailsModels;
 
 }

@@ -13,7 +13,8 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 @ToString
 public class UserVsInfoModel extends CommonModel {
-	private Long userVsInfoId;
+	
+	private String userVsInfoId;
 	private UserModel userModel;
 	private String name;
 	private String imageUrl;

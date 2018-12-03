@@ -12,8 +12,9 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 @ToString
-public class LoginDetailsModel extends CommonModel{
-	private Long loginId;
+public class LoginDetailsModel extends CommonModel {
+	
+	private String loginId;
 	private UserModel userModel;
 	private String ip;
 	private String deviceId;

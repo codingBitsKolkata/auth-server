@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString
 public class HostVsAccountModel extends CommonModel {
 	
-	private Long hostVsAccountId;
+	private String hostVsAccountId;
 	private UserModel userModel;
 	private String accountNumber;
 	private String accountHolderName;

@@ -11,11 +11,14 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orastays.authserver.dao.CountryDAO;
+import com.orastays.authserver.dao.LoginDetailsDAO;
+import com.orastays.authserver.dao.UserDAO;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.MessageUtil;
 import com.orastays.authserver.helper.Util;
@@ -27,6 +30,9 @@ public class AuthorizeUserValidation {
 
 	private static final Logger logger = LogManager.getLogger(AuthorizeUserValidation.class);
 	
+	@Value("${entitymanager.packagesToScan}")
+	protected String entitymanagerPackagesToScan;
+	
 	@Autowired
 	protected MessageUtil messageUtil;
 	
@@ -35,6 +41,12 @@ public class AuthorizeUserValidation {
 	
 	@Autowired
 	protected CountryDAO countryDAO;
+	
+	@Autowired
+	protected LoginDetailsDAO loginDetailsDAO;
+	
+	@Autowired
+	protected UserDAO userDAO;
 	
 	@Autowired
 	protected HttpServletRequest request;

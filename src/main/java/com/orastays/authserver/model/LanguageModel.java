@@ -13,6 +13,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 @ToString
 public class LanguageModel extends CommonModel {
-	private Long languageId;
+	
+	private String languageId;
 	private String description;
 }

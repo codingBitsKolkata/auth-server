@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.orastays.authserver.helper.MessageUtil;
+import com.orastays.authserver.service.CountryService;
 import com.orastays.authserver.service.LoginService;
 import com.orastays.authserver.service.SignUpService;
+import com.orastays.authserver.service.UserService;
 
 public class BaseController {
 
@@ -25,6 +27,12 @@ public class BaseController {
 	
 	@Autowired
 	protected SignUpService signUpService;
+	
+	@Autowired
+	protected CountryService countryService;
+	
+	@Autowired
+	protected UserService userService;
 	
 	@Autowired
 	protected MessageUtil messageUtil;

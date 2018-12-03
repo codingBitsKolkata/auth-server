@@ -13,7 +13,8 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 @ToString
 public class UserVsLanguageModel extends CommonModel {
-	private Long userVsLanguageId;
+	
+	private String userVsLanguageId;
 	private UserModel userModel;
 	private LanguageModel masterLanguageModel;
 }

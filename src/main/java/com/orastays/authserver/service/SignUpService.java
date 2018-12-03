@@ -8,10 +8,14 @@ import com.orastays.authserver.model.UserModel;
 
 public interface SignUpService {
 
-	void signUp(UserModel userModel) throws FormExceptions;
+	UserModel signUp(UserModel userModel) throws FormExceptions;
 
-	UserModel fetchUserByMobileNumber(String mobileNumber);
+	UserModel fetchUserByMobileNumber(String mobileNumber, String countryId);
 
 	UserModel fetchUserByEmail(String emailId);
+
+	UserModel validateOTP(UserModel userModel) throws FormExceptions;
+
+	UserModel resendOTP(UserModel userModel) throws FormExceptions;
 
 }
