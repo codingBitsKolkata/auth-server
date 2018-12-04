@@ -11,6 +11,7 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.ssl.TrustStrategy;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -20,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 public class RestTemplateConfig {
 	
 	@Bean
+	@LoadBalanced
 	public RestTemplate restTemplate() throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
 		
 		TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
