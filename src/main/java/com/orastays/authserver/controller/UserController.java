@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Util;
+import com.orastays.authserver.model.LanguageModel;
 import com.orastays.authserver.model.ResponseModel;
 import com.orastays.authserver.model.UserModel;
 
@@ -94,8 +95,8 @@ public class UserController extends BaseController {
 		ResponseModel responseModel = new ResponseModel();
 
 		try {
-			UserModel userModel2 = userService.checkToken(userToken);
-			responseModel.setResponseBody(userModel2);
+			UserModel userModel = userService.checkToken(userToken);
+			responseModel.setResponseBody(userModel);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
 		} catch (FormExceptions fe) {
@@ -115,6 +116,50 @@ public class UserController extends BaseController {
 
 		if (logger.isInfoEnabled()) {
 			logger.info("checkToken -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping(value = "/check-language", produces = "application/json")
+	@ApiOperation(value = "Check Language", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 319, message = "Session expires!!!Please Login to continue...") })
+	public ResponseEntity<ResponseModel> checkLanguage(@RequestParam(value = "languageId", required = true) String languageId) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("checkLanguage -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+
+		try {
+			LanguageModel languageModel = userService.checkLanguage(languageId);
+			responseModel.setResponseBody(languageModel);
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+		} catch (FormExceptions fe) {
+
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				break;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Check Language", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("checkLanguage -- END");
 		}
 		
 		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {

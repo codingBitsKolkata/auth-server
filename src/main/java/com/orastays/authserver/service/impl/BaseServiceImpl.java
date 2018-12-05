@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.orastays.authserver.converter.CountryConverter;
+import com.orastays.authserver.converter.LanguageConverter;
 import com.orastays.authserver.converter.LoginDetailsConverter;
 import com.orastays.authserver.converter.UserConverter;
 import com.orastays.authserver.dao.CountryDAO;
+import com.orastays.authserver.dao.LanguageDAO;
 import com.orastays.authserver.dao.LoginDetailsDAO;
 import com.orastays.authserver.dao.UserDAO;
 import com.orastays.authserver.dao.UserTypeDAO;
@@ -63,4 +65,10 @@ public abstract class BaseServiceImpl {
 	
 	@Autowired
 	protected MailHelper mailHelper;
+	
+	@Autowired
+	protected LanguageConverter languageConverter;
+	
+	@Autowired
+	protected LanguageDAO languageDAO; 
 }
