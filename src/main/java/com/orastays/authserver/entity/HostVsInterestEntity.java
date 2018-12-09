@@ -16,29 +16,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user_vs_language")
+@Table(name = "host_vs_interest")
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = false)
-public class UserVsLanguageEntity extends CommonEntity {
+public class HostVsInterestEntity extends CommonEntity {
 
-	private static final long serialVersionUID = -6851549608108734877L;
+	private static final long serialVersionUID = -3565061927357561535L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_vs_language_id")
-	private Long userVsLanguageId;
-	
+	@Column(name = "host_int_id")
+	private Long hostIntId;
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "user_id", nullable = false)
 	private UserEntity userEntity;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
-	@JoinColumn(name = "language_id", nullable = false)
-	private LanguageEntity languageEntity;
-	
+	@JoinColumn(name = "interest_id", nullable = false)
+	private InterestEntity interestEntity;
+
 	@Override
 	public String toString() {
-		return Long.toString(userVsLanguageId);
+		return Long.toString(hostIntId);
 	}
 }

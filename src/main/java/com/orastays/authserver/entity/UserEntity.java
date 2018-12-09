@@ -76,6 +76,12 @@ public class UserEntity extends CommonEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
 	private List<LoginDetailsEntity> loginDetailsEntities;
 
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private List<HostVsInterestEntity> hostVsInterestEntities;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
+	private List<HostVsDomainEntity> hostVsDomainEntities;
+
 	@Override
 	public String toString() {
 		return Long.toString(userId);
