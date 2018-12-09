@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication
 //@EnableResourceServer
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @RestController
 @EnableAutoConfiguration
 @EnableCircuitBreaker

@@ -33,7 +33,7 @@ public class DomainEntity extends CommonEntity {
 	@Column(name = "domain_name")
 	private String domainName;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "DomainEntity", cascade = { CascadeType.ALL })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "domainEntity", cascade = { CascadeType.ALL })
 	private List<HostVsDomainEntity> hostVsDomainEntities;
 
 	@Override

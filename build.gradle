@@ -10,12 +10,12 @@ buildscript {
 	}
 }
 
-ext {
-	springCloudVersion = 'Edgware.SR5'
-}
-
 plugins {
   id "org.sonarqube" version "2.4"
+}
+
+ext {
+	springCloudVersion = 'Edgware.SR5'
 }
 
 apply plugin: 'java'
@@ -45,7 +45,7 @@ dependencies {
 	compile group: 'org.springframework', name: 'spring-tx'
 	
 	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.springframework.cloud:spring-cloud-starter-eureka')
+	//compile('org.springframework.cloud:spring-cloud-starter-eureka')
 	compile('org.springframework.cloud:spring-cloud-starter-hystrix')
 	compile('org.springframework.cloud:spring-cloud-starter-config')
 	compile('org.springframework.cloud:spring-cloud-starter-zipkin')

@@ -33,9 +33,10 @@ public class InterestEntity extends CommonEntity {
 	@Column(name = "interest_name")
 	private String interestName;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "InterestEntity", cascade = { CascadeType.ALL })
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "interestEntity", cascade = { CascadeType.ALL })
 	private List<HostVsInterestEntity> hostVsInterestEntities;
 
+	
 	@Override
 	public String toString() {
 		return Long.toString(interestId);
