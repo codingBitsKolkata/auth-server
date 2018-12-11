@@ -70,9 +70,6 @@ public class UserEntity extends CommonEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
 	private List<UserVsIdentityEntity> userVsIdentityEntities;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
-	private HostVsAccountEntity hostVsAccountEntity;
-
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userEntity", cascade = { CascadeType.ALL })
 	private List<LoginDetailsEntity> loginDetailsEntities;
 

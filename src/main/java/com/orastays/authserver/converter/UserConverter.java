@@ -57,7 +57,6 @@ public class UserConverter extends CommonConverter implements BaseConverter<User
 			userModel = new UserModel();
 			userModel = (UserModel) Util.transform(modelMapper, e, userModel);
 			userModel.setCountryModel(countryConverter.entityToModel(e.getCountryEntity()));
-			userModel.setHostVsAccountModel(hostVsAccountConverter.entityToModel(e.getHostVsAccountEntity()));
 			userModel.setLoginDetailsModels(loginDetailsConverter.entityListToModelList(e.getLoginDetailsEntities()));
 			userModel.setUserActivityModels(userActivityConverter.entityListToModelList(e.getUserActivityEntities()));
 			userModel.setUserVsIdentityModels(userVsIdentityConverter.entityListToModelList(e.getUserVsIdentityEntities()));

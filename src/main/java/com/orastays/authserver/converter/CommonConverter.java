@@ -22,9 +22,6 @@ public class CommonConverter {
 	protected CountryConverter countryConverter;
 	
 	@Autowired
-	protected HostVsAccountConverter hostVsAccountConverter;
-	
-	@Autowired
 	protected IdentityConverter identityConverter;
 	
 	@Autowired
