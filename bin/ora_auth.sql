@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2018 at 12:40 PM
+-- Generation Time: Dec 13, 2018 at 03:39 AM
 -- Server version: 5.7.9
 -- PHP Version: 5.6.16
 
@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `master_country` (
   `country_code` varchar(255) DEFAULT NULL,
   `country_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`country_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=256 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_country`
