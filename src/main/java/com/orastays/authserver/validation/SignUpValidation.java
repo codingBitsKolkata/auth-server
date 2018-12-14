@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
-import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
 
@@ -29,7 +28,6 @@ public class SignUpValidation extends AuthorizeUserValidation {
 			logger.debug("validateSignUp -- Start");
 		}
 
-		Util.printLog(userModel, AuthConstant.INCOMING, "Sign Up", request);
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		if(Objects.nonNull(userModel)) {
 			
@@ -47,9 +45,14 @@ public class SignUpValidation extends AuthorizeUserValidation {
 				if(StringUtils.isBlank(userModel.getCountryModel().getCountryId())) {
 					exceptions.put(messageUtil.getBundle("country.id.null.code"), new Exception(messageUtil.getBundle("country.id.null.message")));
 				} else {
-					if(Objects.isNull(countryDAO.find(Long.parseLong(userModel.getCountryModel().getCountryId())))) {
+					if(Util.isNumeric(userModel.getCountryModel().getCountryId())) {
+						if(Objects.isNull(countryDAO.find(Long.parseLong(userModel.getCountryModel().getCountryId())))) {
+							exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
+						}
+					} else {
 						exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
 					}
+					
 				}
 			}
 			
@@ -60,7 +63,7 @@ public class SignUpValidation extends AuthorizeUserValidation {
 				if(Util.checkMobileNumber(userModel.getMobileNumber())) {
 					exceptions.put(messageUtil.getBundle("user.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.mobile.invalid.message")));
 				} else {
-					if(Objects.nonNull(signUpService.fetchUserByMobileNumber(userModel.getMobileNumber(), userModel.getCountryModel().getCountryId()))) {
+					if(Objects.nonNull(userService.fetchUserByMobileNumber(userModel.getMobileNumber(), userModel.getCountryModel().getCountryId()))) {
 						exceptions.put(messageUtil.getBundle("user.mobile.present.code"), new Exception(messageUtil.getBundle("user.mobile.present.message")));
 					}
 					
@@ -74,7 +77,7 @@ public class SignUpValidation extends AuthorizeUserValidation {
 				if(Util.checkEmail(userModel.getEmailId())) {
 					exceptions.put(messageUtil.getBundle("user.email.invalid.code"), new Exception(messageUtil.getBundle("user.email.invalid.message")));
 				} else {
-					if(Objects.nonNull(signUpService.fetchUserByEmail(userModel.getEmailId()))) {
+					if(Objects.nonNull(userService.fetchUserByEmail(userModel.getEmailId()))) {
 						exceptions.put(messageUtil.getBundle("user.email.present.code"), new Exception(messageUtil.getBundle("user.email.present.message")));
 					}
 				}
@@ -95,7 +98,6 @@ public class SignUpValidation extends AuthorizeUserValidation {
 			logger.debug("validateSendOTP -- Start");
 		}
 
-		Util.printLog(userModel, AuthConstant.INCOMING, "Validate OTP", request);
 		UserEntity userEntity = null;
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		if(Objects.nonNull(userModel)) {
@@ -157,7 +159,6 @@ public class SignUpValidation extends AuthorizeUserValidation {
 			logger.debug("validateReSendOTP -- Start");
 		}
 
-		Util.printLog(userModel, AuthConstant.INCOMING, "Validate OTP", request);
 		UserEntity userEntity = null;
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		if(Objects.nonNull(userModel)) {

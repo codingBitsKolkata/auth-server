@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.orastays.authserver.helper.Status;
 import com.orastays.authserver.model.CountryModel;
 import com.orastays.authserver.service.CountryService;
 
@@ -32,7 +33,7 @@ public class CountryServiceImpl extends BaseServiceImpl implements CountryServic
 		List<CountryModel> countryModels = new ArrayList<>();
 		try {
 			Map<String, String> innerMap1 = new LinkedHashMap<>();
-			innerMap1.put("status", "1");
+			innerMap1.put("status", String.valueOf(Status.ACTIVE.ordinal()));
 	
 			Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
 			outerMap1.put("eq", innerMap1);

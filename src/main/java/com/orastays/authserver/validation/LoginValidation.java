@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
-import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
 
@@ -29,7 +28,6 @@ public class LoginValidation extends AuthorizeUserValidation {
 			logger.debug("validateLogin -- Start");
 		}
 
-		Util.printLog(userModel, AuthConstant.INCOMING, "Validate Login", request);
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		if(Objects.nonNull(userModel)) {
 			
@@ -47,7 +45,7 @@ public class LoginValidation extends AuthorizeUserValidation {
 							if(Objects.isNull(countryDAO.find(Long.parseLong(userModel.getCountryModel().getCountryId())))) {
 								exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
 							} else {
-								UserModel userModel2 = signUpService.fetchUserByMobileNumber(userModel.getMobileNumber(), userModel.getCountryModel().getCountryId());
+								UserModel userModel2 = userService.fetchUserByMobileNumber(userModel.getMobileNumber(), userModel.getCountryModel().getCountryId());
 								if(Objects.isNull(userModel2)) {
 									exceptions.put(messageUtil.getBundle("user.mobile.not.present.code"), new Exception(messageUtil.getBundle("user.mobile.not.present.message")));
 								} else {
@@ -65,7 +63,7 @@ public class LoginValidation extends AuthorizeUserValidation {
 					if(Util.checkEmail(userModel.getEmailId())) {
 						exceptions.put(messageUtil.getBundle("user.email.invalid.code"), new Exception(messageUtil.getBundle("user.email.invalid.message")));
 					} else {
-						UserModel userModel2 = signUpService.fetchUserByEmail(userModel.getEmailId());
+						UserModel userModel2 = userService.fetchUserByEmail(userModel.getEmailId());
 						if(Objects.isNull(userModel2)) {
 							exceptions.put(messageUtil.getBundle("user.email.not.present.code"), new Exception(messageUtil.getBundle("user.email.not.present.message")));
 						} else {
@@ -91,7 +89,6 @@ public class LoginValidation extends AuthorizeUserValidation {
 			logger.debug("validateLoginOTP -- Start");
 		}
 
-		Util.printLog(userModel, AuthConstant.INCOMING, "Validate Login OTP", request);
 		UserEntity userEntity = null;
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		if(Objects.nonNull(userModel)) {

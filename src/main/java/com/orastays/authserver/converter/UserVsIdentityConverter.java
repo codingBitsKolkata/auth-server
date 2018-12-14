@@ -32,8 +32,8 @@ public class UserVsIdentityConverter extends CommonConverter implements BaseConv
 		
 		UserVsIdentityEntity userVsIdentityEntity = new UserVsIdentityEntity();
 		userVsIdentityEntity = (UserVsIdentityEntity) Util.transform(modelMapper, m, userVsIdentityEntity);
-		userVsIdentityEntity.setStatus(Status.INACTIVE.ordinal());
-		userVsIdentityEntity.setCreatedBy(Long.parseLong(String.valueOf(Status.ZERO.ordinal())));
+		userVsIdentityEntity.setStatus(Status.ACTIVE.ordinal());
+		userVsIdentityEntity.setCreatedBy(Long.parseLong(m.getUserModel().getUserId()));
 		userVsIdentityEntity.setCreatedDate(Util.getCurrentDateTime());
 		
 		if (logger.isInfoEnabled()) {

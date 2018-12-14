@@ -33,8 +33,8 @@ public class HostVsDomainConverter extends CommonConverter
 
 		HostVsDomainEntity hostVsDomainEntity = new HostVsDomainEntity();
 		hostVsDomainEntity = (HostVsDomainEntity) Util.transform(modelMapper, m, hostVsDomainEntity);
-		hostVsDomainEntity.setStatus(Status.INACTIVE.ordinal());
-		hostVsDomainEntity.setCreatedBy(Long.parseLong(String.valueOf(Status.ZERO.ordinal())));
+		hostVsDomainEntity.setStatus(Status.ACTIVE.ordinal());
+		hostVsDomainEntity.setCreatedBy(Long.parseLong(m.getUserModel().getUserId()));
 		hostVsDomainEntity.setCreatedDate(Util.getCurrentDateTime());
 
 		if (logger.isInfoEnabled()) {

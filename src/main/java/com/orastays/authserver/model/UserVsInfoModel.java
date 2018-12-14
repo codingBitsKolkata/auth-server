@@ -3,6 +3,8 @@
  */
 package com.orastays.authserver.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +20,7 @@ public class UserVsInfoModel extends CommonModel {
 	private UserModel userModel;
 	private String name;
 	private String imageUrl;
+	private MultipartFile image;
 	private String altPhno;
 	private String bioInfo;
 	private String dob;

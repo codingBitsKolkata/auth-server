@@ -33,8 +33,8 @@ public class HostVsInterestConverter extends CommonConverter
 
 		HostVsInterestEntity hostVsInterestEntity = new HostVsInterestEntity();
 		hostVsInterestEntity = (HostVsInterestEntity) Util.transform(modelMapper, m, hostVsInterestEntity);
-		hostVsInterestEntity.setStatus(Status.INACTIVE.ordinal());
-		hostVsInterestEntity.setCreatedBy(Long.parseLong(String.valueOf(Status.ZERO.ordinal())));
+		hostVsInterestEntity.setStatus(Status.ACTIVE.ordinal());
+		hostVsInterestEntity.setCreatedBy(Long.parseLong(m.getUserModel().getUserId()));
 		hostVsInterestEntity.setCreatedDate(Util.getCurrentDateTime());
 
 		if (logger.isInfoEnabled()) {

@@ -32,8 +32,8 @@ public class UserActivityConverter extends CommonConverter implements BaseConver
 		
 		UserActivityEntity userActivityEntity = new UserActivityEntity();
 		userActivityEntity = (UserActivityEntity) Util.transform(modelMapper, m, userActivityEntity);
-		userActivityEntity.setStatus(Status.INACTIVE.ordinal());
-		userActivityEntity.setCreatedBy(Long.parseLong(String.valueOf(Status.ZERO.ordinal())));
+		userActivityEntity.setStatus(Status.ACTIVE.ordinal());
+		userActivityEntity.setCreatedBy(Long.parseLong(m.getUserModel().getUserId()));
 		userActivityEntity.setCreatedDate(Util.getCurrentDateTime());
 		
 		if (logger.isInfoEnabled()) {

@@ -63,6 +63,9 @@ public class UserConverter extends CommonConverter implements BaseConverter<User
 			userModel.setUserVsInfoModel(userVsInfoConverter.entityToModel(e.getUserVsInfoEntity()));
 			userModel.setUserVsLanguageModels(userVsLanguageConverter.entityListToModelList(e.getUserVsLanguageEntities()));
 			userModel.setUserVsTypeModels(userVsTypeConverter.entityListToModelList(e.getUserVsTypeEntities()));
+			userModel.setHostVsAccountModel(hostVsAccountConverter.entityToModel(e.getHostVsAccountEntity()));
+			userModel.setHostVsDomainModels(hostVsDomainConverter.entityListToModelList(e.getHostVsDomainEntities()));
+			userModel.setHostVsInterestModels(hostVsInterestConverter.entityListToModelList(e.getHostVsInterestEntities()));
 		}
 		
 		if (logger.isInfoEnabled()) {

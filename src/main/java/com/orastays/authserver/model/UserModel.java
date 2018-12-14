@@ -31,5 +31,7 @@ public class UserModel extends CommonModel {
 	private List<UserVsIdentityModel> UserVsIdentityModels;
 	private HostVsAccountModel hostVsAccountModel;
 	private List<LoginDetailsModel> loginDetailsModels;
+	private List<HostVsInterestModel> hostVsInterestModels;
+	private List<HostVsDomainModel> hostVsDomainModels;
 
 }

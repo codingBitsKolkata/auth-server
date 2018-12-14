@@ -4,13 +4,16 @@
 package com.orastays.authserver.service;
 
 import com.orastays.authserver.exceptions.FormExceptions;
-import com.orastays.authserver.model.LanguageModel;
+import com.orastays.authserver.model.UserActivityModel;
 import com.orastays.authserver.model.UserModel;
+import com.orastays.authserver.model.UserVsInfoModel;
 
 public interface UserService {
 
 	UserModel fetchUserByID(String userId) throws FormExceptions;
 	UserModel checkToken(String userToken) throws FormExceptions;
-	LanguageModel checkLanguage(String languageId) throws FormExceptions;
-
+	UserModel fetchUserByMobileNumber(String mobileNumber, String countryId);
+	UserModel fetchUserByEmail(String emailId);
+	void addUserActivity(UserActivityModel userActivityModel) throws FormExceptions;
+	UserModel updateUserInfo(UserVsInfoModel userVsInfoModel) throws FormExceptions;
 }

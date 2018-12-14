@@ -11,12 +11,15 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.orastays.authserver.entity.UserActivityEntity;
 import com.orastays.authserver.entity.UserEntity;
+import com.orastays.authserver.entity.UserVsInfoEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
-import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Status;
-import com.orastays.authserver.model.LanguageModel;
+import com.orastays.authserver.helper.Util;
+import com.orastays.authserver.model.UserActivityModel;
 import com.orastays.authserver.model.UserModel;
+import com.orastays.authserver.model.UserVsInfoModel;
 import com.orastays.authserver.service.UserService;
 
 @Service
@@ -62,37 +65,113 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		
 		return userModel;
 	}
-
+	
 	@Override
-	public LanguageModel checkLanguage(String languageId) throws FormExceptions {
+	public UserModel fetchUserByMobileNumber(String mobileNumber, String countryId) {
 		
 		if (logger.isInfoEnabled()) {
-			logger.info("checkLanguage -- START");
+			logger.info("fetchUserByMobileNumber -- START");
 		}
 		
-		LanguageModel languageModel = null;
-		
+		UserModel userModel = null;
 		try {
 			Map<String, String> innerMap1 = new LinkedHashMap<>();
-			innerMap1.put(AuthConstant.STATUS, String.valueOf(Status.ACTIVE.ordinal()));
-			innerMap1.put(AuthConstant.LANGUAGEID, languageId);
+			innerMap1.put("status", String.valueOf(Status.ACTIVE.ordinal()));
+			innerMap1.put("mobileNumber", mobileNumber);
 	
 			Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
 			outerMap1.put("eq", innerMap1);
 	
 			Map<String, Map<String, Map<String, String>>> alliasMap = new LinkedHashMap<>();
-			alliasMap.put(entitymanagerPackagesToScan+".LanguageEntity", outerMap1);
-	
-			languageModel = languageConverter.entityToModel(languageDAO.fetchObjectBySubCiteria(alliasMap));
-
-		} catch (Exception e) {
+			alliasMap.put(entitymanagerPackagesToScan+".UserEntity", outerMap1);
 			
+			Map<String, String> innerMap2 = new LinkedHashMap<>();
+			innerMap2.put("countryId", String.valueOf(countryId));
+			 
+			Map<String, Map<String, String>> outerMap2 = new LinkedHashMap<>();
+			outerMap2.put("eq", innerMap2);
+			 
+			alliasMap.put("countryEntity", outerMap2);
+	
+			userModel = userConverter.entityToModel(userDAO.fetchObjectBySubCiteria(alliasMap));
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in fetchUserByMobileNumber -- "+Util.errorToString(e));
+			}
 		}
 		
 		if (logger.isInfoEnabled()) {
-			logger.info("checkLanguage -- END");
+			logger.info("fetchUserByMobileNumber -- END");
 		}
 		
-		return languageModel;
+		return userModel;
+	}
+	
+	@Override
+	public UserModel fetchUserByEmail(String emailId) {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("fetchUserByEmail -- START");
+		}
+		
+		UserModel userModel = null;
+		try {
+			Map<String, String> innerMap1 = new LinkedHashMap<>();
+			innerMap1.put("status", String.valueOf(Status.ACTIVE.ordinal()));
+			innerMap1.put("emailId", emailId);
+	
+			Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
+			outerMap1.put("eq", innerMap1);
+	
+			Map<String, Map<String, Map<String, String>>> alliasMap = new LinkedHashMap<>();
+			alliasMap.put(entitymanagerPackagesToScan+".UserEntity", outerMap1);
+	
+			userModel = userConverter.entityToModel(userDAO.fetchObjectBySubCiteria(alliasMap));
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in fetchUserByEmail -- "+Util.errorToString(e));
+			}
+		}
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("fetchUserByEmail -- END");
+		}
+		
+		return userModel;
+	}
+
+	@Override
+	public void addUserActivity(UserActivityModel userActivityModel) throws FormExceptions {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("addUserActivity -- START");
+		}
+		
+		UserEntity userEntity = userValidation.validateUserActivity(userActivityModel);
+		userActivityModel.setUserModel(userConverter.entityToModel(userEntity));
+		UserActivityEntity userActivityEntity = userActivityConverter.modelToEntity(userActivityModel);
+		userActivityDAO.save(userActivityEntity);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("addUserActivity -- END");
+		}
+	}
+
+	@Override
+	public UserModel updateUserInfo(UserVsInfoModel userVsInfoModel) throws FormExceptions {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("addUserActivity -- START");
+		}
+		
+		UserVsInfoEntity userVsInfoEntity = userValidation.validateUserInfo(userVsInfoModel);
+		userVsInfoDAO.update(userVsInfoEntity);
+		UserModel userModel = userConverter.entityToModel(userDAO.find(userVsInfoEntity.getModifiedBy()));
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("addUserActivity -- END");
+		}
+		
+		return userModel;
 	}
 }

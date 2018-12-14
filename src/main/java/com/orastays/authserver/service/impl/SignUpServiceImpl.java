@@ -3,8 +3,6 @@
  */
 package com.orastays.authserver.service.impl;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
@@ -16,8 +14,11 @@ import com.orastays.authserver.entity.CountryEntity;
 import com.orastays.authserver.entity.LoginDetailsEntity;
 import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.entity.UserTypeEntity;
+import com.orastays.authserver.entity.UserVsInfoEntity;
+import com.orastays.authserver.entity.UserVsLanguageEntity;
 import com.orastays.authserver.entity.UserVsTypeEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
+import com.orastays.authserver.helper.Language;
 import com.orastays.authserver.helper.Status;
 import com.orastays.authserver.helper.UserType;
 import com.orastays.authserver.helper.Util;
@@ -44,14 +45,32 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		userEntity.setCountryEntity(countryEntity);
 		Long userId = (Long) userDAO.save(userEntity);
 		UserTypeEntity userTypeEntity = userTypeDAO.find(Long.parseLong(String.valueOf(UserType.USER.ordinal())));
+		
 		UserVsTypeEntity userVsTypeEntity = new UserVsTypeEntity();
 		UserEntity userEntity2 = userDAO.find(userId);
 		userVsTypeEntity.setUserEntity(userEntity2);
 		userVsTypeEntity.setUserTypeEntity(userTypeEntity);
 		userVsTypeEntity.setStatus(Status.INACTIVE.ordinal());
-		userVsTypeEntity.setCreatedBy(Long.parseLong(String.valueOf(Status.ZERO.ordinal())));
+		userVsTypeEntity.setCreatedBy(userId);
 		userVsTypeEntity.setCreatedDate(Util.getCurrentDateTime());
 		userVsTypeDAO.save(userVsTypeEntity);
+		
+		UserVsInfoEntity userVsInfoEntity = new UserVsInfoEntity();
+		userVsInfoEntity.setUserEntity(userEntity2);
+		userVsInfoEntity.setName(userModel.getName());
+		userVsInfoEntity.setStatus(Status.INACTIVE.ordinal());
+		userVsInfoEntity.setCreatedBy(userId);
+		userVsInfoEntity.setCreatedDate(Util.getCurrentDateTime());
+		userVsInfoDAO.save(userVsInfoEntity);
+		
+		UserVsLanguageEntity userVsLanguageEntity = new UserVsLanguageEntity();
+		userVsLanguageEntity.setLanguageEntity(languageDAO.find(Long.parseLong(String.valueOf(Language.ENGLISH.ordinal()))));
+		userVsLanguageEntity.setUserEntity(userEntity2);
+		userVsLanguageEntity.setStatus(Status.INACTIVE.ordinal());
+		userVsLanguageEntity.setCreatedBy(userId);
+		userVsLanguageEntity.setCreatedDate(Util.getCurrentDateTime());
+		userVsLanguageDAO.save(userVsLanguageEntity);
+		
 		userModel = userConverter.entityToModel(userEntity2);
 		smsHelper.sendSMS(userModel);
 		mailHelper.sendMail(userModel);
@@ -63,75 +82,6 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		return userModel;
 	}
 	
-	@Override
-	public UserModel fetchUserByMobileNumber(String mobileNumber, String countryId) {
-		
-		if (logger.isInfoEnabled()) {
-			logger.info("fetchUserByMobileNumber -- START");
-		}
-		
-		UserModel userModel = null;
-		try {
-			Map<String, String> innerMap1 = new LinkedHashMap<>();
-			innerMap1.put("status", "1");
-			innerMap1.put("mobileNumber", mobileNumber);
-	
-			Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
-			outerMap1.put("eq", innerMap1);
-	
-			Map<String, Map<String, Map<String, String>>> alliasMap = new LinkedHashMap<>();
-			alliasMap.put(entitymanagerPackagesToScan+".UserEntity", outerMap1);
-			
-			Map<String, String> innerMap2 = new LinkedHashMap<>();
-			innerMap2.put("countryId", String.valueOf(countryId));
-			 
-			Map<String, Map<String, String>> outerMap2 = new LinkedHashMap<>();
-			outerMap2.put("eq", innerMap2);
-			 
-			alliasMap.put("countryEntity", outerMap2);
-	
-			userModel = userConverter.entityToModel(userDAO.fetchObjectBySubCiteria(alliasMap));
-		} catch (Exception e) {
-			
-		}
-		if (logger.isInfoEnabled()) {
-			logger.info("fetchUserByMobileNumber -- END");
-		}
-		
-		return userModel;
-	}
-	
-	@Override
-	public UserModel fetchUserByEmail(String emailId) {
-		
-		if (logger.isInfoEnabled()) {
-			logger.info("fetchUserByEmail -- START");
-		}
-		
-		UserModel userModel = null;
-		try {
-			Map<String, String> innerMap1 = new LinkedHashMap<>();
-			innerMap1.put("status", "1");
-			innerMap1.put("emailId", emailId);
-	
-			Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
-			outerMap1.put("eq", innerMap1);
-	
-			Map<String, Map<String, Map<String, String>>> alliasMap = new LinkedHashMap<>();
-			alliasMap.put(entitymanagerPackagesToScan+".UserEntity", outerMap1);
-	
-			userModel = userConverter.entityToModel(userDAO.fetchObjectBySubCiteria(alliasMap));
-		} catch (Exception e) {
-			
-		}
-		
-		if (logger.isInfoEnabled()) {
-			logger.info("fetchUserByEmail -- END");
-		}
-		
-		return userModel;
-	}
-
 	@Override
 	public UserModel validateOTP(UserModel userModel) throws FormExceptions {
 
@@ -145,6 +95,14 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		UserVsTypeEntity userVsTypeEntity = userEntity.getUserVsTypeEntities().get(0);
 		userVsTypeEntity.setStatus(Status.ACTIVE.ordinal());
 		userVsTypeDAO.update(userVsTypeEntity);
+		
+		UserVsInfoEntity userVsInfoEntity = userEntity.getUserVsInfoEntity();
+		userVsInfoEntity.setStatus(Status.ACTIVE.ordinal());
+		userVsInfoDAO.update(userVsInfoEntity);
+		
+		UserVsLanguageEntity userVsLanguageEntity = userEntity.getUserVsLanguageEntities().get(0);
+		userVsLanguageEntity.setStatus(Status.ACTIVE.ordinal());
+		userVsLanguageDAO.update(userVsLanguageEntity);
 		
 		String sessionToken = UUID.randomUUID().toString();
 		LoginDetailsEntity loginDetailsEntity = new LoginDetailsEntity();

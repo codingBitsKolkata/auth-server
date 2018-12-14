@@ -17,7 +17,6 @@ public class CommonConverter {
 	@Autowired
 	protected MessageUtil messageUtil;
 	
-	
 	@Autowired
 	protected CountryConverter countryConverter;
 	
@@ -50,4 +49,14 @@ public class CommonConverter {
 	
 	@Autowired
 	protected UserVsTypeConverter userVsTypeConverter;
+	
+	@Autowired
+	protected HostVsAccountConverter hostVsAccountConverter;
+	
+	@Autowired
+	protected HostVsDomainConverter hostVsDomainConverter;
+	
+	@Autowired
+	protected HostVsInterestConverter hostVsInterestConverter;
 }
+

@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
-@Api(value = "Login", description = "Rest API for Login", tags = "Login")
+@Api(value = "Login", tags = "Login")
 public class LoginController extends BaseController {
 
 	private static final Logger logger = LogManager.getLogger(SignUpController.class);
@@ -51,21 +51,25 @@ public class LoginController extends BaseController {
 		}
 
 		ResponseModel responseModel = new ResponseModel();
-
+		Util.printLog(userModel, AuthConstant.INCOMING, "Validate Login", request);
 		try {
 			UserModel userModel2 = loginService.validateLogin(userModel);
 			responseModel.setResponseBody(userModel2);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
-			responseModel.setResponseMessage(messageUtil.getBundle("user.add.success"));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
 		} catch (FormExceptions fe) {
-
 			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
 				responseModel.setResponseCode(entry.getKey());
 				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Validate Login -- "+Util.errorToString(fe));
+				}
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Validate Login -- "+Util.errorToString(e));
+			}
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
 		}
@@ -100,21 +104,25 @@ public class LoginController extends BaseController {
 		}
 
 		ResponseModel responseModel = new ResponseModel();
-
+		Util.printLog(userModel, AuthConstant.INCOMING, "Validate Login OTP", request);
 		try {
 			UserModel userModel2 = loginService.validateLoginOTP(userModel);
 			responseModel.setResponseBody(userModel2);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
-			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+			responseModel.setResponseMessage(messageUtil.getBundle("user.login.success"));
 		} catch (FormExceptions fe) {
-
 			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
 				responseModel.setResponseCode(entry.getKey());
 				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Validate Login OTP -- "+Util.errorToString(fe));
+				}
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Validate Login OTP -- "+Util.errorToString(e));
+			}
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
 		}

@@ -29,7 +29,7 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
-@Api(value = "Sign Up", description = "Rest API for Sign Up", tags = "Sign Up")
+@Api(value = "Sign Up", tags = "Sign Up")
 public class SignUpController extends BaseController {
 
 	private static final Logger logger = LogManager.getLogger(SignUpController.class);
@@ -55,21 +55,26 @@ public class SignUpController extends BaseController {
 		}
 
 		ResponseModel responseModel = new ResponseModel();
-
+		Util.printLog(userModel, AuthConstant.INCOMING, "Sign Up", request);
 		try {
 			UserModel userModel2 = signUpService.signUp(userModel);
 			responseModel.setResponseBody(userModel2);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
-			responseModel.setResponseMessage(messageUtil.getBundle("user.add.success"));
+			responseModel.setResponseMessage(messageUtil.getBundle("otp.send.success"));
 		} catch (FormExceptions fe) {
 
 			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
 				responseModel.setResponseCode(entry.getKey());
 				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Sign Up -- "+Util.errorToString(fe));
+				}
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Sign Up -- "+Util.errorToString(e));
+			}
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
 		}
@@ -104,21 +109,26 @@ public class SignUpController extends BaseController {
 		}
 
 		ResponseModel responseModel = new ResponseModel();
-
+		Util.printLog(userModel, AuthConstant.INCOMING, "Validate OTP", request);
 		try {
 			UserModel userModel2 = signUpService.validateOTP(userModel);
 			responseModel.setResponseBody(userModel2);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
-			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+			responseModel.setResponseMessage(messageUtil.getBundle("user.add.success"));
 		} catch (FormExceptions fe) {
 
 			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
 				responseModel.setResponseCode(entry.getKey());
 				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Validate OTP -- "+Util.errorToString(fe));
+				}
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Validate OTP -- "+Util.errorToString(e));
+			}
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
 		}
@@ -149,21 +159,26 @@ public class SignUpController extends BaseController {
 		}
 
 		ResponseModel responseModel = new ResponseModel();
-
+		Util.printLog(userModel, AuthConstant.INCOMING, "Resend OTP", request);
 		try {
 			UserModel userModel2 = signUpService.resendOTP(userModel);
 			responseModel.setResponseBody(userModel2);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
-			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+			responseModel.setResponseMessage(messageUtil.getBundle("otp.send.success"));
 		} catch (FormExceptions fe) {
 
 			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
 				responseModel.setResponseCode(entry.getKey());
 				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Resend OTP -- "+Util.errorToString(fe));
+				}
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Resend OTP -- "+Util.errorToString(e));
+			}
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
 		}

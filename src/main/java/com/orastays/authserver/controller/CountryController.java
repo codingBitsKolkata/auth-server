@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
-@Api(value = "country", description = "Rest API for Country", tags = "Country")
+@Api(value = "country", tags = "Country")
 public class CountryController extends BaseController {
 
 	private static final Logger logger = LogManager.getLogger(CountryController.class);
@@ -43,14 +43,16 @@ public class CountryController extends BaseController {
 		}
 
 		ResponseModel responseModel = new ResponseModel();
-
+		Util.printLog(null, AuthConstant.INCOMING, "Fetch Countries", request);
 		try {
 			List<CountryModel> countryModels = countryService.fetchCountries();
 			responseModel.setResponseBody(countryModels);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
 		} catch (Exception e) {
-			e.printStackTrace();
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in fetchCountries -- "+Util.errorToString(e));
+			}
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
 		}

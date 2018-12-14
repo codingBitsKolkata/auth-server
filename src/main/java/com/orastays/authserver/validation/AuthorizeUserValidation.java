@@ -16,14 +16,21 @@ import org.springframework.stereotype.Component;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orastays.authserver.converter.HostVsDomainConverter;
+import com.orastays.authserver.converter.HostVsInterestConverter;
 import com.orastays.authserver.dao.CountryDAO;
+import com.orastays.authserver.dao.HostVsDomainDAO;
+import com.orastays.authserver.dao.HostVsInterestDAO;
+import com.orastays.authserver.dao.IdentityDAO;
 import com.orastays.authserver.dao.LoginDetailsDAO;
 import com.orastays.authserver.dao.UserDAO;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.MessageUtil;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
+import com.orastays.authserver.service.FileCopyService;
 import com.orastays.authserver.service.SignUpService;
+import com.orastays.authserver.service.UserService;
 
 @Component
 public class AuthorizeUserValidation {
@@ -46,7 +53,28 @@ public class AuthorizeUserValidation {
 	protected LoginDetailsDAO loginDetailsDAO;
 	
 	@Autowired
+	protected UserService userService;
+	
+	@Autowired
 	protected UserDAO userDAO;
+	
+	@Autowired
+	protected IdentityDAO identityDAO;
+	
+	@Autowired
+	protected HostVsDomainDAO hostVsDomainDAO;
+	
+	@Autowired
+	protected HostVsInterestDAO hostVsInterestDAO;
+	
+	@Autowired
+	protected HostVsDomainConverter hostVsDomainConverter;
+	
+	@Autowired
+	protected HostVsInterestConverter hostVsInterestConverter;
+	
+	@Autowired
+	protected FileCopyService fileCopyService;
 	
 	@Autowired
 	protected HttpServletRequest request;
