@@ -152,3 +152,199 @@
 2018-12-16 00:37:51.748  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.s.i.UserServiceImpl                : addUserActivity -- END
 2018-12-16 00:37:51.785 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.h.Util                             : RESPONSE -- Update User Info -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OK","responseBody":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":0,"userId":"1","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"3071","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"},"userVsTypes":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsTypeId":"1","userType":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"userTypeId":"2","userType":"Customer"}}],"userActivitys":[{"status":1,"createdDate":"2018-12-15 22:35:15","createdBy":1,"activityId":"1","pageVisit":"string","propertyVisit":"string"}],"userVsLanguages":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsLanguageId":"1","language":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"languageId":"1","description":"English"}}],"userVsInfo":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"modifiedDate":"2018-12-16 00:37:51","modifiedBy":1,"userVsInfoId":"1","name":"Avirup Pal","imageUrl":"1_1544900854126_Koala.jpg","altPhno":"8902247112"},"loginDetails":[{"status":1,"createdDate":"2018-12-15 21:51:41","createdBy":1,"modifiedDate":"2018-12-16 00:37:34","modifiedBy":1,"ip":"0:0:0:0:0:0:0:1","deviceId":"abc","loginId":"1","sessionToken":"860d520c-f365-4fd5-b6b3-754dae053355"}],"hostVsInterests":[{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"1"},{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"2"}],"hostVsDomains":[{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"1"},{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"2"}]}}
 2018-12-16 00:37:51.794  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserController                   : updateUserInfo -- END
+2018-12-16 00:56:13.703  INFO Abhideep-PC --- [nio-7080-exec-7] c.o.a.c.SignUpController                 : fetchInactiveUser -- START
+2018-12-16 00:56:13.714 DEBUG Abhideep-PC --- [nio-7080-exec-7] c.o.a.h.Util                             : REQUEST -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"mobileNumber":"7278403639","country":{"countryId":"99"}}
+2018-12-16 00:56:13.732  INFO Abhideep-PC --- [nio-7080-exec-7] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- START
+2018-12-16 00:56:13.732  INFO Abhideep-PC --- [nio-7080-exec-7] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- END
+2018-12-16 00:56:13.734 DEBUG Abhideep-PC --- [nio-7080-exec-7] c.o.a.h.Util                             : RESPONSE -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully"}
+2018-12-16 00:56:13.735  INFO Abhideep-PC --- [nio-7080-exec-7] c.o.a.c.SignUpController                 : fetchInactiveUser -- END
+2018-12-16 00:57:43.331  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : fetchInactiveUser -- START
+2018-12-16 00:57:43.341 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : REQUEST -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"mobileNumber":"7278403639","country":{"countryId":"99"}}
+2018-12-16 00:57:43.357  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- START
+2018-12-16 00:57:43.360 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.LoginValidation                  : validatefetchInactiveUser -- Start
+2018-12-16 00:57:43.405  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- START
+2018-12-16 00:57:43.438  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- END
+2018-12-16 00:57:43.439 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.LoginValidation                  : validatefetchInactiveUser -- End
+2018-12-16 00:57:43.439  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- END
+2018-12-16 00:57:43.451 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : RESPONSE -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"userId":"1","mobileNumber":"7278403639","country":{"countryId":"99"}}}
+2018-12-16 00:57:43.454  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : fetchInactiveUser -- END
+2018-12-16 00:58:21.546  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.SignUpController                 : fetchInactiveUser -- START
+2018-12-16 00:58:21.550 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.h.Util                             : REQUEST -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"emailId":"avirup.pal@gmail.com"}
+2018-12-16 00:58:21.559  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- START
+2018-12-16 00:58:21.559 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.v.LoginValidation                  : validatefetchInactiveUser -- Start
+2018-12-16 00:58:21.561  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.SignUpController                 : FormExceptions in Fetch Inactive User -- com.orastays.authserver.exceptions.FormExceptions
+	at com.orastays.authserver.validation.LoginValidation.validatefetchInactiveUser(LoginValidation.java:197)
+	at com.orastays.authserver.validation.LoginValidation$$FastClassBySpringCGLIB$$518f3acb.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.validation.LoginValidation$$EnhancerBySpringCGLIB$$9b97cab4.validatefetchInactiveUser(<generated>)
+	at com.orastays.authserver.service.impl.LoginServiceImpl.fetchInactiveUser(LoginServiceImpl.java:86)
+	at com.orastays.authserver.service.impl.LoginServiceImpl$$FastClassBySpringCGLIB$$2f8844a3.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.service.impl.LoginServiceImpl$$EnhancerBySpringCGLIB$$3c2bcf3c.fetchInactiveUser(<generated>)
+	at com.orastays.authserver.controller.LoginController.fetchInactiveUser(LoginController.java:162)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+
+2018-12-16 00:58:21.562 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.h.Util                             : RESPONSE -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"responseCode":"309","responseMessage":"Invalid Email ID"}
+2018-12-16 00:58:21.562  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.SignUpController                 : fetchInactiveUser -- END
+2018-12-16 00:59:08.145  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.SignUpController                 : fetchInactiveUser -- START
+2018-12-16 00:59:08.150 DEBUG Abhideep-PC --- [nio-7080-exec-3] c.o.a.h.Util                             : REQUEST -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"emailId":"avirup.pal@gmail.com"}
+2018-12-16 00:59:08.164  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- START
+2018-12-16 00:59:08.164 DEBUG Abhideep-PC --- [nio-7080-exec-3] c.o.a.v.LoginValidation                  : validatefetchInactiveUser -- Start
+2018-12-16 00:59:17.981  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.SignUpController                 : FormExceptions in Fetch Inactive User -- com.orastays.authserver.exceptions.FormExceptions
+	at com.orastays.authserver.validation.LoginValidation.validatefetchInactiveUser(LoginValidation.java:197)
+	at com.orastays.authserver.validation.LoginValidation$$FastClassBySpringCGLIB$$518f3acb.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.validation.LoginValidation$$EnhancerBySpringCGLIB$$9b97cab4.validatefetchInactiveUser(<generated>)
+	at com.orastays.authserver.service.impl.LoginServiceImpl.fetchInactiveUser(LoginServiceImpl.java:86)
+	at com.orastays.authserver.service.impl.LoginServiceImpl$$FastClassBySpringCGLIB$$2f8844a3.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.service.impl.LoginServiceImpl$$EnhancerBySpringCGLIB$$3c2bcf3c.fetchInactiveUser(<generated>)
+	at com.orastays.authserver.controller.LoginController.fetchInactiveUser(LoginController.java:162)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+
+2018-12-16 00:59:17.982 DEBUG Abhideep-PC --- [nio-7080-exec-3] c.o.a.h.Util                             : RESPONSE -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"responseCode":"309","responseMessage":"Invalid Email ID"}
+2018-12-16 00:59:17.983  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.SignUpController                 : fetchInactiveUser -- END
+2018-12-16 01:00:34.067  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : fetchInactiveUser -- START
+2018-12-16 01:00:34.076 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : REQUEST -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"emailId":"avirup.pal@gmail.com"}
+2018-12-16 01:00:34.093  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- START
+2018-12-16 01:00:34.099 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.LoginValidation                  : validatefetchInactiveUser -- Start
+2018-12-16 01:00:39.506  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.UserServiceImpl                : validateUserByEmail -- START
+2018-12-16 01:00:41.975  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.UserServiceImpl                : validateUserByEmail -- END
+2018-12-16 01:00:44.586 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.LoginValidation                  : validatefetchInactiveUser -- End
+2018-12-16 01:00:44.586  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- END
+2018-12-16 01:00:44.616 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : RESPONSE -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"userId":"1","emailId":"avirup.pal@gmail.com"}}
+2018-12-16 01:00:44.619  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : fetchInactiveUser -- END

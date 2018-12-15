@@ -139,4 +139,58 @@ public class LoginController extends BaseController {
 			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@PostMapping(value = "/fetch-inactive-user", produces = "application/json")
+	@ApiOperation(value = "Fetch Inactive User", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 303, message = "Please Select Country"),
+			@ApiResponse(code = 304, message = "Invalid Country"),
+			@ApiResponse(code = 305, message = "Please Enter Mobile Number"),
+			@ApiResponse(code = 306, message = "Invalid Mobile Number"),
+			@ApiResponse(code = 308, message = "Please Enter Email ID"),
+			@ApiResponse(code = 309, message = "Invalid Email ID") })
+	public ResponseEntity<ResponseModel> fetchInactiveUser(@RequestBody UserModel userModel) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("fetchInactiveUser -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+		Util.printLog(userModel, AuthConstant.INCOMING, "Fetch Inactive User", request);
+		try {
+			UserModel userModel2 = loginService.fetchInactiveUser(userModel);
+			responseModel.setResponseBody(userModel2);
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle("otp.send.success"));
+		} catch (FormExceptions fe) {
+
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Fetch Inactive User -- "+Util.errorToString(fe));
+				}
+				break;
+			}
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Fetch Inactive User -- "+Util.errorToString(e));
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Fetch Inactive User", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("fetchInactiveUser -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

@@ -12,4 +12,6 @@ public interface LoginService {
 
 	UserModel validateLoginOTP(UserModel userModel) throws FormExceptions;
 
+	UserModel fetchInactiveUser(UserModel userModel) throws FormExceptions;
+
 }

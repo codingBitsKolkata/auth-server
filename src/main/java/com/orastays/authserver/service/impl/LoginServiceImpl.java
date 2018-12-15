@@ -75,4 +75,20 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		
 		return userModel;
 	}
+
+	@Override
+	public UserModel fetchInactiveUser(UserModel userModel) throws FormExceptions {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("fetchInactiveUser -- START");
+		}
+		
+		loginValidation.validatefetchInactiveUser(userModel);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("fetchInactiveUser -- END");
+		}
+		
+		return userModel;
+	}
 }
