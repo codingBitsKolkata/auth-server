@@ -12,60 +12,29 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 //import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-//@EnableResourceServer
 @EnableDiscoveryClient
 @EnableAutoConfiguration
 @EnableCircuitBreaker
 @EnableHystrix
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AuthServerApplication extends WebMvcConfigurerAdapter {
+public class AuthServerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AuthServerApplication.class, args);
 	}
-	
-//	@Bean
-//	FilterRegistrationBean forwardedHeaderFilter() {
-//		FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
-//		filterRegBean.setFilter(new ForwardedHeaderFilter());
-//		filterRegBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-//		return filterRegBean;
-//	}
 
-//	@Override
-//	public void addViewControllers(ViewControllerRegistry registry) {
-//		registry.addViewController("/login").setViewName("login");
-//		registry.addViewController("/oauth/confirm_access").setViewName("authorize");
-//	}
-
-//	@Bean
-//	public FilterRegistrationBean corsFilters() {
-//		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//		CorsConfiguration config = new CorsConfiguration();
-//		config.setAllowCredentials(true);
-//		config.addAllowedOrigin("*");
-//		config.addAllowedHeader("*");
-//		config.addAllowedMethod("*");
-//		source.registerCorsConfiguration("/**", config);
-//		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-//		bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-//		return bean;
-//	}
-	
 	@Bean
-    public ModelMapper modelMapper() {
-		
+	public ModelMapper modelMapper() {
+
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT).setAmbiguityIgnored(true);
 		return modelMapper;
 	}
-	
+
 	@Bean
 	@LoadBalanced
-    public RestTemplate restTemplate() {
+	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
 }

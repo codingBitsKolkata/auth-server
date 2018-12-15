@@ -54,6 +54,7 @@ public class UserVsTypeConverter extends CommonConverter implements BaseConverte
 		if(Objects.nonNull(e)) {
 			userVsTypeModel = new UserVsTypeModel();
 			userVsTypeModel = (UserVsTypeModel) Util.transform(modelMapper, e, userVsTypeModel);
+			userVsTypeModel.setUserTypeModel(userTypeConverter.entityToModel(e.getUserTypeEntity()));
 		}
 		
 		if (logger.isInfoEnabled()) {

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,28 +29,36 @@ public class HostVsAccountEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "host_vs_account_id")
+	@JsonProperty("hostVsAccountId")
 	private Long hostVsAccountId;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonProperty("user")
 	private UserEntity userEntity;
 
 	@Column(name = "account_number")
+	@JsonProperty("accountNumber")
 	private String accountNumber;
 
 	@Column(name = "account_holder_name")
+	@JsonProperty("accountHolderName")
 	private String accountHolderName;
 
 	@Column(name = "account_type")
+	@JsonProperty("accountType")
 	private String accountType;
 
 	@Column(name = "bank_name")
+	@JsonProperty("bankName")
 	private String bankName;
 
 	@Column(name = "branch_name")
+	@JsonProperty("branchName")
 	private String branchName;
 
 	@Column(name = "ifsc_code")
+	@JsonProperty("ifscCode")
 	private String ifscCode;
 
 	@Override

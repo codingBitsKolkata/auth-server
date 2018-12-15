@@ -42,8 +42,8 @@ public class UserController extends BaseController {
 	@ApiOperation(value = "Fetch User Details By UserID", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 311, message = "Please provide UserID"),
-			@ApiResponse(code = 312, message = "Invalid UserID") })
+			@ApiResponse(code = 312, message = "Please provide UserID"),
+			@ApiResponse(code = 313, message = "Invalid UserID") })
 	public ResponseEntity<ResponseModel> fetchUserByID(@RequestParam(value = "userId", required = true) String userId) {
 
 		if (logger.isInfoEnabled()) {
@@ -92,7 +92,9 @@ public class UserController extends BaseController {
 	@ApiOperation(value = "Check Token", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 319, message = "Session expires!!!Please Login to continue...") })
+			@ApiResponse(code = 320, message = "Session expires!!!Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token")})
 	public ResponseEntity<ResponseModel> checkToken(@RequestParam(value = "userToken", required = true) String userToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -141,7 +143,7 @@ public class UserController extends BaseController {
 	@ApiOperation(value = "Add User Activity", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 319, message = "Session expires!!!Please Login to continue...") })
+			@ApiResponse(code = 320, message = "Session expires!!!Please Login to continue...") })
 	public ResponseEntity<ResponseModel> addUserActivity(@RequestBody UserActivityModel userActivityModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -190,11 +192,11 @@ public class UserController extends BaseController {
 	@ApiOperation(value = "Update User Info", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 319, message = "Session expires!!!Please Login to continue..."),
-			@ApiResponse(code = 320, message = "Invalid Alternate Mobile Number"),
-			@ApiResponse(code = 321, message = "Invalid Date Of Birth"),
-			@ApiResponse(code = 322, message = "Invalid Image Format"),
-			@ApiResponse(code = 323, message = "Error in Image Uploading!!! Please try after sometime...") })
+			@ApiResponse(code = 320, message = "Session expires!!!Please Login to continue..."),
+			@ApiResponse(code = 323, message = "Invalid Alternate Mobile Number"),
+			@ApiResponse(code = 324, message = "Invalid Date Of Birth"),
+			@ApiResponse(code = 325, message = "Invalid Image Format"),
+			@ApiResponse(code = 326, message = "Error in Image Uploading!!! Please try after sometime...") })
 	public ResponseEntity<ResponseModel> updateUserInfo(@RequestBody UserVsInfoModel userVsInfoModel) {
 
 		if (logger.isInfoEnabled()) {

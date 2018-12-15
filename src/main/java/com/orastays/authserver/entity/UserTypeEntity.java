@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,9 +28,11 @@ public class UserTypeEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_type_id")
+	@JsonProperty("userTypeId")
 	private Long userTypeId;
 
 	@Column(name = "user_type")
+	@JsonProperty("userType")
 	private String userType;
 	
 	@Override

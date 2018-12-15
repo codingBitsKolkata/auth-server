@@ -41,9 +41,9 @@ public class LoginController extends BaseController {
 			@ApiResponse(code = 303, message = "Please Select Country"),
 			@ApiResponse(code = 304, message = "Invalid Country"),
 			@ApiResponse(code = 306, message = "Invalid Mobile Number"),
-			@ApiResponse(code = 317, message = "Mobile Number Not Registered"),
+			@ApiResponse(code = 318, message = "Mobile Number Not Registered"),
 			@ApiResponse(code = 309, message = "Invalid Email ID"),
-			@ApiResponse(code = 305, message = "Email Id Not Registered") })
+			@ApiResponse(code = 319, message = "Email Id Not Registered") })
 	public ResponseEntity<ResponseModel> validateLogin(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -56,7 +56,7 @@ public class LoginController extends BaseController {
 			UserModel userModel2 = loginService.validateLogin(userModel);
 			responseModel.setResponseBody(userModel2);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
-			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+			responseModel.setResponseMessage(messageUtil.getBundle("otp.send.success"));
 		} catch (FormExceptions fe) {
 			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
 				responseModel.setResponseCode(entry.getKey());
@@ -91,12 +91,12 @@ public class LoginController extends BaseController {
 	@ApiOperation(value = "Validate Login OTP", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 311, message = "Please provide UserID"),
-			@ApiResponse(code = 312, message = "Invalid UserID"),
-			@ApiResponse(code = 313, message = "Please enter OTP"),
-			@ApiResponse(code = 314, message = "Invalid OTP"),
-			@ApiResponse(code = 315, message = "OTP expires"),
-			@ApiResponse(code = 316, message = "Please provide Device ID") })
+			@ApiResponse(code = 312, message = "Please provide UserID"),
+			@ApiResponse(code = 313, message = "Invalid UserID"),
+			@ApiResponse(code = 314, message = "Please enter OTP"),
+			@ApiResponse(code = 315, message = "Invalid OTP"),
+			@ApiResponse(code = 316, message = "OTP expires"),
+			@ApiResponse(code = 317, message = "Please provide Device ID") })
 	public ResponseEntity<ResponseModel> validateLoginOTP(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {

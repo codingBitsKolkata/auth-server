@@ -42,7 +42,9 @@ public class IdentityController extends BaseController {
 	@ApiOperation(value = "Fetch Active Identities", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 203, message = "Token Expires!!!Please login to continue...") })
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token") })
 	public ResponseEntity<ResponseModel> fetchIdentities(@RequestParam(value = "userToken", required = true) String userToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -91,12 +93,14 @@ public class IdentityController extends BaseController {
 	@ApiOperation(value = "Add User Identity", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 319, message = "Session expires!!!Please Login to continue..."),
-			@ApiResponse(code = 324, message = "Please give Identity"),
-			@ApiResponse(code = 325, message = "Invalid Identity"),
-			@ApiResponse(code = 326, message = "Please give Identity Number"),
-			@ApiResponse(code = 327, message = "Invalid Identity Number"),
-			@ApiResponse(code = 328, message = "Error in Identity Uploading!!! Please try after sometime...") })
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 327, message = "Please give Identity"),
+			@ApiResponse(code = 328, message = "Invalid Identity"),
+			@ApiResponse(code = 329, message = "Please give Identity Number"),
+			@ApiResponse(code = 331, message = "Invalid Identity Number"),
+			@ApiResponse(code = 331, message = "Error in Identity Uploading!!! Please try after sometime...") })
 	public ResponseEntity<ResponseModel> addUserIdentity(@RequestBody UserVsIdentityModel userVsIdentityModel) {
 
 		if (logger.isInfoEnabled()) {

@@ -44,7 +44,7 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		UserEntity userEntity = userConverter.modelToEntity(userModel);
 		userEntity.setCountryEntity(countryEntity);
 		Long userId = (Long) userDAO.save(userEntity);
-		UserTypeEntity userTypeEntity = userTypeDAO.find(Long.parseLong(String.valueOf(UserType.USER.ordinal())));
+		UserTypeEntity userTypeEntity = userTypeDAO.find(Long.parseLong(String.valueOf(UserType.CUSTOMER.ordinal())));
 		
 		UserVsTypeEntity userVsTypeEntity = new UserVsTypeEntity();
 		UserEntity userEntity2 = userDAO.find(userId);

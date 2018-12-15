@@ -54,6 +54,7 @@ public class UserVsLanguageConverter extends CommonConverter implements BaseConv
 		if(Objects.nonNull(e)) {
 			userVsLanguageModel = new UserVsLanguageModel();
 			userVsLanguageModel = (UserVsLanguageModel) Util.transform(modelMapper, e, userVsLanguageModel);
+			userVsLanguageModel.setLanguageModel(languageConverter.entityToModel(e.getLanguageEntity()));
 		}
 		
 		if (logger.isInfoEnabled()) {

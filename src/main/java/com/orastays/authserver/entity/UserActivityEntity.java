@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,16 +29,20 @@ public class UserActivityEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "activity_id")
+	@JsonProperty("activityId")
 	private Long activityId;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonProperty("user")
 	private UserEntity userEntity;
 
 	@Column(name = "page_visit")
+	@JsonProperty("pageVisit")
 	private String pageVisit;
 
 	@Column(name = "property_visit")
+	@JsonProperty("propertyVisit")
 	private String propertyVisit;
 
 	@Override

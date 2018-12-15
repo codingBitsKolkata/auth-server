@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,20 +30,25 @@ public class UserVsIdentityEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_vs_identity_id")
+	@JsonProperty("userVsIdentityId")
 	private Long userVsIdentityId;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "identity_id", nullable = false)
-	private IdentityEntity masterIdentityEntity;
+	@JsonProperty("identity")
+	private IdentityEntity identityEntity;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonProperty("user")
 	private UserEntity userEntity;
 	
 	@Column(name = "identity_number")
+	@JsonProperty("identityNumber")
 	private String identityNumber;
 	
 	@Column(name = "file_url")
+	@JsonProperty("fileUrl")
 	private String fileUrl;
 	
 	@Override

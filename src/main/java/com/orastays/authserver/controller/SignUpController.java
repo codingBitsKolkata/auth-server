@@ -47,7 +47,8 @@ public class SignUpController extends BaseController {
 			@ApiResponse(code = 307, message = "Mobile Number Already Registered"),
 			@ApiResponse(code = 308, message = "Please Enter Email ID"),
 			@ApiResponse(code = 309, message = "Invalid Email ID"),
-			@ApiResponse(code = 310, message = "Email ID Already Registered") })
+			@ApiResponse(code = 310, message = "Email ID Already Registered"),
+			@ApiResponse(code = 311, message = "User is Inactive")})
 	public ResponseEntity<ResponseModel> signUp(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -96,12 +97,12 @@ public class SignUpController extends BaseController {
 	@ApiOperation(value = "Validate OTP", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 311, message = "Please provide UserID"),
-			@ApiResponse(code = 312, message = "Invalid UserID"),
-			@ApiResponse(code = 313, message = "Please enter OTP"),
-			@ApiResponse(code = 314, message = "Invalid OTP"),
-			@ApiResponse(code = 315, message = "OTP expires"),
-			@ApiResponse(code = 316, message = "Please provide Device ID") })
+			@ApiResponse(code = 312, message = "Please provide UserID"),
+			@ApiResponse(code = 313, message = "Invalid UserID"),
+			@ApiResponse(code = 314, message = "Please enter OTP"),
+			@ApiResponse(code = 315, message = "Invalid OTP"),
+			@ApiResponse(code = 316, message = "OTP expires"),
+			@ApiResponse(code = 317, message = "Please provide Device ID") })
 	public ResponseEntity<ResponseModel> validateOTP(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -150,8 +151,8 @@ public class SignUpController extends BaseController {
 	@ApiOperation(value = "Resend OTP", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 311, message = "Please provide UserID"),
-			@ApiResponse(code = 312, message = "Invalid UserID") })
+			@ApiResponse(code = 312, message = "Please provide UserID"),
+			@ApiResponse(code = 313, message = "Invalid UserID") })
 	public ResponseEntity<ResponseModel> resendOTP(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {

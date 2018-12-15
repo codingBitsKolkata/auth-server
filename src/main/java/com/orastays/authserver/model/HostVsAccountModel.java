@@ -3,6 +3,10 @@
  */
 package com.orastays.authserver.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,14 +16,31 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode(callSuper = false)
 @ToString
+@JsonInclude(Include.NON_NULL)
 public class HostVsAccountModel extends CommonModel {
 	
+	
+	@JsonProperty("hostVsAccountId")
 	private String hostVsAccountId;
+	
+	@JsonProperty("user")
 	private UserModel userModel;
+	
+	@JsonProperty("accountNumber")
 	private String accountNumber;
+	
+	@JsonProperty("accountHolderName")
 	private String accountHolderName;
+	
+	@JsonProperty("accountType")
 	private String accountType;
+	
+	@JsonProperty("bankName")
 	private String bankName;
+	
+	@JsonProperty("branchName")
 	private String branchName;
+	
+	@JsonProperty("ifscCode")
 	private String ifscCode;
 }

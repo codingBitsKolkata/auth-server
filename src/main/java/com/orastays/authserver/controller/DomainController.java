@@ -42,7 +42,9 @@ public class DomainController extends BaseController {
 	@ApiOperation(value = "Fetch Active Domains", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 203, message = "Token Expires!!!Please login to continue...") })
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token")})
 	public ResponseEntity<ResponseModel> fetchDomains(@RequestParam(value = "hostToken", required = true) String hostToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -91,9 +93,11 @@ public class DomainController extends BaseController {
 	@ApiOperation(value = "Add Host Domain", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 319, message = "Session expires!!!Please Login to continue..."),
-			@ApiResponse(code = 329, message = "Please Select Domain"),
-			@ApiResponse(code = 330, message = "Invalid Domain") })
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 332, message = "Please Select Domain"),
+			@ApiResponse(code = 333, message = "Invalid Domain") })
 	public ResponseEntity<ResponseModel> addHostDomain(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {

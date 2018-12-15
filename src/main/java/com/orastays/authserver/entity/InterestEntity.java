@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,12 +30,15 @@ public class InterestEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "interest_id")
+	@JsonProperty("interestId")
 	private Long interestId;
 
 	@Column(name = "interest_name")
+	@JsonProperty("interestName")
 	private String interestName;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "interestEntity", cascade = { CascadeType.ALL })
+	@JsonProperty("hostVsInterests")
 	private List<HostVsInterestEntity> hostVsInterestEntities;
 
 	

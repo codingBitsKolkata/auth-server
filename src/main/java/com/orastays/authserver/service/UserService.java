@@ -3,6 +3,7 @@
  */
 package com.orastays.authserver.service;
 
+import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.model.UserActivityModel;
 import com.orastays.authserver.model.UserModel;
@@ -16,4 +17,6 @@ public interface UserService {
 	UserModel fetchUserByEmail(String emailId);
 	void addUserActivity(UserActivityModel userActivityModel) throws FormExceptions;
 	UserModel updateUserInfo(UserVsInfoModel userVsInfoModel) throws FormExceptions;
+	UserEntity validateUserByMobileNumber(String mobileNumber, String countryId);
+	UserEntity validateUserByEmail(String emailId);
 }

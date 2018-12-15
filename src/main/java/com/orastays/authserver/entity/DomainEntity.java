@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,12 +30,15 @@ public class DomainEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "domain_id")
+	@JsonProperty("domainId")
 	private Long domainId;
 
 	@Column(name = "domain_name")
+	@JsonProperty("domainName")
 	private String domainName;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "domainEntity", cascade = { CascadeType.ALL })
+	@JsonProperty("HostVsDomains")
 	private List<HostVsDomainEntity> hostVsDomainEntities;
 
 	@Override

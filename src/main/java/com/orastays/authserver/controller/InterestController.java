@@ -42,7 +42,9 @@ public class InterestController extends BaseController {
 	@ApiOperation(value = "Fetch Active Interests", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 203, message = "Token Expires!!!Please login to continue...") })
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token") })
 	public ResponseEntity<ResponseModel> fetchInterests(@RequestParam(value = "hostToken", required = true) String hostToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -91,9 +93,11 @@ public class InterestController extends BaseController {
 	@ApiOperation(value = "Add Host Interest", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 319, message = "Session expires!!!Please Login to continue..."),
-			@ApiResponse(code = 331, message = "Please Select Interest"),
-			@ApiResponse(code = 332, message = "Invalid Interest") })
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 334, message = "Please Select Interest"),
+			@ApiResponse(code = 335, message = "Invalid Interest") })
 	public ResponseEntity<ResponseModel> addHostInterest(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {

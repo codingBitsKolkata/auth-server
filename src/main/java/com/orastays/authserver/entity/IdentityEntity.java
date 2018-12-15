@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,9 +25,11 @@ public class IdentityEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "identity_id")
+	@JsonProperty("identityId")
 	private Long identityId;
 	
 	@Column(name = "name")
+	@JsonProperty("name")
 	private String name;
 
 	@Override

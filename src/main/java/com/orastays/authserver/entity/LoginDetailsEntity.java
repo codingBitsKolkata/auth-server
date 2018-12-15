@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,19 +29,24 @@ public class LoginDetailsEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "login_id")
+	@JsonProperty("loginId")
 	private Long loginId;
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonProperty("users")
 	private UserEntity userEntity;
 
 	@Column(name = "ip")
+	@JsonProperty("ip")
 	private String ip;
 
 	@Column(name = "device_id")
+	@JsonProperty("deviceId")
 	private String deviceId;
 	
 	@Column(name = "session_token")
+	@JsonProperty("sessionToken")
 	private String sessionToken;
 
 	@Override

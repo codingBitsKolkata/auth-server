@@ -139,6 +139,78 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		
 		return userModel;
 	}
+	
+	@Override
+	public UserEntity validateUserByMobileNumber(String mobileNumber, String countryId) {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserByMobileNumber -- START");
+		}
+		
+		UserEntity userEntity = null;
+		try {
+			Map<String, String> innerMap1 = new LinkedHashMap<>();
+			innerMap1.put("mobileNumber", mobileNumber);
+	
+			Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
+			outerMap1.put("eq", innerMap1);
+	
+			Map<String, Map<String, Map<String, String>>> alliasMap = new LinkedHashMap<>();
+			alliasMap.put(entitymanagerPackagesToScan+".UserEntity", outerMap1);
+			
+			Map<String, String> innerMap2 = new LinkedHashMap<>();
+			innerMap2.put("countryId", String.valueOf(countryId));
+			 
+			Map<String, Map<String, String>> outerMap2 = new LinkedHashMap<>();
+			outerMap2.put("eq", innerMap2);
+			 
+			alliasMap.put("countryEntity", outerMap2);
+	
+			userEntity = userDAO.fetchObjectBySubCiteria(alliasMap);
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in validateUserByMobileNumber -- "+Util.errorToString(e));
+			}
+		}
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserByMobileNumber -- END");
+		}
+		
+		return userEntity;
+	}
+	
+	@Override
+	public UserEntity validateUserByEmail(String emailId) {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserByEmail -- START");
+		}
+		
+		UserEntity userEntity = null;
+		try {
+			Map<String, String> innerMap1 = new LinkedHashMap<>();
+			innerMap1.put("emailId", emailId);
+	
+			Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
+			outerMap1.put("eq", innerMap1);
+	
+			Map<String, Map<String, Map<String, String>>> alliasMap = new LinkedHashMap<>();
+			alliasMap.put(entitymanagerPackagesToScan+".UserEntity", outerMap1);
+	
+			userEntity = userDAO.fetchObjectBySubCiteria(alliasMap);
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in validateUserByEmail -- "+Util.errorToString(e));
+			}
+		}
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserByEmail -- END");
+		}
+		
+		return userEntity;
+	}
 
 	@Override
 	public void addUserActivity(UserActivityModel userActivityModel) throws FormExceptions {

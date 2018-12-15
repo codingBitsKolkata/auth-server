@@ -32,8 +32,8 @@ public class ApplicationConfig {
                 .title("Auth Server Dashboard")
                 .description("Auth Server Definition")
                 .version("1.0.0")
-                .license("Apache 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0")
+                .license("OraStays 1.0")
+                .licenseUrl("http://www.orastays.com")
                 .contact(contact)
                 .build();
     }

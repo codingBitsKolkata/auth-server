@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,12 +28,15 @@ public class CountryEntity extends CommonEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "country_id")
+	@JsonProperty("countryId")
 	private Long countryId;
 
 	@Column(name = "country_name")
+	@JsonProperty("countryName")
 	private String countryName;
 	
 	@Column(name = "country_code")
+	@JsonProperty("countryCode")
 	private String countryCode;
 	
 	@Override

@@ -1214,8 +1214,8 @@ public class Util {
 	
 	public static boolean checkEmail(String emailId) {
 		
-		String emailPattern = "(^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\\\.[A-Z]{2,6}$)";
-		Pattern pattern = Pattern.compile(emailPattern);
+		String emailPattern = "^(.+)@(.+)$";
+		Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(emailId);
 		return matcher.matches();
 	}
@@ -1242,7 +1242,7 @@ public class Util {
 	public static void main(String[] args) {
 
 		try {
-			System.out.println(checkSpecialCharacter("10aa"));
+			System.out.println(checkEmail("avirup.pal"));
 		} catch (Exception e) {
 
 		}
