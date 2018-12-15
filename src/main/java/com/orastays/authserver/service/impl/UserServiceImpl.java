@@ -222,6 +222,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		UserEntity userEntity = userValidation.validateUserActivity(userActivityModel);
 		userActivityModel.setUserModel(userConverter.entityToModel(userEntity));
 		UserActivityEntity userActivityEntity = userActivityConverter.modelToEntity(userActivityModel);
+		userActivityEntity.setUserEntity(userEntity);
 		userActivityDAO.save(userActivityEntity);
 		
 		if (logger.isInfoEnabled()) {

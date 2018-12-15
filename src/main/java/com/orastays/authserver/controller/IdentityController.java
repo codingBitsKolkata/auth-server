@@ -99,7 +99,7 @@ public class IdentityController extends BaseController {
 			@ApiResponse(code = 327, message = "Please give Identity"),
 			@ApiResponse(code = 328, message = "Invalid Identity"),
 			@ApiResponse(code = 329, message = "Please give Identity Number"),
-			@ApiResponse(code = 331, message = "Invalid Identity Number"),
+			@ApiResponse(code = 330, message = "Invalid Identity Number"),
 			@ApiResponse(code = 331, message = "Error in Identity Uploading!!! Please try after sometime...") })
 	public ResponseEntity<ResponseModel> addUserIdentity(@RequestBody UserVsIdentityModel userVsIdentityModel) {
 

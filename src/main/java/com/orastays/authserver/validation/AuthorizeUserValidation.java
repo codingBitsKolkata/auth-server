@@ -19,9 +19,11 @@ import com.google.gson.reflect.TypeToken;
 import com.orastays.authserver.converter.HostVsDomainConverter;
 import com.orastays.authserver.converter.HostVsInterestConverter;
 import com.orastays.authserver.dao.CountryDAO;
+import com.orastays.authserver.dao.DomainDAO;
 import com.orastays.authserver.dao.HostVsDomainDAO;
 import com.orastays.authserver.dao.HostVsInterestDAO;
 import com.orastays.authserver.dao.IdentityDAO;
+import com.orastays.authserver.dao.InterestDAO;
 import com.orastays.authserver.dao.LoginDetailsDAO;
 import com.orastays.authserver.dao.UserDAO;
 import com.orastays.authserver.exceptions.FormExceptions;
@@ -60,6 +62,12 @@ public class AuthorizeUserValidation {
 	
 	@Autowired
 	protected IdentityDAO identityDAO;
+	
+	@Autowired
+	protected DomainDAO domainDAO;
+	
+	@Autowired
+	protected InterestDAO interestDAO;
 	
 	@Autowired
 	protected HostVsDomainDAO hostVsDomainDAO;

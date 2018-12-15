@@ -108,7 +108,7 @@ public class InterestController extends BaseController {
 		Util.printLog(responseModel, AuthConstant.INCOMING, "Add Host Interest", request);
 		try {
 			interestService.addHostInterest(userModel);
-			responseModel.setResponseBody(messageUtil.getBundle("host.identity.add.success"));
+			responseModel.setResponseBody(messageUtil.getBundle("host.interest.add.success"));
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
 		} catch (FormExceptions fe) {

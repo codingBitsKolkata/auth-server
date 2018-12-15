@@ -12,7 +12,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletContext;
 import javax.transaction.Transactional;
 
 import org.apache.commons.io.IOUtils;
@@ -193,16 +192,18 @@ public class UserValidation extends AuthorizeUserValidation {
 			userVsInfoEntity = this.validateCheckToken(userVsInfoModel.getUserToken()).getUserVsInfoEntity();
 			
 			// Validate Country Code
-			if(Objects.nonNull(userVsInfoModel.getUserModel().getCountryModel())) {
-				if(StringUtils.isBlank(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
-					exceptions.put(messageUtil.getBundle("country.id.null.code"), new Exception(messageUtil.getBundle("country.id.null.message")));
-				} else {
-					if(Util.isNumeric(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
-						if(Objects.isNull(countryDAO.find(Long.parseLong(userVsInfoModel.getUserModel().getCountryModel().getCountryId())))) {
+			if(Objects.nonNull(userVsInfoModel.getUserModel())) {
+				if(Objects.nonNull(userVsInfoModel.getUserModel().getCountryModel())) {
+					if(StringUtils.isBlank(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
+						exceptions.put(messageUtil.getBundle("country.id.null.code"), new Exception(messageUtil.getBundle("country.id.null.message")));
+					} else {
+						if(Util.isNumeric(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
+							if(Objects.isNull(countryDAO.find(Long.parseLong(userVsInfoModel.getUserModel().getCountryModel().getCountryId())))) {
+								exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
+							}
+						} else {
 							exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
 						}
-					} else {
-						exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
 					}
 				}
 			}
@@ -241,7 +242,7 @@ public class UserValidation extends AuthorizeUserValidation {
 			}
 			
 			//Validate User Image
-			if(!(userVsInfoModel.getImage() == null || userVsInfoModel.getImage().isEmpty())){
+			if(!(userVsInfoModel.getImage() == null || userVsInfoModel.getImage().isEmpty())) {
 				uploadImage(userVsInfoModel.getImage(), userVsInfoEntity);
 				
 			}
@@ -273,15 +274,15 @@ public class UserValidation extends AuthorizeUserValidation {
 			// to do file upload
 			MultipartFile multipartFile = inputFile;
 			this.imageFormatValidation(multipartFile);
-			ServletContext context = request.getServletContext();
-			String appPath = context.getRealPath("");
-			
-			String dirStr = appPath + "resources" + File.separator + messageUtil.getBundle("logo.upload.foldername");
+			/*ServletContext context = request.getServletContext();
+			String appPath = context.getRealPath("");*/
+			String rootPath = System.getProperty("user.dir") + File.separator;
+			String dirStr = rootPath + messageUtil.getBundle("logo.upload.foldername");
 			File dir = new File(dirStr);
 			if(!dir.exists()){
 				dir.mkdir();
 			}
-	
+			
 			// construct the complete absolute path of the file
 			String fileName = userVsInfoEntity.getUserEntity().getUserId()+"_"+new Date().getTime()+"_" + multipartFile.getOriginalFilename();
 			String fullPath = dirStr + File.separator + fileName;
@@ -408,10 +409,11 @@ public class UserValidation extends AuthorizeUserValidation {
 		try {
 			// to do file upload
 			MultipartFile multipartFile = userVsIdentityModel.getFile();
-			ServletContext context = request.getServletContext();
-			String appPath = context.getRealPath("");
+			/*ServletContext context = request.getServletContext();
+			String appPath = context.getRealPath("");*/
+			String rootPath = System.getProperty("user.dir") + File.separator;
+			String dirStr = rootPath + messageUtil.getBundle("useridentity.upload.foldername");
 			
-			String dirStr = appPath + "resources" + File.separator + messageUtil.getBundle("useridentity.upload.foldername");
 			File dir = new File(dirStr);
 			if(!dir.exists()){
 				dir.mkdir();
@@ -423,7 +425,7 @@ public class UserValidation extends AuthorizeUserValidation {
 			
 			File file = new File(fullPath);
 			multipartFile.transferTo(file);
-			fileCopyService.copyFiles(file, messageUtil.getBundle("userfile.upload.foldername"));
+			//fileCopyService.copyFiles(file, messageUtil.getBundle("userfile.upload.foldername"));
 			userVsIdentityModel.setFileUrl(fileName);
 		} catch (IOException e) {
 			exceptions.put(messageUtil.getBundle("userfile.upload.error.code"), new Exception(messageUtil.getBundle("userfile.upload.error.message")));
@@ -446,25 +448,29 @@ public class UserValidation extends AuthorizeUserValidation {
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		
 		if(Objects.nonNull(userModel)) {
-			
+			userModel.setUserId(String.valueOf(userEntity.getUserId()));
 			// Validate Domain
 			if(CollectionUtils.isEmpty(userModel.getHostVsDomainModels())) {
 				exceptions.put(messageUtil.getBundle("domain.id.null.code"), new Exception(messageUtil.getBundle("domain.id.null.message")));
 			} else {
 				for (HostVsDomainModel hostVsDomainModel : userModel.getHostVsDomainModels()) {
-					if(StringUtils.isBlank(hostVsDomainModel.getHostDomId())) {
+					if(Objects.isNull(hostVsDomainModel.getDomainModel())) {
 						exceptions.put(messageUtil.getBundle("domain.id.null.code"), new Exception(messageUtil.getBundle("domain.id.null.message")));
 					} else {
-						if(Util.isNumeric(hostVsDomainModel.getHostDomId())) {
-							if(Objects.isNull(hostVsDomainDAO.find(Long.parseLong(hostVsDomainModel.getHostDomId())))) {
+						if(StringUtils.isBlank(hostVsDomainModel.getDomainModel().getDomainId())) {
+							exceptions.put(messageUtil.getBundle("domain.id.null.code"), new Exception(messageUtil.getBundle("domain.id.null.message")));
+						} else {
+							if(Util.isNumeric(hostVsDomainModel.getDomainModel().getDomainId())) {
+								if(Objects.isNull(domainDAO.find(Long.parseLong(hostVsDomainModel.getDomainModel().getDomainId())))) {
+									exceptions.put(messageUtil.getBundle("domain.id.invalid.code"), new Exception(messageUtil.getBundle("domain.id.invalid.message")));
+								}
+							} else {
 								exceptions.put(messageUtil.getBundle("domain.id.invalid.code"), new Exception(messageUtil.getBundle("domain.id.invalid.message")));
 							}
-						} else {
-							exceptions.put(messageUtil.getBundle("domain.id.invalid.code"), new Exception(messageUtil.getBundle("domain.id.invalid.message")));
 						}
+						if (exceptions.size() > 0)
+							throw new FormExceptions(exceptions);
 					}
-					if (exceptions.size() > 0)
-						throw new FormExceptions(exceptions);
 				}
 			}
 		}
@@ -477,6 +483,8 @@ public class UserValidation extends AuthorizeUserValidation {
 				userModel2.setUserId(String.valueOf(userEntity.getUserId()));
 				hostVsDomainModel.setUserModel(userModel);
 				HostVsDomainEntity hostVsDomainEntity = hostVsDomainConverter.modelToEntity(hostVsDomainModel);
+				hostVsDomainEntity.setDomainEntity(domainDAO.find(Long.parseLong(hostVsDomainModel.getDomainModel().getDomainId())));
+				hostVsDomainEntity.setUserEntity(userEntity);
 				hostVsDomainDAO.save(hostVsDomainEntity);
 			}
 		}
@@ -496,25 +504,29 @@ public class UserValidation extends AuthorizeUserValidation {
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		
 		if(Objects.nonNull(userModel)) {
-			
+			userModel.setUserId(String.valueOf(userEntity.getUserId()));
 			// Validate Interest
 			if(CollectionUtils.isEmpty(userModel.getHostVsInterestModels())) {
 				exceptions.put(messageUtil.getBundle("interest.id.null.code"), new Exception(messageUtil.getBundle("interest.id.null.message")));
 			} else {
 				for (HostVsInterestModel hostVsInterestModel : userModel.getHostVsInterestModels()) {
-					if(StringUtils.isBlank(hostVsInterestModel.getHostIntId())) {
+					if(Objects.isNull(hostVsInterestModel.getInterestModel())) {
 						exceptions.put(messageUtil.getBundle("interest.id.null.code"), new Exception(messageUtil.getBundle("interest.id.null.message")));
 					} else {
-						if(Util.isNumeric(hostVsInterestModel.getHostIntId())) {
-							if(Objects.isNull(hostVsInterestDAO.find(Long.parseLong(hostVsInterestModel.getHostIntId())))) {
+						if(StringUtils.isBlank(hostVsInterestModel.getInterestModel().getInterestId())) {
+							exceptions.put(messageUtil.getBundle("interest.id.null.code"), new Exception(messageUtil.getBundle("interest.id.null.message")));
+						} else {
+							if(Util.isNumeric(hostVsInterestModel.getInterestModel().getInterestId())) {
+								if(Objects.isNull(interestDAO.find(Long.parseLong(hostVsInterestModel.getInterestModel().getInterestId())))) {
+									exceptions.put(messageUtil.getBundle("interest.id.invalid.code"), new Exception(messageUtil.getBundle("interest.id.invalid.message")));
+								}
+							} else {
 								exceptions.put(messageUtil.getBundle("interest.id.invalid.code"), new Exception(messageUtil.getBundle("interest.id.invalid.message")));
 							}
-						} else {
-							exceptions.put(messageUtil.getBundle("interest.id.invalid.code"), new Exception(messageUtil.getBundle("interest.id.invalid.message")));
 						}
+						if (exceptions.size() > 0)
+							throw new FormExceptions(exceptions);
 					}
-					if (exceptions.size() > 0)
-						throw new FormExceptions(exceptions);
 				}
 			}
 		}
@@ -527,6 +539,8 @@ public class UserValidation extends AuthorizeUserValidation {
 				userModel2.setUserId(String.valueOf(userEntity.getUserId()));
 				hostVsInterestModel.setUserModel(userModel);
 				HostVsInterestEntity hostVsInterestEntity = hostVsInterestConverter.modelToEntity(hostVsInterestModel);
+				hostVsInterestEntity.setInterestEntity(interestDAO.find(Long.parseLong(hostVsInterestModel.getInterestModel().getInterestId())));
+				hostVsInterestEntity.setUserEntity(userEntity);
 				hostVsInterestDAO.save(hostVsInterestEntity);
 			}
 		}

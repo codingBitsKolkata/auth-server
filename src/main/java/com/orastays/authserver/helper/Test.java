@@ -1,27 +1,25 @@
 package com.orastays.authserver.helper;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 public class Test {
 
 	public static void main(String[] args) {
 
 		try {
-			System.out.println(checkEmail("avirup"));
-			System.out.println(checkEmail("avirup.pal@gmail.com"));
+			Test test = new Test();
+			test.checkPath();
 		} catch (Exception e) {
 
 		}
 
 	}
 
-	public static boolean checkEmail(String emailId) {
+	public void checkPath() throws UnsupportedEncodingException {
 
-		String emailPattern = "^(.+)@(.+)$";
-		Pattern pattern = Pattern.compile(emailPattern, Pattern.CASE_INSENSITIVE);
-		Matcher matcher = pattern.matcher(emailId);
-		return matcher.matches();
+		String rootPath = System.getProperty("user.dir");
+		System.out.println(rootPath);
 	}
 
 }
