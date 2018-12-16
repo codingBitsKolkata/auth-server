@@ -348,3 +348,547 @@
 2018-12-16 01:00:44.586  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.LoginServiceImpl               : fetchInactiveUser -- END
 2018-12-16 01:00:44.616 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : RESPONSE -- Fetch Inactive User -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"userId":"1","emailId":"avirup.pal@gmail.com"}}
 2018-12-16 01:00:44.619  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : fetchInactiveUser -- END
+2018-12-16 10:28:37.156  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.SignUpController                 : signUp -- START
+2018-12-16 10:28:37.166 DEBUG Abhideep-PC --- [nio-7080-exec-6] c.o.a.h.Util                             : REQUEST -- Sign Up -- 0:0:0:0:0:0:0:1 -- {"name":"Avirup Pal","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","country":{"countryId":"99"}}
+2018-12-16 10:28:37.190  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.s.i.SignUpServiceImpl              : signUp -- START
+2018-12-16 10:28:37.197 DEBUG Abhideep-PC --- [nio-7080-exec-6] c.o.a.v.SignUpValidation                 : validateSignUp -- Start
+2018-12-16 10:28:37.333  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- START
+2018-12-16 10:28:37.462  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- END
+2018-12-16 10:28:37.464  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.s.i.UserServiceImpl                : validateUserByEmail -- START
+2018-12-16 10:28:37.472  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.s.i.UserServiceImpl                : validateUserByEmail -- END
+2018-12-16 10:28:37.477  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.SignUpController                 : FormExceptions in Sign Up -- com.orastays.authserver.exceptions.FormExceptions
+	at com.orastays.authserver.validation.SignUpValidation.validateSignUp(SignUpValidation.java:97)
+	at com.orastays.authserver.validation.SignUpValidation$$FastClassBySpringCGLIB$$5dc296e8.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.validation.SignUpValidation$$EnhancerBySpringCGLIB$$a0f6edf7.validateSignUp(<generated>)
+	at com.orastays.authserver.service.impl.SignUpServiceImpl.signUp(SignUpServiceImpl.java:41)
+	at com.orastays.authserver.service.impl.SignUpServiceImpl$$FastClassBySpringCGLIB$$fb674fa6.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.service.impl.SignUpServiceImpl$$EnhancerBySpringCGLIB$$78077ef1.signUp(<generated>)
+	at com.orastays.authserver.controller.SignUpController.signUp(SignUpController.java:61)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+
+2018-12-16 10:28:37.478 DEBUG Abhideep-PC --- [nio-7080-exec-6] c.o.a.h.Util                             : RESPONSE -- Sign Up -- 0:0:0:0:0:0:0:1 -- {"responseCode":"311","responseMessage":"User is Inactive"}
+2018-12-16 10:28:37.478  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.SignUpController                 : signUp -- END
+2018-12-16 10:29:31.393  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.SignUpController                 : signUp -- START
+2018-12-16 10:29:31.400 DEBUG Abhideep-PC --- [nio-7080-exec-9] c.o.a.h.Util                             : REQUEST -- Sign Up -- 0:0:0:0:0:0:0:1 -- {"name":"Krishanu Das","mobileNumber":"9038674979","emailId":"krishanu.das2009@gmail.com","country":{"countryId":"99"}}
+2018-12-16 10:29:31.423  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.s.i.SignUpServiceImpl              : signUp -- START
+2018-12-16 10:29:31.423 DEBUG Abhideep-PC --- [nio-7080-exec-9] c.o.a.v.SignUpValidation                 : validateSignUp -- Start
+2018-12-16 10:29:31.426  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- START
+2018-12-16 10:29:31.429  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- END
+2018-12-16 10:29:31.429  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.s.i.UserServiceImpl                : validateUserByEmail -- START
+2018-12-16 10:29:31.430  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.s.i.UserServiceImpl                : validateUserByEmail -- END
+2018-12-16 10:29:31.430 DEBUG Abhideep-PC --- [nio-7080-exec-9] c.o.a.v.SignUpValidation                 : validateSignUp -- End
+2018-12-16 10:29:31.431  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserConverter                    : modelToEntity -- START
+2018-12-16 10:29:31.474  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserConverter                    : modelToEntity -- END
+2018-12-16 10:29:31.635  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-16 10:29:31.648  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.CountryConverter                 : entityToModel -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.CountryConverter                 : entityToModel -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserActivityConverter            : entityListToModelList -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserActivityConverter            : entityListToModelList -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsInfoConverter              : entityToModel -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsInfoConverter              : entityToModel -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.HostVsAccountConverter           : entityToModel -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.HostVsAccountConverter           : entityToModel -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- START
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- END
+2018-12-16 10:29:31.649  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-16 10:29:31.654  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.s.i.SignUpServiceImpl              : signUp -- END
+2018-12-16 10:29:31.660  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : sendSMS -- START
+2018-12-16 10:29:31.663 DEBUG Abhideep-PC --- [nio-7080-exec-9] c.o.a.h.Util                             : RESPONSE -- Sign Up -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"status":2,"createdDate":"2018-12-16 10:29:31","createdBy":0,"userId":"2","mobileNumber":"9038674979","emailId":"krishanu.das2009@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"6877","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"}}}
+2018-12-16 10:29:31.665  INFO Abhideep-PC --- [nio-7080-exec-9] c.o.a.c.SignUpController                 : signUp -- END
+2018-12-16 10:29:31.672  INFO Abhideep-PC --- [cTaskExecutor-2] c.o.a.h.MailHelper                       : sendMail -- START
+2018-12-16 10:29:34.303  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : sendSMS -- END
+2018-12-16 10:29:34.303  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : response -- OK
+2018-12-16 10:31:24.637  INFO Abhideep-PC --- [nio-7080-exec-8] c.o.a.c.SignUpController                 : signUp -- START
+2018-12-16 10:31:24.642 DEBUG Abhideep-PC --- [nio-7080-exec-8] c.o.a.h.Util                             : REQUEST -- Sign Up -- 0:0:0:0:0:0:0:1 -- {"name":"Krishanu Das","mobileNumber":"9038674979","emailId":"","country":{"countryId":"99"}}
+2018-12-16 10:31:24.662  INFO Abhideep-PC --- [nio-7080-exec-8] c.o.a.s.i.SignUpServiceImpl              : signUp -- START
+2018-12-16 10:31:24.662 DEBUG Abhideep-PC --- [nio-7080-exec-8] c.o.a.v.SignUpValidation                 : validateSignUp -- Start
+2018-12-16 10:31:24.665  INFO Abhideep-PC --- [nio-7080-exec-8] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- START
+2018-12-16 10:31:24.673  INFO Abhideep-PC --- [nio-7080-exec-8] c.o.a.s.i.UserServiceImpl                : validateUserByMobileNumber -- END
+2018-12-16 10:31:24.675  INFO Abhideep-PC --- [nio-7080-exec-8] c.o.a.c.SignUpController                 : FormExceptions in Sign Up -- com.orastays.authserver.exceptions.FormExceptions
+	at com.orastays.authserver.validation.SignUpValidation.validateSignUp(SignUpValidation.java:97)
+	at com.orastays.authserver.validation.SignUpValidation$$FastClassBySpringCGLIB$$5dc296e8.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.validation.SignUpValidation$$EnhancerBySpringCGLIB$$a0f6edf7.validateSignUp(<generated>)
+	at com.orastays.authserver.service.impl.SignUpServiceImpl.signUp(SignUpServiceImpl.java:41)
+	at com.orastays.authserver.service.impl.SignUpServiceImpl$$FastClassBySpringCGLIB$$fb674fa6.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:736)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:671)
+	at com.orastays.authserver.service.impl.SignUpServiceImpl$$EnhancerBySpringCGLIB$$78077ef1.signUp(<generated>)
+	at com.orastays.authserver.controller.SignUpController.signUp(SignUpController.java:61)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:133)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:97)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:827)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:738)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:85)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:967)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:901)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:970)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:872)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:661)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:846)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:109)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:197)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:800)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1471)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Unknown Source)
+
+2018-12-16 10:31:24.675 DEBUG Abhideep-PC --- [nio-7080-exec-8] c.o.a.h.Util                             : RESPONSE -- Sign Up -- 0:0:0:0:0:0:0:1 -- {"responseCode":"311","responseMessage":"User is Inactive"}
+2018-12-16 10:31:24.676  INFO Abhideep-PC --- [nio-7080-exec-8] c.o.a.c.SignUpController                 : signUp -- END
+2018-12-16 10:33:13.709  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.SignUpController                 : resendOTP -- START
+2018-12-16 10:33:13.712 DEBUG Abhideep-PC --- [nio-7080-exec-3] c.o.a.h.Util                             : REQUEST -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"userId":"1"}
+2018-12-16 10:33:13.731  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- START
+2018-12-16 10:33:13.731 DEBUG Abhideep-PC --- [nio-7080-exec-3] c.o.a.v.SignUpValidation                 : validateReSendOTP -- Start
+2018-12-16 10:33:13.744 DEBUG Abhideep-PC --- [nio-7080-exec-3] c.o.a.v.SignUpValidation                 : validateReSendOTP -- End
+2018-12-16 10:33:13.748  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-16 10:33:13.748  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.CountryConverter                 : entityToModel -- START
+2018-12-16 10:33:13.751  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.CountryConverter                 : entityToModel -- END
+2018-12-16 10:33:13.751  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- START
+2018-12-16 10:33:13.780  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.LoginDetailsConverter            : entityToModel -- START
+2018-12-16 10:33:13.792  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.LoginDetailsConverter            : entityToModel -- END
+2018-12-16 10:33:13.792  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- END
+2018-12-16 10:33:13.792  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserActivityConverter            : entityListToModelList -- START
+2018-12-16 10:33:13.835  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserActivityConverter            : entityToModel -- START
+2018-12-16 10:33:13.846  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserActivityConverter            : entityToModel -- END
+2018-12-16 10:33:13.846  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserActivityConverter            : entityListToModelList -- END
+2018-12-16 10:33:13.846  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- START
+2018-12-16 10:33:13.881  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- END
+2018-12-16 10:33:13.881  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsInfoConverter              : entityToModel -- START
+2018-12-16 10:33:13.889  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsInfoConverter              : entityToModel -- END
+2018-12-16 10:33:13.889  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- START
+2018-12-16 10:33:13.892  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsLanguageConverter          : entityToModel -- START
+2018-12-16 10:33:13.906  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.LanguageConverter                : entityToModel -- START
+2018-12-16 10:33:13.910  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.LanguageConverter                : entityToModel -- END
+2018-12-16 10:33:13.910  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsLanguageConverter          : entityToModel -- END
+2018-12-16 10:33:13.910  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- END
+2018-12-16 10:33:13.910  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- START
+2018-12-16 10:33:13.913  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsTypeConverter              : entityToModel -- START
+2018-12-16 10:33:13.927  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserTypeConverter                : entityToModel -- START
+2018-12-16 10:33:13.930  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserTypeConverter                : entityToModel -- END
+2018-12-16 10:33:13.930  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsTypeConverter              : entityToModel -- END
+2018-12-16 10:33:13.930  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- END
+2018-12-16 10:33:13.930  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsAccountConverter           : entityToModel -- START
+2018-12-16 10:33:13.930  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsAccountConverter           : entityToModel -- END
+2018-12-16 10:33:13.930  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- START
+2018-12-16 10:33:13.957  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:33:13.971  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:33:13.971  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:33:13.972  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:33:13.972  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- END
+2018-12-16 10:33:13.972  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- START
+2018-12-16 10:33:13.977  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:33:13.992  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:33:13.992  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:33:13.992  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:33:13.992  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- END
+2018-12-16 10:33:13.992  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-16 10:33:13.993  INFO Abhideep-PC --- [cTaskExecutor-3] c.o.a.h.SMSHelper                        : sendSMS -- START
+2018-12-16 10:33:13.994  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- END
+2018-12-16 10:33:13.995  INFO Abhideep-PC --- [cTaskExecutor-4] c.o.a.h.MailHelper                       : sendMail -- START
+2018-12-16 10:33:14.032 DEBUG Abhideep-PC --- [nio-7080-exec-3] c.o.a.h.Util                             : RESPONSE -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"status":2,"createdDate":"2018-12-15 20:38:12","createdBy":0,"modifiedDate":"2018-12-16 10:33:13","modifiedBy":1,"userId":"1","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"1462","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"},"userVsTypes":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsTypeId":"1","userType":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"userTypeId":"2","userType":"Customer"}}],"userActivitys":[{"status":1,"createdDate":"2018-12-15 22:35:15","createdBy":1,"activityId":"1","pageVisit":"string","propertyVisit":"string"}],"userVsLanguages":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsLanguageId":"1","language":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"languageId":"1","description":"English"}}],"userVsInfo":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"modifiedDate":"2018-12-16 00:37:51","modifiedBy":1,"userVsInfoId":"1","name":"Avirup Pal","imageUrl":"1_1544900854126_Koala.jpg","altPhno":"8902247112"},"loginDetails":[{"status":1,"createdDate":"2018-12-15 21:51:41","createdBy":1,"modifiedDate":"2018-12-16 00:37:34","modifiedBy":1,"ip":"0:0:0:0:0:0:0:1","deviceId":"abc","loginId":"1","sessionToken":"860d520c-f365-4fd5-b6b3-754dae053355"}],"hostVsInterests":[{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"1"},{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"2"}],"hostVsDomains":[{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"1"},{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"2"}]}}
+2018-12-16 10:33:14.037  INFO Abhideep-PC --- [nio-7080-exec-3] c.o.a.c.SignUpController                 : resendOTP -- END
+2018-12-16 10:33:15.632  INFO Abhideep-PC --- [cTaskExecutor-3] c.o.a.h.SMSHelper                        : sendSMS -- END
+2018-12-16 10:33:15.632  INFO Abhideep-PC --- [cTaskExecutor-3] c.o.a.h.SMSHelper                        : response -- OK
+2018-12-16 10:34:37.384  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : resendOTP -- START
+2018-12-16 10:34:37.387 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : REQUEST -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"userId":"1"}
+2018-12-16 10:34:37.394  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- START
+2018-12-16 10:34:37.395 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.SignUpValidation                 : validateReSendOTP -- Start
+2018-12-16 10:34:37.401 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.SignUpValidation                 : validateReSendOTP -- End
+2018-12-16 10:34:37.401  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-16 10:34:37.403  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.CountryConverter                 : entityToModel -- START
+2018-12-16 10:34:37.405  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.CountryConverter                 : entityToModel -- END
+2018-12-16 10:34:37.405  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- START
+2018-12-16 10:34:37.407  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityToModel -- START
+2018-12-16 10:34:37.408  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityToModel -- END
+2018-12-16 10:34:37.408  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- END
+2018-12-16 10:34:37.408  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityListToModelList -- START
+2018-12-16 10:34:37.410  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityToModel -- START
+2018-12-16 10:34:37.411  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityToModel -- END
+2018-12-16 10:34:37.411  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityListToModelList -- END
+2018-12-16 10:34:37.411  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- START
+2018-12-16 10:34:37.413  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- END
+2018-12-16 10:34:37.413  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsInfoConverter              : entityToModel -- START
+2018-12-16 10:34:37.413  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsInfoConverter              : entityToModel -- END
+2018-12-16 10:34:37.413  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- START
+2018-12-16 10:34:37.415  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityToModel -- START
+2018-12-16 10:34:37.415  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LanguageConverter                : entityToModel -- START
+2018-12-16 10:34:37.417  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LanguageConverter                : entityToModel -- END
+2018-12-16 10:34:37.417  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityToModel -- END
+2018-12-16 10:34:37.417  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- END
+2018-12-16 10:34:37.417  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- START
+2018-12-16 10:34:37.419  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityToModel -- START
+2018-12-16 10:34:37.420  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserTypeConverter                : entityToModel -- START
+2018-12-16 10:34:37.422  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserTypeConverter                : entityToModel -- END
+2018-12-16 10:34:37.422  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityToModel -- END
+2018-12-16 10:34:37.422  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- END
+2018-12-16 10:34:37.422  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsAccountConverter           : entityToModel -- START
+2018-12-16 10:34:37.422  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsAccountConverter           : entityToModel -- END
+2018-12-16 10:34:37.422  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- START
+2018-12-16 10:34:37.424  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:34:37.425  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:34:37.425  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:34:37.425  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:34:37.425  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- END
+2018-12-16 10:34:37.425  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- START
+2018-12-16 10:34:37.428  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:34:37.428  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:34:37.428  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:34:37.429  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:34:37.429  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- END
+2018-12-16 10:34:37.429  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-16 10:34:37.429  INFO Abhideep-PC --- [cTaskExecutor-5] c.o.a.h.SMSHelper                        : sendSMS -- START
+2018-12-16 10:34:37.430  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- END
+2018-12-16 10:34:37.430  INFO Abhideep-PC --- [cTaskExecutor-6] c.o.a.h.MailHelper                       : sendMail -- START
+2018-12-16 10:34:37.454 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : RESPONSE -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"status":2,"createdDate":"2018-12-15 20:38:12","createdBy":0,"modifiedDate":"2018-12-16 10:34:37","modifiedBy":1,"userId":"1","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"7503","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"},"userVsTypes":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsTypeId":"1","userType":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"userTypeId":"2","userType":"Customer"}}],"userActivitys":[{"status":1,"createdDate":"2018-12-15 22:35:15","createdBy":1,"activityId":"1","pageVisit":"string","propertyVisit":"string"}],"userVsLanguages":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsLanguageId":"1","language":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"languageId":"1","description":"English"}}],"userVsInfo":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"modifiedDate":"2018-12-16 00:37:51","modifiedBy":1,"userVsInfoId":"1","name":"Avirup Pal","imageUrl":"1_1544900854126_Koala.jpg","altPhno":"8902247112"},"loginDetails":[{"status":1,"createdDate":"2018-12-15 21:51:41","createdBy":1,"modifiedDate":"2018-12-16 00:37:34","modifiedBy":1,"ip":"0:0:0:0:0:0:0:1","deviceId":"abc","loginId":"1","sessionToken":"860d520c-f365-4fd5-b6b3-754dae053355"}],"hostVsInterests":[{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"1"},{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"2"}],"hostVsDomains":[{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"1"},{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"2"}]}}
+2018-12-16 10:34:37.463  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : resendOTP -- END
+2018-12-16 10:34:39.107  INFO Abhideep-PC --- [cTaskExecutor-5] c.o.a.h.SMSHelper                        : sendSMS -- END
+2018-12-16 10:34:39.107  INFO Abhideep-PC --- [cTaskExecutor-5] c.o.a.h.SMSHelper                        : response -- OK
+2018-12-16 10:35:36.927  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.SignUpController                 : resendOTP -- START
+2018-12-16 10:35:36.928 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.h.Util                             : REQUEST -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"userId":"1"}
+2018-12-16 10:35:36.935  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- START
+2018-12-16 10:35:36.935 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.v.SignUpValidation                 : validateReSendOTP -- Start
+2018-12-16 10:35:36.941 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.v.SignUpValidation                 : validateReSendOTP -- End
+2018-12-16 10:35:36.942  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-16 10:35:36.942  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.CountryConverter                 : entityToModel -- START
+2018-12-16 10:35:36.944  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.CountryConverter                 : entityToModel -- END
+2018-12-16 10:35:36.944  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- START
+2018-12-16 10:35:36.947  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.LoginDetailsConverter            : entityToModel -- START
+2018-12-16 10:35:36.947  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.LoginDetailsConverter            : entityToModel -- END
+2018-12-16 10:35:36.947  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- END
+2018-12-16 10:35:36.947  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserActivityConverter            : entityListToModelList -- START
+2018-12-16 10:35:36.950  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserActivityConverter            : entityToModel -- START
+2018-12-16 10:35:36.950  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserActivityConverter            : entityToModel -- END
+2018-12-16 10:35:36.950  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserActivityConverter            : entityListToModelList -- END
+2018-12-16 10:35:36.950  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- START
+2018-12-16 10:35:36.952  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- END
+2018-12-16 10:35:36.952  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsInfoConverter              : entityToModel -- START
+2018-12-16 10:35:36.952  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsInfoConverter              : entityToModel -- END
+2018-12-16 10:35:36.952  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- START
+2018-12-16 10:35:36.954  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsLanguageConverter          : entityToModel -- START
+2018-12-16 10:35:36.955  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.LanguageConverter                : entityToModel -- START
+2018-12-16 10:35:36.957  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.LanguageConverter                : entityToModel -- END
+2018-12-16 10:35:36.957  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsLanguageConverter          : entityToModel -- END
+2018-12-16 10:35:36.957  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- END
+2018-12-16 10:35:36.957  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- START
+2018-12-16 10:35:36.959  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsTypeConverter              : entityToModel -- START
+2018-12-16 10:35:36.959  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserTypeConverter                : entityToModel -- START
+2018-12-16 10:35:36.961  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserTypeConverter                : entityToModel -- END
+2018-12-16 10:35:36.961  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsTypeConverter              : entityToModel -- END
+2018-12-16 10:35:36.961  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- END
+2018-12-16 10:35:36.961  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsAccountConverter           : entityToModel -- START
+2018-12-16 10:35:36.961  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsAccountConverter           : entityToModel -- END
+2018-12-16 10:35:36.961  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- START
+2018-12-16 10:35:36.964  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:35:36.964  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:35:36.964  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:35:36.964  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:35:36.964  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- END
+2018-12-16 10:35:36.964  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- START
+2018-12-16 10:35:36.966  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:35:36.966  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:35:36.966  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:35:36.967  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:35:36.967  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- END
+2018-12-16 10:35:36.967  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-16 10:35:36.967  INFO Abhideep-PC --- [cTaskExecutor-7] c.o.a.h.SMSHelper                        : sendSMS -- START
+2018-12-16 10:35:36.967  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- END
+2018-12-16 10:35:36.967  INFO Abhideep-PC --- [cTaskExecutor-8] c.o.a.h.MailHelper                       : sendMail -- START
+2018-12-16 10:35:37.015 DEBUG Abhideep-PC --- [nio-7080-exec-2] c.o.a.h.Util                             : RESPONSE -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"status":2,"createdDate":"2018-12-15 20:38:12","createdBy":0,"modifiedDate":"2018-12-16 10:35:36","modifiedBy":1,"userId":"1","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"2833","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"},"userVsTypes":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsTypeId":"1","userType":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"userTypeId":"2","userType":"Customer"}}],"userActivitys":[{"status":1,"createdDate":"2018-12-15 22:35:15","createdBy":1,"activityId":"1","pageVisit":"string","propertyVisit":"string"}],"userVsLanguages":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsLanguageId":"1","language":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"languageId":"1","description":"English"}}],"userVsInfo":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"modifiedDate":"2018-12-16 00:37:51","modifiedBy":1,"userVsInfoId":"1","name":"Avirup Pal","imageUrl":"1_1544900854126_Koala.jpg","altPhno":"8902247112"},"loginDetails":[{"status":1,"createdDate":"2018-12-15 21:51:41","createdBy":1,"modifiedDate":"2018-12-16 00:37:34","modifiedBy":1,"ip":"0:0:0:0:0:0:0:1","deviceId":"abc","loginId":"1","sessionToken":"860d520c-f365-4fd5-b6b3-754dae053355"}],"hostVsInterests":[{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"1"},{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"2"}],"hostVsDomains":[{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"1"},{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"2"}]}}
+2018-12-16 10:35:37.021  INFO Abhideep-PC --- [nio-7080-exec-2] c.o.a.c.SignUpController                 : resendOTP -- END
+2018-12-16 10:35:38.482  INFO Abhideep-PC --- [cTaskExecutor-7] c.o.a.h.SMSHelper                        : sendSMS -- END
+2018-12-16 10:35:38.483  INFO Abhideep-PC --- [cTaskExecutor-7] c.o.a.h.SMSHelper                        : response -- OK
+2018-12-16 10:39:38.289  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.SignUpController                 : resendOTP -- START
+2018-12-16 10:39:38.299 DEBUG Abhideep-PC --- [nio-7080-exec-6] c.o.a.h.Util                             : REQUEST -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"userId":"1"}
+2018-12-16 10:39:38.306  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- START
+2018-12-16 10:39:38.306 DEBUG Abhideep-PC --- [nio-7080-exec-6] c.o.a.v.SignUpValidation                 : validateReSendOTP -- Start
+2018-12-16 10:39:38.313 DEBUG Abhideep-PC --- [nio-7080-exec-6] c.o.a.v.SignUpValidation                 : validateReSendOTP -- End
+2018-12-16 10:39:38.313  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-16 10:39:38.313  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.CountryConverter                 : entityToModel -- START
+2018-12-16 10:39:38.316  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.CountryConverter                 : entityToModel -- END
+2018-12-16 10:39:38.316  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- START
+2018-12-16 10:39:38.318  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.LoginDetailsConverter            : entityToModel -- START
+2018-12-16 10:39:38.318  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.LoginDetailsConverter            : entityToModel -- END
+2018-12-16 10:39:38.318  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- END
+2018-12-16 10:39:38.318  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserActivityConverter            : entityListToModelList -- START
+2018-12-16 10:39:38.320  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserActivityConverter            : entityToModel -- START
+2018-12-16 10:39:38.320  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserActivityConverter            : entityToModel -- END
+2018-12-16 10:39:38.320  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserActivityConverter            : entityListToModelList -- END
+2018-12-16 10:39:38.320  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- START
+2018-12-16 10:39:38.322  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- END
+2018-12-16 10:39:38.322  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsInfoConverter              : entityToModel -- START
+2018-12-16 10:39:38.322  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsInfoConverter              : entityToModel -- END
+2018-12-16 10:39:38.322  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- START
+2018-12-16 10:39:38.324  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsLanguageConverter          : entityToModel -- START
+2018-12-16 10:39:38.324  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.LanguageConverter                : entityToModel -- START
+2018-12-16 10:39:38.326  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.LanguageConverter                : entityToModel -- END
+2018-12-16 10:39:38.326  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsLanguageConverter          : entityToModel -- END
+2018-12-16 10:39:38.326  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- END
+2018-12-16 10:39:38.326  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- START
+2018-12-16 10:39:38.328  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsTypeConverter              : entityToModel -- START
+2018-12-16 10:39:38.328  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserTypeConverter                : entityToModel -- START
+2018-12-16 10:39:38.330  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserTypeConverter                : entityToModel -- END
+2018-12-16 10:39:38.330  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsTypeConverter              : entityToModel -- END
+2018-12-16 10:39:38.330  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- END
+2018-12-16 10:39:38.330  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsAccountConverter           : entityToModel -- START
+2018-12-16 10:39:38.330  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsAccountConverter           : entityToModel -- END
+2018-12-16 10:39:38.330  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- START
+2018-12-16 10:39:38.333  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:39:38.333  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:39:38.333  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:39:38.333  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:39:38.333  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- END
+2018-12-16 10:39:38.333  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- START
+2018-12-16 10:39:38.335  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:39:38.335  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:39:38.335  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:39:38.335  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:39:38.335  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- END
+2018-12-16 10:39:38.335  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-16 10:39:38.336  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- END
+2018-12-16 10:39:38.336  INFO Abhideep-PC --- [TaskExecutor-10] c.o.a.h.MailHelper                       : sendMail -- START
+2018-12-16 10:39:38.336  INFO Abhideep-PC --- [cTaskExecutor-9] c.o.a.h.SMSHelper                        : sendSMS -- START
+2018-12-16 10:39:38.699 DEBUG Abhideep-PC --- [nio-7080-exec-6] c.o.a.h.Util                             : RESPONSE -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"status":2,"createdDate":"2018-12-15 20:38:12","createdBy":0,"modifiedDate":"2018-12-16 10:39:38","modifiedBy":1,"userId":"1","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"5122","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"},"userVsTypes":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsTypeId":"1","userType":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"userTypeId":"2","userType":"Customer"}}],"userActivitys":[{"status":1,"createdDate":"2018-12-15 22:35:15","createdBy":1,"activityId":"1","pageVisit":"string","propertyVisit":"string"}],"userVsLanguages":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsLanguageId":"1","language":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"languageId":"1","description":"English"}}],"userVsInfo":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"modifiedDate":"2018-12-16 00:37:51","modifiedBy":1,"userVsInfoId":"1","name":"Avirup Pal","imageUrl":"1_1544900854126_Koala.jpg","altPhno":"8902247112"},"loginDetails":[{"status":1,"createdDate":"2018-12-15 21:51:41","createdBy":1,"modifiedDate":"2018-12-16 00:37:34","modifiedBy":1,"ip":"0:0:0:0:0:0:0:1","deviceId":"abc","loginId":"1","sessionToken":"860d520c-f365-4fd5-b6b3-754dae053355"}],"hostVsInterests":[{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"1"},{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"2"}],"hostVsDomains":[{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"1"},{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"2"}]}}
+2018-12-16 10:39:38.721  INFO Abhideep-PC --- [nio-7080-exec-6] c.o.a.c.SignUpController                 : resendOTP -- END
+2018-12-16 10:39:42.124  INFO Abhideep-PC --- [cTaskExecutor-9] c.o.a.h.SMSHelper                        : sendSMS -- END
+2018-12-16 10:39:42.124  INFO Abhideep-PC --- [cTaskExecutor-9] c.o.a.h.SMSHelper                        : response -- OK
+2018-12-16 10:39:44.344  INFO Abhideep-PC --- [TaskExecutor-10] c.o.a.h.MailHelper                       : sendMail -- END
+2018-12-16 10:39:44.344  INFO Abhideep-PC --- [TaskExecutor-10] c.o.a.h.MailHelper                       : response -- OK
+2018-12-16 10:44:02.618  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : resendOTP -- START
+2018-12-16 10:44:02.627 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : REQUEST -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"userId":"1"}
+2018-12-16 10:44:02.648  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- START
+2018-12-16 10:44:02.653 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.SignUpValidation                 : validateReSendOTP -- Start
+2018-12-16 10:44:02.722 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.SignUpValidation                 : validateReSendOTP -- End
+2018-12-16 10:44:02.728  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-16 10:44:02.767  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.CountryConverter                 : entityToModel -- START
+2018-12-16 10:44:02.770  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.CountryConverter                 : entityToModel -- END
+2018-12-16 10:44:02.770  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- START
+2018-12-16 10:44:02.777  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityToModel -- START
+2018-12-16 10:44:02.794  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityToModel -- END
+2018-12-16 10:44:02.794  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- END
+2018-12-16 10:44:02.794  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityListToModelList -- START
+2018-12-16 10:44:02.796  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityToModel -- START
+2018-12-16 10:44:02.812  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityToModel -- END
+2018-12-16 10:44:02.812  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityListToModelList -- END
+2018-12-16 10:44:02.813  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- START
+2018-12-16 10:44:02.814  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- END
+2018-12-16 10:44:02.814  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsInfoConverter              : entityToModel -- START
+2018-12-16 10:44:02.825  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsInfoConverter              : entityToModel -- END
+2018-12-16 10:44:02.826  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- START
+2018-12-16 10:44:02.828  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityToModel -- START
+2018-12-16 10:44:02.845  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LanguageConverter                : entityToModel -- START
+2018-12-16 10:44:02.847  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LanguageConverter                : entityToModel -- END
+2018-12-16 10:44:02.847  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityToModel -- END
+2018-12-16 10:44:02.847  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- END
+2018-12-16 10:44:02.847  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- START
+2018-12-16 10:44:02.849  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityToModel -- START
+2018-12-16 10:44:02.864  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserTypeConverter                : entityToModel -- START
+2018-12-16 10:44:02.866  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserTypeConverter                : entityToModel -- END
+2018-12-16 10:44:02.866  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityToModel -- END
+2018-12-16 10:44:02.866  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- END
+2018-12-16 10:44:02.866  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsAccountConverter           : entityToModel -- START
+2018-12-16 10:44:02.866  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsAccountConverter           : entityToModel -- END
+2018-12-16 10:44:02.866  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- START
+2018-12-16 10:44:02.868  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:44:02.885  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:44:02.885  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:44:02.885  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:44:02.885  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- END
+2018-12-16 10:44:02.885  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- START
+2018-12-16 10:44:02.887  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:44:02.903  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:44:02.903  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:44:02.904  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:44:02.904  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- END
+2018-12-16 10:44:02.904  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-16 10:44:02.908  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- END
+2018-12-16 10:44:02.912  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : sendSMS -- START
+2018-12-16 10:44:02.917  INFO Abhideep-PC --- [cTaskExecutor-2] c.o.a.h.MailHelper                       : sendMail -- START
+2018-12-16 10:44:02.991 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : RESPONSE -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"status":2,"createdDate":"2018-12-15 20:38:12","createdBy":0,"modifiedDate":"2018-12-16 10:44:02","modifiedBy":1,"userId":"1","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"8505","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"},"userVsTypes":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsTypeId":"1","userType":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"userTypeId":"2","userType":"Customer"}}],"userActivitys":[{"status":1,"createdDate":"2018-12-15 22:35:15","createdBy":1,"activityId":"1","pageVisit":"string","propertyVisit":"string"}],"userVsLanguages":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsLanguageId":"1","language":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"languageId":"1","description":"English"}}],"userVsInfo":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"modifiedDate":"2018-12-16 00:37:51","modifiedBy":1,"userVsInfoId":"1","name":"Avirup Pal","imageUrl":"1_1544900854126_Koala.jpg","altPhno":"8902247112"},"loginDetails":[{"status":1,"createdDate":"2018-12-15 21:51:41","createdBy":1,"modifiedDate":"2018-12-16 00:37:34","modifiedBy":1,"ip":"0:0:0:0:0:0:0:1","deviceId":"abc","loginId":"1","sessionToken":"860d520c-f365-4fd5-b6b3-754dae053355"}],"hostVsInterests":[{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"1"},{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"2"}],"hostVsDomains":[{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"1"},{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"2"}]}}
+2018-12-16 10:44:02.999  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : resendOTP -- END
+2018-12-16 10:44:04.982  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : sendSMS -- END
+2018-12-16 10:44:04.982  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : response -- OK
+2018-12-16 10:44:06.967  INFO Abhideep-PC --- [cTaskExecutor-2] c.o.a.h.MailHelper                       : sendMail -- END
+2018-12-16 10:44:06.967  INFO Abhideep-PC --- [cTaskExecutor-2] c.o.a.h.MailHelper                       : response -- OK
+2018-12-16 10:55:48.474  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : resendOTP -- START
+2018-12-16 10:55:48.482 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : REQUEST -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"userId":"1"}
+2018-12-16 10:55:48.501  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- START
+2018-12-16 10:55:48.506 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.SignUpValidation                 : validateReSendOTP -- Start
+2018-12-16 10:55:48.575 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.v.SignUpValidation                 : validateReSendOTP -- End
+2018-12-16 10:55:48.581  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- START
+2018-12-16 10:55:48.629  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.CountryConverter                 : entityToModel -- START
+2018-12-16 10:55:48.631  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.CountryConverter                 : entityToModel -- END
+2018-12-16 10:55:48.631  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- START
+2018-12-16 10:55:48.639  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityToModel -- START
+2018-12-16 10:55:48.661  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityToModel -- END
+2018-12-16 10:55:48.661  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LoginDetailsConverter            : entityListToModelList -- END
+2018-12-16 10:55:48.661  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityListToModelList -- START
+2018-12-16 10:55:48.663  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityToModel -- START
+2018-12-16 10:55:48.680  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityToModel -- END
+2018-12-16 10:55:48.680  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserActivityConverter            : entityListToModelList -- END
+2018-12-16 10:55:48.680  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- START
+2018-12-16 10:55:48.682  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsIdentityConverter          : entityListToModelList -- END
+2018-12-16 10:55:48.682  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsInfoConverter              : entityToModel -- START
+2018-12-16 10:55:48.694  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsInfoConverter              : entityToModel -- END
+2018-12-16 10:55:48.694  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- START
+2018-12-16 10:55:48.696  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityToModel -- START
+2018-12-16 10:55:48.716  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LanguageConverter                : entityToModel -- START
+2018-12-16 10:55:48.718  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.LanguageConverter                : entityToModel -- END
+2018-12-16 10:55:48.718  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityToModel -- END
+2018-12-16 10:55:48.718  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsLanguageConverter          : entityListToModelList -- END
+2018-12-16 10:55:48.718  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- START
+2018-12-16 10:55:48.719  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityToModel -- START
+2018-12-16 10:55:48.737  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserTypeConverter                : entityToModel -- START
+2018-12-16 10:55:48.739  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserTypeConverter                : entityToModel -- END
+2018-12-16 10:55:48.739  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityToModel -- END
+2018-12-16 10:55:48.739  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserVsTypeConverter              : entityListToModelList -- END
+2018-12-16 10:55:48.739  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsAccountConverter           : entityToModel -- START
+2018-12-16 10:55:48.739  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsAccountConverter           : entityToModel -- END
+2018-12-16 10:55:48.739  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- START
+2018-12-16 10:55:48.741  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:55:48.758  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:55:48.758  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- START
+2018-12-16 10:55:48.758  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityToModel -- END
+2018-12-16 10:55:48.758  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsDomainConverter            : entityListToModelList -- END
+2018-12-16 10:55:48.758  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- START
+2018-12-16 10:55:48.760  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:55:48.776  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:55:48.776  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- START
+2018-12-16 10:55:48.777  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityToModel -- END
+2018-12-16 10:55:48.777  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.HostVsInterestConverter          : entityListToModelList -- END
+2018-12-16 10:55:48.777  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.UserConverter                    : entityToModel -- END
+2018-12-16 10:55:48.780  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.s.i.SignUpServiceImpl              : resendOTP -- END
+2018-12-16 10:55:48.788  INFO Abhideep-PC --- [cTaskExecutor-2] c.o.a.h.MailHelper                       : sendMail -- START
+2018-12-16 10:55:48.792  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : sendSMS -- START
+2018-12-16 10:55:51.525  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : sendSMS -- END
+2018-12-16 10:55:51.525  INFO Abhideep-PC --- [cTaskExecutor-1] c.o.a.h.SMSHelper                        : response -- OK
+2018-12-16 10:55:57.245 DEBUG Abhideep-PC --- [nio-7080-exec-1] c.o.a.h.Util                             : RESPONSE -- Resend OTP -- 0:0:0:0:0:0:0:1 -- {"responseCode":"200","responseMessage":"OTP has been sent successfully","responseBody":{"status":2,"createdDate":"2018-12-15 20:38:12","createdBy":0,"modifiedDate":"2018-12-16 10:55:48","modifiedBy":1,"userId":"1","mobileNumber":"7278403639","emailId":"avirup.pal@gmail.com","isEmailVerified":"false","isMobileVerified":"false","otp":"7779","country":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"countryId":"99","countryName":"INDIA","countryCode":"+91"},"userVsTypes":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsTypeId":"1","userType":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"userTypeId":"2","userType":"Customer"}}],"userActivitys":[{"status":1,"createdDate":"2018-12-15 22:35:15","createdBy":1,"activityId":"1","pageVisit":"string","propertyVisit":"string"}],"userVsLanguages":[{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"userVsLanguageId":"1","language":{"status":1,"createdDate":"2018-12-15 01:27:34","createdBy":1,"languageId":"1","description":"English"}}],"userVsInfo":{"status":1,"createdDate":"2018-12-15 20:38:12","createdBy":1,"modifiedDate":"2018-12-16 00:37:51","modifiedBy":1,"userVsInfoId":"1","name":"Avirup Pal","imageUrl":"1_1544900854126_Koala.jpg","altPhno":"8902247112"},"loginDetails":[{"status":1,"createdDate":"2018-12-15 21:51:41","createdBy":1,"modifiedDate":"2018-12-16 00:37:34","modifiedBy":1,"ip":"0:0:0:0:0:0:0:1","deviceId":"abc","loginId":"1","sessionToken":"860d520c-f365-4fd5-b6b3-754dae053355"}],"hostVsInterests":[{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"1"},{"status":1,"createdDate":"2018-12-15 22:25:55","createdBy":1,"hostIntId":"2"}],"hostVsDomains":[{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"1"},{"status":1,"createdDate":"2018-12-15 22:13:50","createdBy":1,"hostDomId":"2"}]}}
+2018-12-16 10:55:57.257  INFO Abhideep-PC --- [nio-7080-exec-1] c.o.a.c.SignUpController                 : resendOTP -- END
