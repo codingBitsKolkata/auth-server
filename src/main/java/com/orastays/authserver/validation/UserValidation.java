@@ -19,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tika.Tika;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -303,8 +302,8 @@ public class UserValidation extends AuthorizeUserValidation {
 				
 				ImageIO.write(resizeImageJpg, "jpg", file);
 				FileInputStream input = new FileInputStream(file);
-				multipartFile = new MockMultipartFile(fileName, IOUtils.toByteArray(input));
-				multipartFile.transferTo(file);
+				/*multipartFile = new MockMultipartFile(fileName, IOUtils.toByteArray(input));
+				multipartFile.transferTo(file);*/
 				userVsInfoEntity.setImageUrl(fileName);
 			} catch (IOException e) {
 				exceptions.put(messageUtil.getBundle("image.upload.error.code"), new Exception(messageUtil.getBundle("image.upload.error.message")));
