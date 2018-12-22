@@ -38,7 +38,7 @@ public class MailHelper {
 		String message = "Use "+ userModel.getEmailOTP() + " "+ messageUtil.getBundle("otp.sms.message");
 		mailModel.setMessageBody(message);
 		mailModel.setSubject(messageUtil.getBundle("otp.mail.subject"));
-		ResponseModel response = this.restTemplate.postForObject("http://MAIL-SERVER/api/send-mail", mailModel, ResponseModel.class);
+		ResponseModel response = this.restTemplate.postForObject(messageUtil.getBundle("mail.server.url"), mailModel, ResponseModel.class);
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("sendMail -- END");

@@ -38,7 +38,7 @@ public class SMSHelper {
 		smsModel.setMobileNumber(userModel.getMobileNumber());
 		String message = "Use "+ userModel.getMobileOTP() + " "+ messageUtil.getBundle("otp.sms.message");
 		smsModel.setMessage(message);
-		ResponseModel response = this.restTemplate.postForObject("http://SMS-SERVER/api/send-sms", smsModel, ResponseModel.class);
+		ResponseModel response = this.restTemplate.postForObject(messageUtil.getBundle("sms.server.url"), smsModel, ResponseModel.class);
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("sendSMS -- END");
