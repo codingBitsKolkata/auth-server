@@ -33,9 +33,10 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		
 		loginValidation.validateLogin(userModel);
 		UserEntity userEntity = userDAO.find(Long.parseLong(userModel.getUserId()));
-		userEntity.setOtp(String.valueOf(Util.generateOTP()));
-		userEntity.setModifiedBy(userEntity.getUserId());
-		userEntity.setModifiedDate(Util.getCurrentDateTime());
+		userEntity.setEmailOTP(String.valueOf(Util.generateOTP()));
+		userEntity.setMobileOTP(String.valueOf(Util.generateOTP()));
+		userEntity.setEmailOTPValidity(Util.getCurrentDateTime());
+		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
 		userDAO.update(userEntity);
 		userModel = userConverter.entityToModel(userEntity);
 		smsHelper.sendSMS(userModel);

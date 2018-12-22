@@ -250,4 +250,204 @@ public class UserController extends BaseController {
 			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
 		}
 	}
+	
+	@GetMapping(value = "/send-email-otp", produces = "application/json")
+	@ApiOperation(value = "Send Email OTP", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token") })
+	public ResponseEntity<ResponseModel> sendEmailOTP(@RequestParam(value = "userToken", required = true) String userToken) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("sendEmailOTP -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+		Util.printLog(userToken, AuthConstant.INCOMING, "Send Email OTP", request);
+		try {
+			userService.sendEmailOTP(userToken);
+			responseModel.setResponseBody(messageUtil.getBundle("otp.send.success"));
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+		} catch (FormExceptions fe) {
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Send Email OTP -- "+Util.errorToString(fe));
+				}
+				break;
+			}
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Send Email OTP -- "+Util.errorToString(e));
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Send Email OTP", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("sendEmailOTP -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PostMapping(value = "/verify-email-otp", produces = "application/json")
+	@ApiOperation(value = "Verify Email OTP", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token") })
+	public ResponseEntity<ResponseModel> verifyEmailOTP(@RequestBody UserModel userModel) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("verifyEmailOTP -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+		Util.printLog(userModel, AuthConstant.INCOMING, "Verify Email OTP", request);
+		try {
+			userService.verifiedEmailOTP(userModel);
+			responseModel.setResponseBody(messageUtil.getBundle("email.verified.success"));
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+		} catch (FormExceptions fe) {
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Verify Email OTP -- "+Util.errorToString(fe));
+				}
+				break;
+			}
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Verify Email OTP -- "+Util.errorToString(e));
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Verify Email OTP", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("verifyEmailOTP -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@GetMapping(value = "/send-mobile-otp", produces = "application/json")
+	@ApiOperation(value = "Send Mobile OTP", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token") })
+	public ResponseEntity<ResponseModel> sendMobileOTP(@RequestParam(value = "userToken", required = true) String userToken) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("sendMobileOTP -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+		Util.printLog(userToken, AuthConstant.INCOMING, "Send Mobile OTP", request);
+		try {
+			userService.sendMobileOTP(userToken);
+			responseModel.setResponseBody(messageUtil.getBundle("otp.send.success"));
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+		} catch (FormExceptions fe) {
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Send Mobile OTP -- "+Util.errorToString(fe));
+				}
+				break;
+			}
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Send Mobile OTP -- "+Util.errorToString(e));
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Send Mobile OTP", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("sendMobileOTP -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PostMapping(value = "/verify-mobile-otp", produces = "application/json")
+	@ApiOperation(value = "Verify Mobile OTP", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
+			@ApiResponse(code = 321, message = "Please give User Token"),
+			@ApiResponse(code = 322, message = "Invalid user Token") })
+	public ResponseEntity<ResponseModel> verifyMobileOTP(@RequestBody UserModel userModel) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("verifyMobileOTP -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+		Util.printLog(userModel, AuthConstant.INCOMING, "Verify Mobile OTP", request);
+		try {
+			userService.verifiedMobileOTP(userModel);
+			responseModel.setResponseBody(messageUtil.getBundle("mobile.verified.success"));
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+		} catch (FormExceptions fe) {
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Verify Mobile OTP -- "+Util.errorToString(fe));
+				}
+				break;
+			}
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Verify Mobile OTP -- "+Util.errorToString(e));
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Verify Mobile OTP", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("verifyMobileOTP -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
 }

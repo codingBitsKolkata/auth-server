@@ -39,7 +39,8 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		}
 		
 		signUpValidation.validateSignUp(userModel);
-		userModel.setOtp(String.valueOf(Util.generateOTP()));
+		userModel.setEmailOTP(String.valueOf(Util.generateOTP()));
+		userModel.setMobileOTP(String.valueOf(Util.generateOTP()));
 		CountryEntity countryEntity = countryDAO.find(Long.parseLong(userModel.getCountryModel().getCountryId()));
 		UserEntity userEntity = userConverter.modelToEntity(userModel);
 		userEntity.setCountryEntity(countryEntity);
@@ -133,9 +134,10 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		}
 		
 		UserEntity userEntity = signUpValidation.validateReSendOTP(userModel);
-		userEntity.setOtp(String.valueOf(Util.generateOTP()));
-		userEntity.setModifiedBy(userEntity.getUserId());
-		userEntity.setModifiedDate(Util.getCurrentDateTime());
+		userEntity.setEmailOTP(String.valueOf(Util.generateOTP()));
+		userEntity.setMobileOTP(String.valueOf(Util.generateOTP()));
+		userEntity.setEmailOTPValidity(Util.getCurrentDateTime());
+		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
 		userDAO.update(userEntity);
 		userModel = userConverter.entityToModel(userEntity);
 		smsHelper.sendSMS(userModel);

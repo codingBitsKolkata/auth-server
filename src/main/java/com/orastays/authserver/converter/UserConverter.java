@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import com.orastays.authserver.entity.UserEntity;
+import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Status;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
@@ -35,8 +36,10 @@ public class UserConverter extends CommonConverter implements BaseConverter<User
 		userEntity.setStatus(Status.INACTIVE.ordinal());
 		userEntity.setCreatedBy(Long.parseLong(String.valueOf(Status.ZERO.ordinal())));
 		userEntity.setCreatedDate(Util.getCurrentDateTime());
-		userEntity.setIsEmailVerified("false");
-		userEntity.setIsMobileVerified("false");
+		userEntity.setEmailOTPValidity(Util.getCurrentDateTime());
+		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
+		userEntity.setIsEmailVerified(AuthConstant.FALSE);
+		userEntity.setIsMobileVerified(AuthConstant.FALSE);
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("modelToEntity -- END");

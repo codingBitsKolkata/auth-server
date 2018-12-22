@@ -111,17 +111,20 @@ public class LoginValidation extends AuthorizeUserValidation {
 			if(StringUtils.isBlank(userModel.getOtp())) {
 				exceptions.put(messageUtil.getBundle("otp.null.code"), new Exception(messageUtil.getBundle("otp.null.message")));
 			} else {
-				if(!StringUtils.equals(userModel.getOtp(), userEntity.getOtp())) {
-					exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
-				} else {
-					if(StringUtils.isBlank(userEntity.getModifiedDate())) {
-						if(Util.getMinuteDiff(userEntity.getCreatedDate()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
-							exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
-						}
+				
+				// Check with Mobile OTP first
+				if(!StringUtils.equals(userModel.getOtp(), userEntity.getMobileOTP())) {
+					// Check with Email OTP
+					if(!StringUtils.equals(userModel.getOtp(), userEntity.getEmailOTP())) {
+						exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
 					} else {
-						if(Util.getMinuteDiff(userEntity.getModifiedDate()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
+						if(Util.getMinuteDiff(userEntity.getEmailOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
 							exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
 						}
+					}
+				} else {
+					if(Util.getMinuteDiff(userEntity.getMobileOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
+						exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
 					}
 				}
 			}

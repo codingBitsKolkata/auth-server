@@ -55,9 +55,17 @@ public class UserEntity extends CommonEntity {
 	@JsonProperty("isMobileVerified")
 	private String isMobileVerified;
 
-	@Column(name = "otp")
-	@JsonProperty("otp")
-	private String otp;
+	@JsonProperty("email_otp")
+	private String emailOTP;
+	
+	@JsonProperty("mobile_otp")
+	private String mobileOTP;
+	
+	@JsonProperty("email_otp_validity")
+	private String emailOTPValidity;
+	
+	@JsonProperty("mobile_otp_validity")
+	private String mobileOTPValidity;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE })
 	@JoinColumn(name = "country_id", nullable = false)

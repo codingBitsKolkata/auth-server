@@ -247,4 +247,66 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		
 		return userModel;
 	}
+
+	@Override
+	public void sendEmailOTP(String userToken) throws FormExceptions {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("checkToken -- START");
+		}
+		
+		UserEntity userEntity = userValidation.validateCheckToken(userToken);
+		userEntity.setEmailOTP(String.valueOf(Util.generateOTP()));
+		userEntity.setEmailOTPValidity(Util.getCurrentDateTime());
+		userDAO.update(userEntity);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("checkToken -- END");
+		}
+	}
+
+	@Override
+	public void verifiedEmailOTP(UserModel userModel) throws FormExceptions {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("verifiedEmailOTP -- START");
+		}
+		
+		userValidation.validateVerifiedEmailOTP(userModel);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("verifiedEmailOTP -- END");
+		}
+	}
+
+	@Override
+	public void sendMobileOTP(String userToken) throws FormExceptions {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("checkToken -- START");
+		}
+		
+		UserEntity userEntity = userValidation.validateCheckToken(userToken);
+		userEntity.setMobileOTP(String.valueOf(Util.generateOTP()));
+		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
+		userDAO.update(userEntity);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("checkToken -- END");
+		}
+	}
+
+	@Override
+	public void verifiedMobileOTP(UserModel userModel) throws FormExceptions {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("verifiedMobileOTP -- START");
+		}
+		
+		userValidation.validateVerifiedMobileOTP(userModel);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("verifiedMobileOTP -- END");
+		}
+	}
 }

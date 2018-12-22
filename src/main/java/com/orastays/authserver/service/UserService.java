@@ -19,4 +19,8 @@ public interface UserService {
 	UserModel updateUserInfo(UserVsInfoModel userVsInfoModel) throws FormExceptions;
 	UserEntity validateUserByMobileNumber(String mobileNumber, String countryId);
 	UserEntity validateUserByEmail(String emailId);
+	void sendEmailOTP(String userToken) throws FormExceptions;
+	void verifiedEmailOTP(UserModel userModel) throws FormExceptions;
+	void sendMobileOTP(String userToken) throws FormExceptions;
+	void verifiedMobileOTP(UserModel userModel) throws FormExceptions;
 }

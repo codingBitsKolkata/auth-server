@@ -39,8 +39,14 @@ public class UserModel extends CommonModel {
 	@JsonProperty("isMobileVerified")
 	private String isMobileVerified;
 	
+	@JsonProperty("email_otp")
+	private String emailOTP;
+	
 	@JsonProperty("otp")
 	private String otp;
+	
+	@JsonProperty("mobile_otp")
+	private String mobileOTP;
 	
 	@JsonProperty("country")
 	private CountryModel countryModel;

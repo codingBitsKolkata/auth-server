@@ -14,7 +14,6 @@ import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
 
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +28,8 @@ import com.orastays.authserver.entity.LoginDetailsEntity;
 import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.entity.UserVsInfoEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
+import com.orastays.authserver.helper.AuthConstant;
+import com.orastays.authserver.helper.Status;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.HostVsDomainModel;
 import com.orastays.authserver.model.HostVsInterestModel;
@@ -122,6 +123,10 @@ public class UserValidation extends AuthorizeUserValidation {
 			throw new FormExceptions(exceptions);
 		else {
 			userEntity = loginDetailsEntity.getUserEntity();
+			if(userEntity.getStatus() != Status.ACTIVE.ordinal()) {
+				exceptions.put(messageUtil.getBundle("user.inactive.code"), new Exception(messageUtil.getBundle("user.inactive.message")));
+				throw new FormExceptions(exceptions);
+			}
 			loginDetailsEntity.setModifiedBy(userEntity.getUserId());
 			loginDetailsEntity.setModifiedDate(Util.getCurrentDateTime());
 			loginDetailsDAO.update(loginDetailsEntity);
@@ -548,6 +553,80 @@ public class UserValidation extends AuthorizeUserValidation {
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("validateHostInterest -- End");
+		}
+	}
+	
+	public void validateVerifiedEmailOTP(UserModel userModel) throws FormExceptions {
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateVerifiedEmailOTP -- Start");
+		}
+
+		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
+		Map<String, Exception> exceptions = new LinkedHashMap<>();
+		
+		if(Objects.nonNull(userModel)) {
+			// Validate OTP
+			if(StringUtils.isBlank(userModel.getOtp())) {
+				exceptions.put(messageUtil.getBundle("otp.null.code"), new Exception(messageUtil.getBundle("otp.null.message")));
+			} else {
+				
+				// Check with Email OTP
+				if(!StringUtils.equals(userModel.getOtp(), userEntity.getEmailOTP())) {
+					exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
+				} else {
+					if(Util.getMinuteDiff(userEntity.getEmailOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
+						exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+					} else {
+						userEntity.setIsEmailVerified(AuthConstant.TRUE);
+						userDAO.update(userEntity);
+					}
+				}
+			}
+		}
+		
+		if (exceptions.size() > 0)
+			throw new FormExceptions(exceptions);
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateVerifiedEmailOTP -- End");
+		}
+	}
+	
+	public void validateVerifiedMobileOTP(UserModel userModel) throws FormExceptions {
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateVerifiedMobileOTP -- Start");
+		}
+
+		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
+		Map<String, Exception> exceptions = new LinkedHashMap<>();
+		
+		if(Objects.nonNull(userModel)) {
+			// Validate OTP
+			if(StringUtils.isBlank(userModel.getOtp())) {
+				exceptions.put(messageUtil.getBundle("otp.null.code"), new Exception(messageUtil.getBundle("otp.null.message")));
+			} else {
+				
+				// Check with Mobile OTP
+				if(!StringUtils.equals(userModel.getOtp(), userEntity.getMobileOTP())) {
+					exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
+				} else {
+					if(Util.getMinuteDiff(userEntity.getMobileOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
+						exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+					} else {
+						userEntity.setIsMobileVerified(AuthConstant.TRUE);
+						userDAO.update(userEntity);
+					}
+				}
+			}
+		}
+		
+		if (exceptions.size() > 0)
+			throw new FormExceptions(exceptions);
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateVerifiedMobileOTP -- End");
 		}
 	}
 }

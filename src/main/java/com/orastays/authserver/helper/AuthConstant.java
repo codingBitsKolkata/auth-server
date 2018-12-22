@@ -13,5 +13,8 @@ public final class AuthConstant {
 	public static final String FOR_ROW = "for ROW";
 	public static final String STATUS = "status";
 	public static final String LANGUAGEID = "languageId";
-	
+	public static final String EMAIL = "EMAIL";
+	public static final String MOBILE = "MOBILE";
+	public static final String FALSE = "FALSE";
+	public static final String TRUE = "TRUE";
 }
