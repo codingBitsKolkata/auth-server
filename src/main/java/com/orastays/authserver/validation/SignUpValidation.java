@@ -50,7 +50,11 @@ public class SignUpValidation extends AuthorizeUserValidation {
 				} else {
 					if(Util.isNumeric(userModel.getCountryModel().getCountryId())) {
 						CountryEntity countryEntity = countryDAO.find(Long.parseLong(userModel.getCountryModel().getCountryId()));
-						if(Objects.isNull(countryEntity) && countryEntity.getStatus() != Status.ACTIVE.ordinal()) {
+						if(Objects.nonNull(countryEntity)) {
+							if(countryEntity.getStatus() != Status.ACTIVE.ordinal()) {
+								exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
+							}
+						} else {
 							exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
 						}
 					} else {

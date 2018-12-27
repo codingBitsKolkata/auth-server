@@ -566,20 +566,25 @@ public class UserValidation extends AuthorizeUserValidation {
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		
 		if(Objects.nonNull(userModel)) {
-			// Validate OTP
-			if(StringUtils.isBlank(userModel.getOtp())) {
-				exceptions.put(messageUtil.getBundle("otp.null.code"), new Exception(messageUtil.getBundle("otp.null.message")));
+			
+			if(StringUtils.equals(userEntity.getIsEmailVerified(), AuthConstant.TRUE)) {
+				exceptions.put(messageUtil.getBundle("email.verified.code"), new Exception(messageUtil.getBundle("email.verified.message")));
 			} else {
-				
-				// Check with Email OTP
-				if(!StringUtils.equals(userModel.getOtp(), userEntity.getEmailOTP())) {
-					exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
+				// Validate OTP
+				if(StringUtils.isBlank(userModel.getOtp())) {
+					exceptions.put(messageUtil.getBundle("otp.null.code"), new Exception(messageUtil.getBundle("otp.null.message")));
 				} else {
-					if(Util.getMinuteDiff(userEntity.getEmailOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
-						exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+					
+					// Check with Email OTP
+					if(!StringUtils.equals(userModel.getOtp(), userEntity.getEmailOTP())) {
+						exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
 					} else {
-						userEntity.setIsEmailVerified(AuthConstant.TRUE);
-						userDAO.update(userEntity);
+						if(Util.getMinuteDiff(userEntity.getEmailOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
+							exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+						} else {
+							userEntity.setIsEmailVerified(AuthConstant.TRUE);
+							userDAO.update(userEntity);
+						}
 					}
 				}
 			}
@@ -603,20 +608,25 @@ public class UserValidation extends AuthorizeUserValidation {
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
 		
 		if(Objects.nonNull(userModel)) {
-			// Validate OTP
-			if(StringUtils.isBlank(userModel.getOtp())) {
-				exceptions.put(messageUtil.getBundle("otp.null.code"), new Exception(messageUtil.getBundle("otp.null.message")));
+			
+			if(StringUtils.equals(userEntity.getIsEmailVerified(), AuthConstant.TRUE)) {
+				exceptions.put(messageUtil.getBundle("mobile.verified.code"), new Exception(messageUtil.getBundle("mobile.verified.message")));
 			} else {
-				
-				// Check with Mobile OTP
-				if(!StringUtils.equals(userModel.getOtp(), userEntity.getMobileOTP())) {
-					exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
+				// Validate OTP
+				if(StringUtils.isBlank(userModel.getOtp())) {
+					exceptions.put(messageUtil.getBundle("otp.null.code"), new Exception(messageUtil.getBundle("otp.null.message")));
 				} else {
-					if(Util.getMinuteDiff(userEntity.getMobileOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
-						exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+					
+					// Check with Mobile OTP
+					if(!StringUtils.equals(userModel.getOtp(), userEntity.getMobileOTP())) {
+						exceptions.put(messageUtil.getBundle("otp.invalid.code"), new Exception(messageUtil.getBundle("otp.invalid.message")));
 					} else {
-						userEntity.setIsMobileVerified(AuthConstant.TRUE);
-						userDAO.update(userEntity);
+						if(Util.getMinuteDiff(userEntity.getMobileOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
+							exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+						} else {
+							userEntity.setIsMobileVerified(AuthConstant.TRUE);
+							userDAO.update(userEntity);
+						}
 					}
 				}
 			}

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
+import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Status;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
@@ -50,7 +51,11 @@ public class LoginValidation extends AuthorizeUserValidation {
 								if(Objects.isNull(userModel2)) {
 									exceptions.put(messageUtil.getBundle("user.mobile.not.present.code"), new Exception(messageUtil.getBundle("user.mobile.not.present.message")));
 								} else {
-									userModel.setUserId(userModel2.getUserId());
+									if(!StringUtils.equals(userModel2.getIsMobileVerified(), AuthConstant.TRUE)) {
+										exceptions.put(messageUtil.getBundle("mobile.not.verified.code"), new Exception(messageUtil.getBundle("mobile.not.verified.message")));
+									} else {
+										userModel.setUserId(userModel2.getUserId());
+									}
 								}
 							}
 						}
@@ -68,7 +73,11 @@ public class LoginValidation extends AuthorizeUserValidation {
 						if(Objects.isNull(userModel2)) {
 							exceptions.put(messageUtil.getBundle("user.email.not.present.code"), new Exception(messageUtil.getBundle("user.email.not.present.message")));
 						} else {
-							userModel.setUserId(userModel2.getUserId());
+							if(!StringUtils.equals(userModel2.getIsEmailVerified(), AuthConstant.TRUE)) {
+								exceptions.put(messageUtil.getBundle("email.not.verified.code"), new Exception(messageUtil.getBundle("email.not.verified.message")));
+							} else {
+								userModel.setUserId(userModel2.getUserId());
+							}
 						}
 					}
 				}

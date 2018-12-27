@@ -5,6 +5,7 @@ package com.orastays.authserver.service.impl;
 
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -39,8 +40,11 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
 		userDAO.update(userEntity);
 		userModel = userConverter.entityToModel(userEntity);
-		smsHelper.sendSMS(userModel);
-		mailHelper.sendMail(userModel);
+		if(!StringUtils.isBlank(userModel.getMobileNumber())) {
+			smsHelper.sendSMS(userModel);
+		} else {
+			mailHelper.sendMail(userModel);
+		}
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("validateLogin -- END");
