@@ -139,9 +139,9 @@ public class LoginValidation extends AuthorizeUserValidation {
 			}
 			
 			// Validate Device ID
-			if(StringUtils.isBlank(userModel.getDeviceId())) {
-				exceptions.put(messageUtil.getBundle("device.id.null.code"), new Exception(messageUtil.getBundle("device.id.null.message")));
-			}
+//			if(StringUtils.isBlank(userModel.getDeviceId())) {
+//				exceptions.put(messageUtil.getBundle("device.id.null.code"), new Exception(messageUtil.getBundle("device.id.null.message")));
+//			}
 		}
 		
 		if (exceptions.size() > 0)

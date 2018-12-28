@@ -46,11 +46,14 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 			mailHelper.sendMail(userModel);
 		}
 		
+		UserModel userModel2 = new UserModel();
+		userModel2.setUserId(userModel.getUserId());
+		
 		if (logger.isInfoEnabled()) {
 			logger.info("validateLogin -- END");
 		}
 		
-		return userModel;
+		return userModel2;
 	}
 	
 	@Override
