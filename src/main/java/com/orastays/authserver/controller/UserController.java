@@ -3,6 +3,9 @@
  */
 package com.orastays.authserver.controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Util;
@@ -442,6 +446,117 @@ public class UserController extends BaseController {
 
 		if (logger.isInfoEnabled()) {
 			logger.info("verifyMobileOTP -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PostMapping(value = "/check-email", produces = "application/json")
+	@ApiOperation(value = "Check Email", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 310, message = "Email ID Already Registered"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!") })
+	public ResponseEntity<ResponseModel> checkEmail(@RequestBody UserModel userModel) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("checkEmail -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+		Util.printLog(userModel, AuthConstant.INCOMING, "Check Email", request);
+		try {
+			UserEntity userEntity = userService.validateUserByEmail(userModel.getEmailId());
+			if(Objects.nonNull(userEntity)) {
+				Map<String, Exception> exceptions = new LinkedHashMap<>();
+				exceptions.put(messageUtil.getBundle("user.email.present.code"), new Exception(messageUtil.getBundle("user.email.present.message")));
+				throw new FormExceptions(exceptions);
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+		} catch (FormExceptions fe) {
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Check Email -- "+Util.errorToString(fe));
+				}
+				break;
+			}
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Check Email -- "+Util.errorToString(e));
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Check Email", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("checkEmail -- END");
+		}
+		
+		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {
+			return new ResponseEntity<>(responseModel, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(responseModel, HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@PostMapping(value = "/check-mobile", produces = "application/json")
+	@ApiOperation(value = "Check Mobile", response = ResponseModel.class)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 307, message = "Mobile Number Already Registered") })
+	public ResponseEntity<ResponseModel> checkMobile(@RequestBody UserModel userModel) {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("checkMobile -- START");
+		}
+
+		ResponseModel responseModel = new ResponseModel();
+		Util.printLog(userModel, AuthConstant.INCOMING, "Check Mobile", request);
+		try {
+			UserEntity userEntity = userService.validateUserByMobileNumber(userModel.getMobileNumber(), userModel.getCountryModel().getCountryId());
+			if(Objects.nonNull(userEntity)) {
+				Map<String, Exception> exceptions = new LinkedHashMap<>();
+				exceptions.put(messageUtil.getBundle("user.mobile.present.code"), new Exception(messageUtil.getBundle("user.mobile.present.message")));
+				throw new FormExceptions(exceptions);
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
+		} catch (FormExceptions fe) {
+			for (Entry<String, Exception> entry : fe.getExceptions().entrySet()) {
+				responseModel.setResponseCode(entry.getKey());
+				responseModel.setResponseMessage(entry.getValue().getMessage());
+				if (logger.isInfoEnabled()) {
+					logger.info("FormExceptions in Check Mobile -- "+Util.errorToString(fe));
+				}
+				break;
+			}
+		} catch (NullPointerException e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("NullPointerException in Check Mobile -- "+Util.errorToString(e));
+			}
+			
+			responseModel.setResponseCode(messageUtil.getBundle("user.mobile.present.code"));
+			responseModel.setResponseMessage(messageUtil.getBundle("user.mobile.present.message"));
+		} catch (Exception e) {
+			if (logger.isInfoEnabled()) {
+				logger.info("Exception in Check Mobile -- "+Util.errorToString(e));
+			}
+			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_ERROR_CODE));
+			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_ERROR_MESSAGE));
+		}
+
+		Util.printLog(responseModel, AuthConstant.OUTGOING, "Check Mobile", request);
+
+		if (logger.isInfoEnabled()) {
+			logger.info("checkMobile -- END");
 		}
 		
 		if (responseModel.getResponseCode().equals(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE))) {

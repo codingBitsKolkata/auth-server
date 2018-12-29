@@ -35,7 +35,7 @@ public class SMSHelper {
 		}
 		
 		SMSModel smsModel = new SMSModel();
-		smsModel.setMobileNumber(userModel.getMobileNumber());
+		smsModel.setMobileNumber(userModel.getCountryModel().getCountryCode() + userModel.getMobileNumber());
 		String message = "Use "+ userModel.getMobileOTP() + " "+ messageUtil.getBundle("otp.sms.message");
 		smsModel.setMessage(message);
 		ResponseModel response = this.restTemplate.postForObject(messageUtil.getBundle("sms.server.url"), smsModel, ResponseModel.class);

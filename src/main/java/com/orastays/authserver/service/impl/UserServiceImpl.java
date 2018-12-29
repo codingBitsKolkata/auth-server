@@ -159,7 +159,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			alliasMap.put(entitymanagerPackagesToScan+".UserEntity", outerMap1);
 			
 			Map<String, String> innerMap2 = new LinkedHashMap<>();
-			innerMap2.put("countryId", String.valueOf(countryId));
+			innerMap2.put("countryId", countryId);
 			 
 			Map<String, Map<String, String>> outerMap2 = new LinkedHashMap<>();
 			outerMap2.put("eq", innerMap2);

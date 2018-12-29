@@ -39,14 +39,14 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		userEntity.setEmailOTPValidity(Util.getCurrentDateTime());
 		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
 		userDAO.update(userEntity);
-		userModel = userConverter.entityToModel(userEntity);
+		UserModel userModel2 = userConverter.entityToModel(userEntity);
 		if(!StringUtils.isBlank(userModel.getMobileNumber())) {
-			smsHelper.sendSMS(userModel);
+			smsHelper.sendSMS(userModel2);
 		} else {
-			mailHelper.sendMail(userModel);
+			mailHelper.sendMail(userModel2);
 		}
 		
-		UserModel userModel2 = new UserModel();
+		userModel2 = new UserModel();
 		userModel2.setUserId(userModel.getUserId());
 		
 		if (logger.isInfoEnabled()) {
@@ -76,6 +76,9 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		loginDetailsDAO.save(loginDetailsEntity);
 		userModel = userConverter.entityToModel(userEntity);
 		userModel.setUserToken(sessionToken);
+		userModel.setLoginDetailsModels(null);
+		userModel.setMobileOTP(null);
+		userModel.setEmailOTP(null);
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("validateLoginOTP -- END");

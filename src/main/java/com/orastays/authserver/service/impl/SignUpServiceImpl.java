@@ -146,10 +146,13 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		smsHelper.sendSMS(userModel);
 		mailHelper.sendMail(userModel);
 		
+		UserModel userModel2 = new UserModel();
+		userModel2.setUserId(userModel.getUserId());
+		
 		if (logger.isInfoEnabled()) {
 			logger.info("resendOTP -- END");
 		}
 		
-		return userModel;
+		return userModel2;
 	}
 }
