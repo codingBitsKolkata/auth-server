@@ -214,7 +214,7 @@ public class UserValidation extends AuthorizeUserValidation {
 			
 			// Validate Alternate Mobile Number of the User
 			if(StringUtils.isNotBlank(userVsInfoModel.getAltPhno())) {
-				if(Util.checkMobileNumber(userVsInfoModel.getAltPhno())) {
+				if(!Util.checkMobileNumber(userVsInfoModel.getAltPhno())) {
 					exceptions.put(messageUtil.getBundle("user.alt.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.alt.mobile.invalid.message")));
 				} else {
 					userVsInfoEntity.setAltPhno(userVsInfoModel.getAltPhno());

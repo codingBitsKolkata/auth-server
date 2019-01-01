@@ -44,7 +44,8 @@ public class DomainController extends BaseController {
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token")})
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive")})
 	public ResponseEntity<ResponseModel> fetchDomains(@RequestParam(value = "hostToken", required = true) String hostToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -96,8 +97,9 @@ public class DomainController extends BaseController {
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
 			@ApiResponse(code = 322, message = "Invalid user Token"),
-			@ApiResponse(code = 332, message = "Please Select Domain"),
-			@ApiResponse(code = 333, message = "Invalid Domain") })
+			@ApiResponse(code = 1010, message = "User is Inactive"),
+			@ApiResponse(code = 1028, message = "Please Select Domain"),
+			@ApiResponse(code = 1029, message = "Invalid Domain") })
 	public ResponseEntity<ResponseModel> addHostDomain(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {

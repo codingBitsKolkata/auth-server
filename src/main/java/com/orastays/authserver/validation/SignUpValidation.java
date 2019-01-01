@@ -68,7 +68,7 @@ public class SignUpValidation extends AuthorizeUserValidation {
 			if(StringUtils.isBlank(userModel.getMobileNumber())) {
 				exceptions.put(messageUtil.getBundle("user.mobile.null.code"), new Exception(messageUtil.getBundle("user.mobile.null.message")));
 			} else {
-				if(Util.checkMobileNumber(userModel.getMobileNumber())) {
+				if(!Util.checkMobileNumber(userModel.getMobileNumber())) {
 					exceptions.put(messageUtil.getBundle("user.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.mobile.invalid.message")));
 				} else {
 					UserEntity userEntity = userService.validateUserByMobileNumber(userModel.getMobileNumber(), userModel.getCountryModel().getCountryId());
@@ -85,7 +85,7 @@ public class SignUpValidation extends AuthorizeUserValidation {
 			if(StringUtils.isBlank(userModel.getEmailId())) {
 				exceptions.put(messageUtil.getBundle("user.email.null.code"), new Exception(messageUtil.getBundle("user.email.null.message")));
 			} else {
-				if(!Util.checkEmail(userModel.getEmailId())) {
+				if(!Util.emailValidator(userModel.getEmailId())) {
 					exceptions.put(messageUtil.getBundle("user.email.invalid.code"), new Exception(messageUtil.getBundle("user.email.invalid.message")));
 				} else {
 					UserEntity userEntity = userService.validateUserByEmail(userModel.getEmailId());

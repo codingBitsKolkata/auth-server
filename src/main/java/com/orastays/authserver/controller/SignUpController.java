@@ -38,17 +38,17 @@ public class SignUpController extends BaseController {
 	@ApiOperation(value = "User Sign Up", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 301, message = "Please Enter Name"),
-			@ApiResponse(code = 302, message = "Invalid Name"),
-			@ApiResponse(code = 303, message = "Please Select Country"),
-			@ApiResponse(code = 304, message = "Invalid Country"),
-			@ApiResponse(code = 305, message = "Please Enter Mobile Number"),
-			@ApiResponse(code = 306, message = "Invalid Mobile Number"),
-			@ApiResponse(code = 307, message = "Mobile Number Already Registered"),
-			@ApiResponse(code = 308, message = "Please Enter Email ID"),
-			@ApiResponse(code = 309, message = "Invalid Email ID"),
-			@ApiResponse(code = 310, message = "Email ID Already Registered"),
-			@ApiResponse(code = 311, message = "User is Inactive")})
+			@ApiResponse(code = 1000, message = "Please Enter Name"),
+			@ApiResponse(code = 1001, message = "Invalid Name"),
+			@ApiResponse(code = 1002, message = "Please Select Country"),
+			@ApiResponse(code = 1003, message = "Invalid Country"),
+			@ApiResponse(code = 1004, message = "Please Enter Mobile Number"),
+			@ApiResponse(code = 1005, message = "Invalid Mobile Number"),
+			@ApiResponse(code = 1006, message = "Mobile Number Already Registered"),
+			@ApiResponse(code = 1007, message = "Please Enter Email ID"),
+			@ApiResponse(code = 1008, message = "Invalid Email ID"),
+			@ApiResponse(code = 1009, message = "Email ID Already Registered"),
+			@ApiResponse(code = 1010, message = "User is Inactive")})
 	public ResponseEntity<ResponseModel> signUp(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -97,12 +97,12 @@ public class SignUpController extends BaseController {
 	@ApiOperation(value = "Validate OTP", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 312, message = "Please provide UserID"),
-			@ApiResponse(code = 313, message = "Invalid UserID"),
-			@ApiResponse(code = 314, message = "Please enter OTP"),
-			@ApiResponse(code = 315, message = "Invalid OTP"),
-			@ApiResponse(code = 316, message = "OTP expires"),
-			@ApiResponse(code = 317, message = "Please provide Device ID") })
+			@ApiResponse(code = 1011, message = "Please provide UserID"),
+			@ApiResponse(code = 1012, message = "Invalid UserID"),
+			@ApiResponse(code = 1013, message = "Please enter OTP"),
+			@ApiResponse(code = 1014, message = "Invalid OTP"),
+			@ApiResponse(code = 1015, message = "OTP expires"),
+			@ApiResponse(code = 1016, message = "Please provide Device ID") })
 	public ResponseEntity<ResponseModel> validateOTP(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -151,8 +151,8 @@ public class SignUpController extends BaseController {
 	@ApiOperation(value = "Resend OTP", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 312, message = "Please provide UserID"),
-			@ApiResponse(code = 313, message = "Invalid UserID") })
+			@ApiResponse(code = 1011, message = "Please provide UserID"),
+			@ApiResponse(code = 1012, message = "Invalid UserID") })
 	public ResponseEntity<ResponseModel> resendOTP(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {

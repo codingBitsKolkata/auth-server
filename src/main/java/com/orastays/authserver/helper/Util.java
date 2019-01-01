@@ -932,7 +932,7 @@ public class Util {
 		String regex = "^[0-9]\\d*(\\.\\d+)?$";
 		return str.matches(regex);
 	}
-
+	
 	public static boolean checkMobileNumber(String mobileNumber) {
 
 		String mobileNumberPattern = "((?=.*\\d)(?=.*[0-9])(?=.*[+]).{10,14})";
@@ -1242,7 +1242,7 @@ public class Util {
 	public static void main(String[] args) {
 
 		try {
-			System.out.println(checkEmail("avirup.pal"));
+			System.out.println(checkMobileNumber("974272902a"));
 		} catch (Exception e) {
 
 		}

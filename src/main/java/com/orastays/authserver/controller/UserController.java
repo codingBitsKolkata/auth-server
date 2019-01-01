@@ -48,11 +48,8 @@ public class UserController extends BaseController {
 	@ApiOperation(value = "Fetch User Details By UserID", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 312, message = "Please provide UserID"),
-			@ApiResponse(code = 313, message = "Invalid UserID"),
-			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
-			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token")})
+			@ApiResponse(code = 1011, message = "Please provide UserID"),
+			@ApiResponse(code = 1012, message = "Invalid UserID")})
 	
 	public ResponseEntity<ResponseModel> fetchUserByID(@RequestParam(value = "userId", required = true) String userId) {
 
@@ -104,7 +101,8 @@ public class UserController extends BaseController {
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token")})
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive")})
 	public ResponseEntity<ResponseModel> checkToken(@RequestParam(value = "userToken", required = true) String userToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -155,7 +153,8 @@ public class UserController extends BaseController {
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
 			@ApiResponse(code = 320, message = "Session expires!!!Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token") })
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive")})
 	public ResponseEntity<ResponseModel> addUserActivity(@RequestBody UserActivityModel userActivityModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -204,13 +203,16 @@ public class UserController extends BaseController {
 	@ApiOperation(value = "Update User Info", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 323, message = "Invalid Alternate Mobile Number"),
-			@ApiResponse(code = 324, message = "Invalid Date Of Birth"),
-			@ApiResponse(code = 325, message = "Invalid Image Format"),
-			@ApiResponse(code = 326, message = "Error in Image Uploading!!! Please try after sometime..."),
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token") })
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive"),
+			@ApiResponse(code = 1019, message = "Invalid Alternate Mobile Number"),
+			@ApiResponse(code = 1020, message = "Invalid Date Of Birth"),
+			@ApiResponse(code = 1021, message = "Invalid Image Format"),
+			@ApiResponse(code = 1022, message = "Error in Image Uploading!!! Please try after sometime..."),
+			@ApiResponse(code = 1002, message = "Please Select Country"),
+			@ApiResponse(code = 1003, message = "Invalid Country")})
 	public ResponseEntity<ResponseModel> updateUserInfo(@ModelAttribute UserVsInfoModel userVsInfoModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -261,7 +263,8 @@ public class UserController extends BaseController {
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token") })
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive")})
 	public ResponseEntity<ResponseModel> sendEmailOTP(@RequestParam(value = "userToken", required = true) String userToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -311,7 +314,12 @@ public class UserController extends BaseController {
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token") })
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive"),
+			@ApiResponse(code = 1013, message = "Please enter OTP"),
+			@ApiResponse(code = 1014, message = "Invalid OTP"),
+			@ApiResponse(code = 1015, message = "OTP expires"),
+			@ApiResponse(code = 1032, message = "Email Already Verified")})
 	public ResponseEntity<ResponseModel> verifyEmailOTP(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -361,7 +369,8 @@ public class UserController extends BaseController {
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token") })
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive")})
 	public ResponseEntity<ResponseModel> sendMobileOTP(@RequestParam(value = "userToken", required = true) String userToken) {
 
 		if (logger.isInfoEnabled()) {
@@ -411,7 +420,12 @@ public class UserController extends BaseController {
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
 			@ApiResponse(code = 320, message = "Session expires!!! Please Login to continue..."),
 			@ApiResponse(code = 321, message = "Please give User Token"),
-			@ApiResponse(code = 322, message = "Invalid user Token") })
+			@ApiResponse(code = 322, message = "Invalid user Token"),
+			@ApiResponse(code = 1010, message = "User is Inactive"),
+			@ApiResponse(code = 1013, message = "Please enter OTP"),
+			@ApiResponse(code = 1014, message = "Invalid OTP"),
+			@ApiResponse(code = 1015, message = "OTP expires"),
+			@ApiResponse(code = 1033, message = "Mobile Number Already Verified")})
 	public ResponseEntity<ResponseModel> verifyMobileOTP(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -458,8 +472,8 @@ public class UserController extends BaseController {
 	@PostMapping(value = "/check-email", produces = "application/json")
 	@ApiOperation(value = "Check Email", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
-			@ApiResponse(code = 310, message = "Email ID Already Registered"),
-			@ApiResponse(code = 201, message = "Please Try after Sometime!!!") })
+			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
+			@ApiResponse(code = 1009, message = "Email ID Already Registered") })
 	public ResponseEntity<ResponseModel> checkEmail(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
@@ -511,7 +525,7 @@ public class UserController extends BaseController {
 	@ApiOperation(value = "Check Mobile", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
-			@ApiResponse(code = 307, message = "Mobile Number Already Registered") })
+			@ApiResponse(code = 1006, message = "Mobile Number Already Registered") })
 	public ResponseEntity<ResponseModel> checkMobile(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {
