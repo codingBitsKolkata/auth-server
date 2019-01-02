@@ -35,7 +35,7 @@ public class LoginValidation extends AuthorizeUserValidation {
 			
 			// Validate Mobile Number of the User
 			if(!StringUtils.isBlank(userModel.getMobileNumber())) {
-				if(!Util.checkMobileNumber(userModel.getMobileNumber())) {
+				if(!Util.isNumeric(userModel.getMobileNumber())) {
 					exceptions.put(messageUtil.getBundle("user.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.mobile.invalid.message")));
 				} else {
 					
@@ -168,7 +168,7 @@ public class LoginValidation extends AuthorizeUserValidation {
 			
 			// Validate Mobile Number of the User
 			if(!StringUtils.isBlank(userModel.getMobileNumber())) {
-				if(!Util.checkMobileNumber(userModel.getMobileNumber())) {
+				if(!Util.isNumeric(userModel.getMobileNumber())) {
 					exceptions.put(messageUtil.getBundle("user.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.mobile.invalid.message")));
 				} else {
 					

@@ -68,7 +68,7 @@ public class SignUpValidation extends AuthorizeUserValidation {
 			if(StringUtils.isBlank(userModel.getMobileNumber())) {
 				exceptions.put(messageUtil.getBundle("user.mobile.null.code"), new Exception(messageUtil.getBundle("user.mobile.null.message")));
 			} else {
-				if(!Util.checkMobileNumber(userModel.getMobileNumber())) {
+				if(!Util.isNumeric(userModel.getMobileNumber())) {
 					exceptions.put(messageUtil.getBundle("user.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.mobile.invalid.message")));
 				} else {
 					UserEntity userEntity = userService.validateUserByMobileNumber(userModel.getMobileNumber(), userModel.getCountryModel().getCountryId());

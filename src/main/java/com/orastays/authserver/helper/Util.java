@@ -1242,7 +1242,7 @@ public class Util {
 	public static void main(String[] args) {
 
 		try {
-			System.out.println(checkMobileNumber("974272902a"));
+			System.out.println(isNumber("9742729028"));
 		} catch (Exception e) {
 
 		}
