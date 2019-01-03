@@ -259,6 +259,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		userEntity.setEmailOTP(String.valueOf(Util.generateOTP()));
 		userEntity.setEmailOTPValidity(Util.getCurrentDateTime());
 		userDAO.update(userEntity);
+		UserModel userModel = userConverter.entityToModel(userEntity);
+		mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject.verification"), messageUtil.getBundle("otp.sms.message.verification"));
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("checkToken -- END");
@@ -290,6 +292,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		userEntity.setMobileOTP(String.valueOf(Util.generateOTP()));
 		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
 		userDAO.update(userEntity);
+		UserModel userModel = userConverter.entityToModel(userEntity);
+		smsHelper.sendSMS(userModel, messageUtil.getBundle("otp.sms.message.verification"));
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("checkToken -- END");

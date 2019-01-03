@@ -17,4 +17,6 @@ public final class AuthConstant {
 	public static final String MOBILE = "MOBILE";
 	public static final String FALSE = "FALSE";
 	public static final String TRUE = "TRUE";
+	public static final String STR_Y = "Y";
+	public static final String STR_N = "N";
 }

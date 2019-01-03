@@ -48,6 +48,9 @@ public class UserModel extends CommonModel {
 	@JsonProperty("mobile_otp")
 	private String mobileOTP;
 	
+	@JsonProperty("privacyPolicy")
+	private String privacyPolicy;
+	
 	@JsonProperty("country")
 	private CountryModel countryModel;
 	

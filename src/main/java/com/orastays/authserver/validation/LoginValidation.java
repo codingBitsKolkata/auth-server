@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
+import com.orastays.authserver.entity.LoginDetailsEntity;
 import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.AuthConstant;
@@ -110,6 +111,10 @@ public class LoginValidation extends AuthorizeUserValidation {
 				userEntity = userDAO.find(Long.parseLong(userModel.getUserId()));
 				if(Objects.isNull(userEntity)) {
 					exceptions.put(messageUtil.getBundle("user.id.invalid.code"), new Exception(messageUtil.getBundle("user.id.invalid.message")));
+				} else {
+					if(userEntity.getStatus() != Status.ACTIVE.ordinal()) {
+						exceptions.put(messageUtil.getBundle("user.inactive.code"), new Exception(messageUtil.getBundle("user.inactive.message")));
+					}
 				}
 			}
 			
@@ -129,11 +134,20 @@ public class LoginValidation extends AuthorizeUserValidation {
 					} else {
 						if(Util.getMinuteDiff(userEntity.getEmailOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
 							exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+						} else {
+							if(StringUtils.equals(userEntity.getIsEmailVerified(), AuthConstant.FALSE)) {
+								exceptions.put(messageUtil.getBundle("email.not.verified.code"), new Exception(messageUtil.getBundle("email.not.verified.message")));
+							}
+							
 						}
 					}
 				} else {
 					if(Util.getMinuteDiff(userEntity.getMobileOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
 						exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+					} else {
+						if(StringUtils.equals(userEntity.getIsMobileVerified(), AuthConstant.FALSE)) {
+							exceptions.put(messageUtil.getBundle("mobile.not.verified.code"), new Exception(messageUtil.getBundle("mobile.not.verified.message")));
+						}
 					}
 				}
 			}
@@ -211,5 +225,72 @@ public class LoginValidation extends AuthorizeUserValidation {
 		if (logger.isDebugEnabled()) {
 			logger.debug("validatefetchInactiveUser -- End");
 		}
+	}
+	
+	public UserEntity validateLogout(String userToken) throws FormExceptions {
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateLogout -- Start");
+		}
+
+		UserEntity userEntity = null;
+		Map<String, Exception> exceptions = new LinkedHashMap<>();
+		LoginDetailsEntity loginDetailsEntity = null;
+				
+		// Validate User Id
+		if(StringUtils.isBlank(userToken)) {
+			exceptions.put(messageUtil.getBundle("user.token.null.code"), new Exception(messageUtil.getBundle("user.token.null.message")));
+		} else {
+			
+			try {
+				Map<String, String> innerMap1 = new LinkedHashMap<>();
+				innerMap1.put("status", String.valueOf(Status.ACTIVE.ordinal()));
+				innerMap1.put("sessionToken", userToken);
+		
+				Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();
+				outerMap1.put("eq", innerMap1);
+		
+				Map<String, Map<String, Map<String, String>>> alliasMap = new LinkedHashMap<>();
+				alliasMap.put(entitymanagerPackagesToScan+".LoginDetailsEntity", outerMap1);
+		
+				loginDetailsEntity = loginDetailsDAO.fetchObjectBySubCiteria(alliasMap);
+				if(Objects.isNull(loginDetailsEntity)) {
+					exceptions.put(messageUtil.getBundle("user.token.invalid.code"), new Exception(messageUtil.getBundle("user.token.invalid.message")));
+				} else {
+					if(StringUtils.isBlank(loginDetailsEntity.getModifiedDate())) {
+						if(Util.getMinuteDiff(loginDetailsEntity.getCreatedDate()) > Integer.parseInt(messageUtil.getBundle("session.timeout"))) {
+							exceptions.put(messageUtil.getBundle("session.expires.code"), new Exception(messageUtil.getBundle("session.expires.message")));
+						}
+					} else {
+						if(Util.getMinuteDiff(loginDetailsEntity.getModifiedDate()) > Integer.parseInt(messageUtil.getBundle("session.timeout"))) {
+							exceptions.put(messageUtil.getBundle("session.expires.code"), new Exception(messageUtil.getBundle("session.expires.message")));
+						}
+					}
+				}
+			} catch (Exception e) {
+				exceptions.put(messageUtil.getBundle("user.token.invalid.code"), new Exception(messageUtil.getBundle("user.token.invalid.message")));
+			}
+		}
+		
+		if (exceptions.size() > 0)
+			throw new FormExceptions(exceptions);
+		else {
+			userEntity = loginDetailsEntity.getUserEntity();
+			if(userEntity.getStatus() != Status.ACTIVE.ordinal()) {
+				exceptions.put(messageUtil.getBundle("user.inactive.code"), new Exception(messageUtil.getBundle("user.inactive.message")));
+				throw new FormExceptions(exceptions);
+			} else {
+				loginDetailsEntity.setModifiedBy(userEntity.getUserId());
+				loginDetailsEntity.setModifiedDate(Util.getCurrentDateTime());
+				loginDetailsEntity.setStatus(Status.INACTIVE.ordinal());
+				loginDetailsDAO.update(loginDetailsEntity);
+			}
+		}
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateLogout -- End");
+		}
+		
+		return userEntity;
 	}
 }

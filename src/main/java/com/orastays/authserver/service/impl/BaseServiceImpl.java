@@ -12,6 +12,7 @@ import com.orastays.authserver.converter.IdentityConverter;
 import com.orastays.authserver.converter.InterestConverter;
 import com.orastays.authserver.converter.LanguageConverter;
 import com.orastays.authserver.converter.LoginDetailsConverter;
+import com.orastays.authserver.converter.PrivacyPolicyConverter;
 import com.orastays.authserver.converter.UserActivityConverter;
 import com.orastays.authserver.converter.UserConverter;
 import com.orastays.authserver.converter.UserVsIdentityConverter;
@@ -21,6 +22,7 @@ import com.orastays.authserver.dao.IdentityDAO;
 import com.orastays.authserver.dao.InterestDAO;
 import com.orastays.authserver.dao.LanguageDAO;
 import com.orastays.authserver.dao.LoginDetailsDAO;
+import com.orastays.authserver.dao.PrivacyPolicyDAO;
 import com.orastays.authserver.dao.UserActivityDAO;
 import com.orastays.authserver.dao.UserDAO;
 import com.orastays.authserver.dao.UserTypeDAO;
@@ -78,6 +80,12 @@ public abstract class BaseServiceImpl {
 	
 	@Autowired
 	protected CountryConverter countryConverter;
+	
+	@Autowired
+	protected PrivacyPolicyDAO privacyPolicyDAO;
+	
+	@Autowired
+	protected PrivacyPolicyConverter privacyPolicyConverter;
 	
 	@Autowired
 	protected LoginDetailsConverter loginDetailsConverter;

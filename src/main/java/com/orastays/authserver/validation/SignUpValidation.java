@@ -96,6 +96,15 @@ public class SignUpValidation extends AuthorizeUserValidation {
 					}
 				}
 			}
+			
+			// Validate Privacy Policy of the User
+			if(StringUtils.isBlank(userModel.getPrivacyPolicy())) {
+				exceptions.put(messageUtil.getBundle("user.privacypolicy.null.code"), new Exception(messageUtil.getBundle("user.privacypolicy.null.message")));
+			} else {
+				if((!StringUtils.equals(userModel.getPrivacyPolicy(), AuthConstant.STR_Y))) {
+					exceptions.put(messageUtil.getBundle("user.privacypolicy.invalid.code"), new Exception(messageUtil.getBundle("user.privacypolicy.invalid.message")));
+				}
+			}
 		}
 		
 		if (exceptions.size() > 0)
@@ -147,14 +156,23 @@ public class SignUpValidation extends AuthorizeUserValidation {
 						if(Util.getMinuteDiff(userEntity.getEmailOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
 							exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
 						} else {
-							userEntity.setIsEmailVerified(AuthConstant.TRUE);
+							if(StringUtils.equals(userEntity.getIsEmailVerified(), AuthConstant.FALSE)) {
+								userEntity.setIsEmailVerified(AuthConstant.TRUE);
+							} else {
+								exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+							}
+							
 						}
 					}
 				} else {
 					if(Util.getMinuteDiff(userEntity.getMobileOTPValidity()) > Integer.parseInt(messageUtil.getBundle("otp.timeout"))) {
 						exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
 					} else {
-						userEntity.setIsMobileVerified(AuthConstant.TRUE);
+						if(StringUtils.equals(userEntity.getIsMobileVerified(), AuthConstant.FALSE)) {
+							userEntity.setIsMobileVerified(AuthConstant.TRUE);
+						} else {
+							exceptions.put(messageUtil.getBundle("otp.expires.code"), new Exception(messageUtil.getBundle("otp.expires.message")));
+						}
 					}
 				}
 			}

@@ -5,6 +5,7 @@ package com.orastays.authserver.service.impl;
 
 import java.util.UUID;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import com.orastays.authserver.entity.UserVsInfoEntity;
 import com.orastays.authserver.entity.UserVsLanguageEntity;
 import com.orastays.authserver.entity.UserVsTypeEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
+import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Language;
 import com.orastays.authserver.helper.Status;
 import com.orastays.authserver.helper.UserType;
@@ -73,8 +75,8 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		userVsLanguageDAO.save(userVsLanguageEntity);
 		
 		userModel = userConverter.entityToModel(userEntity2);
-		smsHelper.sendSMS(userModel);
-		mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject.registration"));
+		smsHelper.sendSMS(userModel, messageUtil.getBundle("otp.sms.message.registration"));
+		mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject.registration"), messageUtil.getBundle("otp.sms.message.registration"));
 		
 		UserModel userModel2 = new UserModel();
 		userModel2.setUserId(userModel.getUserId());
@@ -143,8 +145,14 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		userEntity.setMobileOTPValidity(Util.getCurrentDateTime());
 		userDAO.update(userEntity);
 		userModel = userConverter.entityToModel(userEntity);
-		smsHelper.sendSMS(userModel);
-		mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject"));
+		if(StringUtils.equals(userEntity.getIsEmailVerified(), AuthConstant.FALSE) && StringUtils.equals(userEntity.getIsEmailVerified(), AuthConstant.FALSE)) { // Resend For Sign Up
+			smsHelper.sendSMS(userModel, messageUtil.getBundle("otp.sms.message.registration"));
+			mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject.registration"), messageUtil.getBundle("otp.sms.message.registration"));
+		} else { // Resend For Login
+			smsHelper.sendSMS(userModel, messageUtil.getBundle("otp.sms.message"));
+			mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject"), messageUtil.getBundle("otp.sms.message"));
+		}
+		
 		
 		UserModel userModel2 = new UserModel();
 		userModel2.setUserId(userModel.getUserId());

@@ -14,4 +14,6 @@ public interface LoginService {
 
 	UserModel fetchInactiveUser(UserModel userModel) throws FormExceptions;
 
+	void validateLogout(String userToken) throws FormExceptions;
+
 }

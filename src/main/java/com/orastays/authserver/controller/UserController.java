@@ -35,6 +35,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -45,6 +46,7 @@ public class UserController extends BaseController {
 	private static final Logger logger = LogManager.getLogger(UserController.class);
 	
 	@GetMapping(value = "/fetch-user-by-id", produces = "application/json")
+	@ApiIgnore
 	@ApiOperation(value = "Fetch User Details By UserID", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
@@ -148,6 +150,7 @@ public class UserController extends BaseController {
 	}
 	
 	@PostMapping(value = "/add-user-activity", produces = "application/json")
+	@ApiIgnore
 	@ApiOperation(value = "Add User Activity", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
@@ -200,6 +203,7 @@ public class UserController extends BaseController {
 	}
 	
 	@PostMapping(value = "/update-user-info", produces = "application/json", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@ApiIgnore
 	@ApiOperation(value = "Update User Info", response = ResponseModel.class)
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK"),
 			@ApiResponse(code = 201, message = "Please Try after Sometime!!!"),
@@ -557,8 +561,8 @@ public class UserController extends BaseController {
 				logger.info("NullPointerException in Check Mobile -- "+Util.errorToString(e));
 			}
 			
-			responseModel.setResponseCode(messageUtil.getBundle("user.mobile.present.code"));
-			responseModel.setResponseMessage(messageUtil.getBundle("user.mobile.present.message"));
+			responseModel.setResponseCode(messageUtil.getBundle("user.mobile.null.code"));
+			responseModel.setResponseMessage(messageUtil.getBundle("user.mobile.null.message"));
 		} catch (Exception e) {
 			if (logger.isInfoEnabled()) {
 				logger.info("Exception in Check Mobile -- "+Util.errorToString(e));

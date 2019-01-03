@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+-- version 4.5.2
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2018 at 07:32 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Generation Time: Jan 03, 2019 at 06:35 PM
+-- Server version: 5.7.9
+-- PHP Version: 5.6.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,8 +26,9 @@ SET time_zone = "+00:00";
 -- Table structure for table `host_vs_account`
 --
 
-CREATE TABLE `host_vs_account` (
-  `host_vs_account_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `host_vs_account`;
+CREATE TABLE IF NOT EXISTS `host_vs_account` (
+  `host_vs_account_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
@@ -41,7 +40,9 @@ CREATE TABLE `host_vs_account` (
   `bank_name` varchar(255) DEFAULT NULL,
   `branch_name` varchar(255) DEFAULT NULL,
   `ifsc_code` varchar(255) DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`host_vs_account_id`),
+  KEY `FK2o57av88b996lc7tnhyqoukv6` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -50,15 +51,19 @@ CREATE TABLE `host_vs_account` (
 -- Table structure for table `host_vs_domain`
 --
 
-CREATE TABLE `host_vs_domain` (
-  `host_dom_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `host_vs_domain`;
+CREATE TABLE IF NOT EXISTS `host_vs_domain` (
+  `host_dom_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `domain_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`host_dom_id`),
+  KEY `FK1lrjojvnmwqcriscfw846j7ob` (`domain_id`),
+  KEY `FKl0lojlgub38279xp5nvrx08d6` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -67,15 +72,19 @@ CREATE TABLE `host_vs_domain` (
 -- Table structure for table `host_vs_interest`
 --
 
-CREATE TABLE `host_vs_interest` (
-  `host_int_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `host_vs_interest`;
+CREATE TABLE IF NOT EXISTS `host_vs_interest` (
+  `host_int_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `interest_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`host_int_id`),
+  KEY `FKtrdc6uapmgktoc7oc941ii720` (`interest_id`),
+  KEY `FKtn74a3lr5oeq23rwf3jh17280` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -84,8 +93,9 @@ CREATE TABLE `host_vs_interest` (
 -- Table structure for table `login_details`
 --
 
-CREATE TABLE `login_details` (
-  `login_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `login_details`;
+CREATE TABLE IF NOT EXISTS `login_details` (
+  `login_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
@@ -94,7 +104,9 @@ CREATE TABLE `login_details` (
   `device_id` varchar(255) DEFAULT NULL,
   `ip` varchar(255) DEFAULT NULL,
   `session_token` varchar(255) DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`login_id`),
+  KEY `FKqd5giregrap11ay6cckx328pd` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -103,16 +115,18 @@ CREATE TABLE `login_details` (
 -- Table structure for table `master_country`
 --
 
-CREATE TABLE `master_country` (
-  `country_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `master_country`;
+CREATE TABLE IF NOT EXISTS `master_country` (
+  `country_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `country_code` varchar(255) DEFAULT NULL,
-  `country_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `country_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`country_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_country`
@@ -171,7 +185,7 @@ INSERT INTO `master_country` (`country_id`, `created_by`, `created_date`, `modif
 (50, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+242', 'CONGO, THE DEMOCRATIC REPUBLIC OF THE'),
 (51, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+682', 'COOK ISLANDS'),
 (52, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+506', 'COSTA RICA'),
-(53, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+225', 'COTE D\'IVOIRE'),
+(53, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+225', 'COTE D''IVOIRE'),
 (54, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+385', 'CROATIA'),
 (55, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+53', 'CUBA'),
 (56, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+357', 'CYPRUS'),
@@ -230,11 +244,11 @@ INSERT INTO `master_country` (`country_id`, `created_by`, `created_date`, `modif
 (109, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+7', 'KAZAKHSTAN'),
 (110, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+254', 'KENYA'),
 (111, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+686', 'KIRIBATI'),
-(112, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+850', 'KOREA, DEMOCRATIC PEOPLE\'S REPUBLIC OF'),
+(112, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+850', 'KOREA, DEMOCRATIC PEOPLE''S REPUBLIC OF'),
 (113, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+82', 'KOREA, REPUBLIC OF'),
 (114, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+965', 'KUWAIT'),
 (115, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+996', 'KYRGYZSTAN'),
-(116, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+856', 'LAO PEOPLE\'S DEMOCRATIC REPUBLIC'),
+(116, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+856', 'LAO PEOPLE''S DEMOCRATIC REPUBLIC'),
 (117, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+371', 'LATVIA'),
 (118, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+961', 'LEBANON'),
 (119, 1, '2018-12-15 01:27:34', NULL, NULL, 2, '+266', 'LESOTHO'),
@@ -365,15 +379,17 @@ INSERT INTO `master_country` (`country_id`, `created_by`, `created_date`, `modif
 -- Table structure for table `master_domain`
 --
 
-CREATE TABLE `master_domain` (
-  `domain_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `master_domain`;
+CREATE TABLE IF NOT EXISTS `master_domain` (
+  `domain_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `domain_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `domain_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`domain_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_domain`
@@ -389,15 +405,25 @@ INSERT INTO `master_domain` (`domain_id`, `created_by`, `created_date`, `modifie
 -- Table structure for table `master_identity`
 --
 
-CREATE TABLE `master_identity` (
-  `identity_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `master_identity`;
+CREATE TABLE IF NOT EXISTS `master_identity` (
+  `identity_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`identity_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `master_identity`
+--
+
+INSERT INTO `master_identity` (`identity_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `status`, `name`) VALUES
+(1, 1, '2018-12-24 13:34:16', NULL, NULL, 1, 'DRIVING LICENCE'),
+(2, 1, '2018-12-24 13:34:16', NULL, NULL, 1, 'AADHAR CARD');
 
 -- --------------------------------------------------------
 
@@ -405,15 +431,17 @@ CREATE TABLE `master_identity` (
 -- Table structure for table `master_interest`
 --
 
-CREATE TABLE `master_interest` (
-  `interest_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `master_interest`;
+CREATE TABLE IF NOT EXISTS `master_interest` (
+  `interest_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `interest_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `interest_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`interest_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_interest`
@@ -429,15 +457,17 @@ INSERT INTO `master_interest` (`interest_id`, `created_by`, `created_date`, `mod
 -- Table structure for table `master_language`
 --
 
-CREATE TABLE `master_language` (
-  `language_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `master_language`;
+CREATE TABLE IF NOT EXISTS `master_language` (
+  `language_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`language_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_language`
@@ -449,22 +479,54 @@ INSERT INTO `master_language` (`language_id`, `created_by`, `created_date`, `mod
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `master_privacy_policy`
+--
+
+DROP TABLE IF EXISTS `master_privacy_policy`;
+CREATE TABLE IF NOT EXISTS `master_privacy_policy` (
+  `privacy_policy_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `created_by` bigint(20) DEFAULT NULL,
+  `created_date` varchar(255) DEFAULT NULL,
+  `modified_by` bigint(20) DEFAULT NULL,
+  `modified_date` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `privacy_policy` text,
+  PRIMARY KEY (`privacy_policy_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `master_privacy_policy`
+--
+
+INSERT INTO `master_privacy_policy` (`privacy_policy_id`, `created_by`, `created_date`, `modified_by`, `modified_date`, `status`, `privacy_policy`) VALUES
+(1, 1, '2018-12-24 13:34:16', NULL, NULL, 1, 'TEST PRIVACY POLICY');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `master_user`
 --
 
-CREATE TABLE `master_user` (
-  `user_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `master_user`;
+CREATE TABLE IF NOT EXISTS `master_user` (
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `email_id` varchar(255) DEFAULT NULL,
+  `emailOTP` varchar(255) DEFAULT NULL,
+  `emailOTPValidity` varchar(255) DEFAULT NULL,
   `is_email_verified` varchar(255) DEFAULT NULL,
   `is_mobile_verified` varchar(255) DEFAULT NULL,
   `mobile_number` varchar(255) DEFAULT NULL,
-  `otp` varchar(255) DEFAULT NULL,
-  `country_id` bigint(20) NOT NULL
+  `mobileOTP` varchar(255) DEFAULT NULL,
+  `mobileOTPValidity` varchar(255) DEFAULT NULL,
+  `privacyPolicy` varchar(255) DEFAULT NULL,
+  `country_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_id`),
+  KEY `FK4d8m97w9ng2808inw7l46sn7d` (`country_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -473,15 +535,17 @@ CREATE TABLE `master_user` (
 -- Table structure for table `master_user_type`
 --
 
-CREATE TABLE `master_user_type` (
-  `user_type_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `master_user_type`;
+CREATE TABLE IF NOT EXISTS `master_user_type` (
+  `user_type_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
-  `user_type` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `user_type` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `master_user_type`
@@ -498,8 +562,9 @@ INSERT INTO `master_user_type` (`user_type_id`, `created_by`, `created_date`, `m
 -- Table structure for table `user_activity`
 --
 
-CREATE TABLE `user_activity` (
-  `activity_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `user_activity`;
+CREATE TABLE IF NOT EXISTS `user_activity` (
+  `activity_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
@@ -507,7 +572,9 @@ CREATE TABLE `user_activity` (
   `status` int(11) DEFAULT NULL,
   `page_visit` varchar(255) DEFAULT NULL,
   `property_visit` varchar(255) DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`activity_id`),
+  KEY `FK171cx8gsppqvvek5wmo5ptj8p` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -516,8 +583,9 @@ CREATE TABLE `user_activity` (
 -- Table structure for table `user_vs_identity`
 --
 
-CREATE TABLE `user_vs_identity` (
-  `user_vs_identity_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `user_vs_identity`;
+CREATE TABLE IF NOT EXISTS `user_vs_identity` (
+  `user_vs_identity_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
@@ -526,7 +594,10 @@ CREATE TABLE `user_vs_identity` (
   `file_url` varchar(255) DEFAULT NULL,
   `identity_number` varchar(255) DEFAULT NULL,
   `identity_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_vs_identity_id`),
+  KEY `FKgn2s2vtytbivavyqt0gq84dw` (`identity_id`),
+  KEY `FK3o7y8u4q8nngu0fr2qu04eaq3` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -535,8 +606,9 @@ CREATE TABLE `user_vs_identity` (
 -- Table structure for table `user_vs_info`
 --
 
-CREATE TABLE `user_vs_info` (
-  `user_vs_info_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `user_vs_info`;
+CREATE TABLE IF NOT EXISTS `user_vs_info` (
+  `user_vs_info_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
@@ -550,7 +622,9 @@ CREATE TABLE `user_vs_info` (
   `location` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `no_show_count` varchar(255) DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_vs_info_id`),
+  KEY `FKlacsctiii11ywrult2cjkn6jj` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -559,15 +633,19 @@ CREATE TABLE `user_vs_info` (
 -- Table structure for table `user_vs_language`
 --
 
-CREATE TABLE `user_vs_language` (
-  `user_vs_language_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `user_vs_language`;
+CREATE TABLE IF NOT EXISTS `user_vs_language` (
+  `user_vs_language_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `language_id` bigint(20) NOT NULL,
-  `user_id` bigint(20) NOT NULL
+  `user_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_vs_language_id`),
+  KEY `FK401kpkgbcgyrk4u38xwtb30tn` (`language_id`),
+  KEY `FKqau9oea4uq3lp7ey0k1n3svk5` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -576,231 +654,20 @@ CREATE TABLE `user_vs_language` (
 -- Table structure for table `user_vs_type`
 --
 
-CREATE TABLE `user_vs_type` (
-  `user_vs_type_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `user_vs_type`;
+CREATE TABLE IF NOT EXISTS `user_vs_type` (
+  `user_vs_type_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_by` bigint(20) DEFAULT NULL,
   `created_date` varchar(255) DEFAULT NULL,
   `modified_by` bigint(20) DEFAULT NULL,
   `modified_date` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `user_id` bigint(20) NOT NULL,
-  `user_type_id` bigint(20) NOT NULL
+  `user_type_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`user_vs_type_id`),
+  KEY `FK1h58kqthty04ghr9pu33kmxcn` (`user_id`),
+  KEY `FKtp07okoa2i3ahq5ywwgt4aygk` (`user_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `host_vs_account`
---
-ALTER TABLE `host_vs_account`
-  ADD PRIMARY KEY (`host_vs_account_id`),
-  ADD KEY `FK2o57av88b996lc7tnhyqoukv6` (`user_id`);
-
---
--- Indexes for table `host_vs_domain`
---
-ALTER TABLE `host_vs_domain`
-  ADD PRIMARY KEY (`host_dom_id`),
-  ADD KEY `FK1lrjojvnmwqcriscfw846j7ob` (`domain_id`),
-  ADD KEY `FKl0lojlgub38279xp5nvrx08d6` (`user_id`);
-
---
--- Indexes for table `host_vs_interest`
---
-ALTER TABLE `host_vs_interest`
-  ADD PRIMARY KEY (`host_int_id`),
-  ADD KEY `FKtrdc6uapmgktoc7oc941ii720` (`interest_id`),
-  ADD KEY `FKtn74a3lr5oeq23rwf3jh17280` (`user_id`);
-
---
--- Indexes for table `login_details`
---
-ALTER TABLE `login_details`
-  ADD PRIMARY KEY (`login_id`),
-  ADD KEY `FKqd5giregrap11ay6cckx328pd` (`user_id`);
-
---
--- Indexes for table `master_country`
---
-ALTER TABLE `master_country`
-  ADD PRIMARY KEY (`country_id`);
-
---
--- Indexes for table `master_domain`
---
-ALTER TABLE `master_domain`
-  ADD PRIMARY KEY (`domain_id`);
-
---
--- Indexes for table `master_identity`
---
-ALTER TABLE `master_identity`
-  ADD PRIMARY KEY (`identity_id`);
-
---
--- Indexes for table `master_interest`
---
-ALTER TABLE `master_interest`
-  ADD PRIMARY KEY (`interest_id`);
-
---
--- Indexes for table `master_language`
---
-ALTER TABLE `master_language`
-  ADD PRIMARY KEY (`language_id`);
-
---
--- Indexes for table `master_user`
---
-ALTER TABLE `master_user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD KEY `FK4d8m97w9ng2808inw7l46sn7d` (`country_id`);
-
---
--- Indexes for table `master_user_type`
---
-ALTER TABLE `master_user_type`
-  ADD PRIMARY KEY (`user_type_id`);
-
---
--- Indexes for table `user_activity`
---
-ALTER TABLE `user_activity`
-  ADD PRIMARY KEY (`activity_id`),
-  ADD KEY `FK171cx8gsppqvvek5wmo5ptj8p` (`user_id`);
-
---
--- Indexes for table `user_vs_identity`
---
-ALTER TABLE `user_vs_identity`
-  ADD PRIMARY KEY (`user_vs_identity_id`),
-  ADD KEY `FKgn2s2vtytbivavyqt0gq84dw` (`identity_id`),
-  ADD KEY `FK3o7y8u4q8nngu0fr2qu04eaq3` (`user_id`);
-
---
--- Indexes for table `user_vs_info`
---
-ALTER TABLE `user_vs_info`
-  ADD PRIMARY KEY (`user_vs_info_id`),
-  ADD KEY `FKlacsctiii11ywrult2cjkn6jj` (`user_id`);
-
---
--- Indexes for table `user_vs_language`
---
-ALTER TABLE `user_vs_language`
-  ADD PRIMARY KEY (`user_vs_language_id`),
-  ADD KEY `FK401kpkgbcgyrk4u38xwtb30tn` (`language_id`),
-  ADD KEY `FKqau9oea4uq3lp7ey0k1n3svk5` (`user_id`);
-
---
--- Indexes for table `user_vs_type`
---
-ALTER TABLE `user_vs_type`
-  ADD PRIMARY KEY (`user_vs_type_id`),
-  ADD KEY `FK1h58kqthty04ghr9pu33kmxcn` (`user_id`),
-  ADD KEY `FKtp07okoa2i3ahq5ywwgt4aygk` (`user_type_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `host_vs_account`
---
-ALTER TABLE `host_vs_account`
-  MODIFY `host_vs_account_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `host_vs_domain`
---
-ALTER TABLE `host_vs_domain`
-  MODIFY `host_dom_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `host_vs_interest`
---
-ALTER TABLE `host_vs_interest`
-  MODIFY `host_int_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `login_details`
---
-ALTER TABLE `login_details`
-  MODIFY `login_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `master_country`
---
-ALTER TABLE `master_country`
-  MODIFY `country_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=240;
-
---
--- AUTO_INCREMENT for table `master_domain`
---
-ALTER TABLE `master_domain`
-  MODIFY `domain_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `master_identity`
---
-ALTER TABLE `master_identity`
-  MODIFY `identity_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `master_interest`
---
-ALTER TABLE `master_interest`
-  MODIFY `interest_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `master_language`
---
-ALTER TABLE `master_language`
-  MODIFY `language_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `master_user`
---
-ALTER TABLE `master_user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `master_user_type`
---
-ALTER TABLE `master_user_type`
-  MODIFY `user_type_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `user_activity`
---
-ALTER TABLE `user_activity`
-  MODIFY `activity_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_vs_identity`
---
-ALTER TABLE `user_vs_identity`
-  MODIFY `user_vs_identity_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_vs_info`
---
-ALTER TABLE `user_vs_info`
-  MODIFY `user_vs_info_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_vs_language`
---
-ALTER TABLE `user_vs_language`
-  MODIFY `user_vs_language_id` bigint(20) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user_vs_type`
---
-ALTER TABLE `user_vs_type`
-  MODIFY `user_vs_type_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -870,7 +737,6 @@ ALTER TABLE `user_vs_language`
 ALTER TABLE `user_vs_type`
   ADD CONSTRAINT `FK1h58kqthty04ghr9pu33kmxcn` FOREIGN KEY (`user_id`) REFERENCES `master_user` (`user_id`),
   ADD CONSTRAINT `FKtp07okoa2i3ahq5ywwgt4aygk` FOREIGN KEY (`user_type_id`) REFERENCES `master_user_type` (`user_type_id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

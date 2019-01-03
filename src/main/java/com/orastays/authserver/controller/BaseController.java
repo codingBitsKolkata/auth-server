@@ -15,6 +15,7 @@ import com.orastays.authserver.service.IdentityService;
 import com.orastays.authserver.service.InterestService;
 import com.orastays.authserver.service.LanguageService;
 import com.orastays.authserver.service.LoginService;
+import com.orastays.authserver.service.PrivacyPolicyService;
 import com.orastays.authserver.service.SignUpService;
 import com.orastays.authserver.service.UserService;
 
@@ -34,6 +35,9 @@ public class BaseController {
 	
 	@Autowired
 	protected CountryService countryService;
+	
+	@Autowired
+	protected PrivacyPolicyService privacyPolicyService;
 	
 	@Autowired
 	protected UserService userService;

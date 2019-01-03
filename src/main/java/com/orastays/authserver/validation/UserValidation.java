@@ -91,7 +91,7 @@ public class UserValidation extends AuthorizeUserValidation {
 			
 			try {
 				Map<String, String> innerMap1 = new LinkedHashMap<>();
-				innerMap1.put("status", "1");
+				innerMap1.put("status", String.valueOf(Status.ACTIVE.ordinal()));
 				innerMap1.put("sessionToken", userToken);
 		
 				Map<String, Map<String, String>> outerMap1 = new LinkedHashMap<>();

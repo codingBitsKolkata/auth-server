@@ -48,7 +48,9 @@ public class SignUpController extends BaseController {
 			@ApiResponse(code = 1007, message = "Please Enter Email ID"),
 			@ApiResponse(code = 1008, message = "Invalid Email ID"),
 			@ApiResponse(code = 1009, message = "Email ID Already Registered"),
-			@ApiResponse(code = 1010, message = "User is Inactive")})
+			@ApiResponse(code = 1010, message = "User is Inactive"),
+			@ApiResponse(code = 1037, message = "Please Check Privacy Policy"),
+			@ApiResponse(code = 1038, message = "Invalid Privacy Policy Format") })
 	public ResponseEntity<ResponseModel> signUp(@RequestBody UserModel userModel) {
 
 		if (logger.isInfoEnabled()) {

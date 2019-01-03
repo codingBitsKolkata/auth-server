@@ -28,7 +28,7 @@ public class SMSHelper {
 	
 	//@HystrixCommand(fallbackMethod="smsServerDown")
 	@Async
-	public void sendSMS(UserModel userModel) {
+	public void sendSMS(UserModel userModel, String body) {
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("sendSMS -- START");
@@ -36,7 +36,7 @@ public class SMSHelper {
 		
 		SMSModel smsModel = new SMSModel();
 		smsModel.setMobileNumber(userModel.getCountryModel().getCountryCode() + userModel.getMobileNumber());
-		String message = "Use "+ userModel.getMobileOTP() + " "+ messageUtil.getBundle("otp.sms.message");
+		String message = "Use "+ userModel.getMobileOTP() + " "+ body;
 		smsModel.setMessage(message);
 		ResponseModel response = this.restTemplate.postForObject(messageUtil.getBundle("sms.server.url"), smsModel, ResponseModel.class);
 		

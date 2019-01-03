@@ -41,9 +41,9 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		userDAO.update(userEntity);
 		UserModel userModel2 = userConverter.entityToModel(userEntity);
 		if(!StringUtils.isBlank(userModel.getMobileNumber())) {
-			smsHelper.sendSMS(userModel2);
+			smsHelper.sendSMS(userModel2, messageUtil.getBundle("otp.sms.message"));
 		} else {
-			mailHelper.sendMail(userModel2, messageUtil.getBundle("otp.mail.subject"));
+			mailHelper.sendMail(userModel2, messageUtil.getBundle("otp.mail.subject"), messageUtil.getBundle("otp.sms.message"));
 		}
 		
 		userModel2 = new UserModel();
@@ -101,5 +101,19 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		}
 		
 		return userModel;
+	}
+	
+	@Override
+	public void validateLogout(String userToken) throws FormExceptions {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("logout -- START");
+		}
+		
+		loginValidation.validateLogout(userToken);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("logout -- END");
+		}
 	}
 }
