@@ -88,10 +88,10 @@ public class FileCopyServiceImpl implements FileCopyService {
 		
 		try {
 			
-			String innerFilePath = appPath + "resources" + File.separator + messageUtil.getBundle("useridentity.upload.foldername");
+			String innerFilePath = appPath + "resources" + File.separator + messageUtil.getBundle("userfile.upload.foldername");
 			//System.out.println("innerFilePath ==>> "+innerFilePath);
 			
-			String outsideFilePath = System.getProperty( "catalina.base") + File.separator + messageUtil.getBundle("useridentity.upload.foldername");
+			String outsideFilePath = System.getProperty( "catalina.base") + File.separator + messageUtil.getBundle("userfile.upload.foldername");
 			//System.out.println("outsideFilePath ==>> "+outsideFilePath);
 			
 			File folder = new File(outsideFilePath);
@@ -105,7 +105,6 @@ public class FileCopyServiceImpl implements FileCopyService {
 			e.printStackTrace();
 		}
 		
-
 		if(fileNamesWithPath.size() > 0) {
 			
 			copyFiles(fileNamesWithPath);
@@ -167,7 +166,7 @@ public class FileCopyServiceImpl implements FileCopyService {
 				
 			} else if(fileType.equalsIgnoreCase(messageUtil.getBundle("userfile.upload.foldername"))) { // For User Files
 				
-				destinationPath = System.getProperty( "catalina.base") + File.separator + messageUtil.getBundle("useridentity.upload.foldername");
+				destinationPath = System.getProperty( "catalina.base") + File.separator + messageUtil.getBundle("userfile.upload.foldername");
 			} else {
 				
 				destinationPath = System.getProperty( "catalina.base") + File.separator + "banner";
