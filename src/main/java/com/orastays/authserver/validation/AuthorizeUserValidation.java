@@ -27,6 +27,7 @@ import com.orastays.authserver.dao.InterestDAO;
 import com.orastays.authserver.dao.LoginDetailsDAO;
 import com.orastays.authserver.dao.UserDAO;
 import com.orastays.authserver.exceptions.FormExceptions;
+import com.orastays.authserver.helper.AzureApp;
 import com.orastays.authserver.helper.MessageUtil;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.UserModel;
@@ -44,6 +45,9 @@ public class AuthorizeUserValidation {
 	
 	@Autowired
 	protected MessageUtil messageUtil;
+	
+	@Autowired
+	protected AzureApp azureApp;
 	
 	@Autowired
 	protected SignUpService signUpService;

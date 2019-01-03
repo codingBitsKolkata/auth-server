@@ -14,10 +14,12 @@ import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.transaction.Transactional;
 
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.tika.Tika;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -288,7 +290,7 @@ public class UserValidation extends AuthorizeUserValidation {
 			}
 			
 			// construct the complete absolute path of the file
-			String fileName = userVsInfoEntity.getUserEntity().getUserId()+"_"+new Date().getTime()+"_" + multipartFile.getOriginalFilename();
+			String fileName = multipartFile.getOriginalFilename()+"_"+new Date().getTime();
 			String fullPath = dirStr + File.separator + fileName;
 			
 			File file = new File(fullPath);
@@ -307,10 +309,10 @@ public class UserValidation extends AuthorizeUserValidation {
 				
 				ImageIO.write(resizeImageJpg, "jpg", file);
 				FileInputStream input = new FileInputStream(file);
-				/*multipartFile = new MockMultipartFile(fileName, IOUtils.toByteArray(input));
-				multipartFile.transferTo(file);*/
-				userVsInfoEntity.setImageUrl(fileName);
-			} catch (IOException e) {
+				multipartFile = new MockMultipartFile(fileName, IOUtils.toByteArray(input));
+				/*multipartFile.transferTo(file);*/
+				userVsInfoEntity.setImageUrl(azureApp.uploadFile(multipartFile, fileName));
+			} catch (Exception e) {
 				exceptions.put(messageUtil.getBundle("image.upload.error.code"), new Exception(messageUtil.getBundle("image.upload.error.message")));
 				throw new FormExceptions(exceptions);
 			}
