@@ -4,7 +4,7 @@ package com.orastays.authserver.helper;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,13 +20,13 @@ import com.microsoft.azure.storage.blob.ListBlobItem;
 @Component
 public class AzureApp  {
 
-	@Value("${azure.key}")
-	private String azureKey;
+	@Autowired
+	private MessageUtil messageUtil;
 	
-	@Value("${azure.container}")
-	private String azureContainer;
-
 	public String uploadFile(MultipartFile multipartFile, String name) throws Exception {
+		
+		String azureKey = messageUtil.getBundle("azure.key");
+		String azureContainer = messageUtil.getBundle("azure.container");
 		
 		File sourceFile = new File(multipartFile.getOriginalFilename());
 		sourceFile.createNewFile(); 
