@@ -27,7 +27,7 @@ public class MailHelper {
 	protected RestTemplate restTemplate;
 	
 	@Async
-	public void sendMail(UserModel userModel) {
+	public void sendMail(UserModel userModel, String msgType) {
 		
 		if (logger.isInfoEnabled()) {
 			logger.info("sendMail -- START");
@@ -37,7 +37,7 @@ public class MailHelper {
 		mailModel.setEmailId(userModel.getEmailId());
 		String message = "Use "+ userModel.getEmailOTP() + " "+ messageUtil.getBundle("otp.sms.message");
 		mailModel.setMessageBody(message);
-		mailModel.setSubject(messageUtil.getBundle("otp.mail.subject"));
+		mailModel.setSubject(msgType);
 		ResponseModel response = this.restTemplate.postForObject(messageUtil.getBundle("mail.server.url"), mailModel, ResponseModel.class);
 		
 		if (logger.isInfoEnabled()) {

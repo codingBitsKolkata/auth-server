@@ -74,7 +74,7 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		
 		userModel = userConverter.entityToModel(userEntity2);
 		smsHelper.sendSMS(userModel);
-		mailHelper.sendMail(userModel);
+		mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject.registration"));
 		
 		UserModel userModel2 = new UserModel();
 		userModel2.setUserId(userModel.getUserId());
@@ -144,7 +144,7 @@ public class SignUpServiceImpl extends BaseServiceImpl implements SignUpService 
 		userDAO.update(userEntity);
 		userModel = userConverter.entityToModel(userEntity);
 		smsHelper.sendSMS(userModel);
-		mailHelper.sendMail(userModel);
+		mailHelper.sendMail(userModel, messageUtil.getBundle("otp.mail.subject"));
 		
 		UserModel userModel2 = new UserModel();
 		userModel2.setUserId(userModel.getUserId());

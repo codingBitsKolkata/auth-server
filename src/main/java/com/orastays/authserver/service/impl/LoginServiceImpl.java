@@ -43,7 +43,7 @@ private static final Logger logger = LogManager.getLogger(LoginServiceImpl.class
 		if(!StringUtils.isBlank(userModel.getMobileNumber())) {
 			smsHelper.sendSMS(userModel2);
 		} else {
-			mailHelper.sendMail(userModel2);
+			mailHelper.sendMail(userModel2, messageUtil.getBundle("otp.mail.subject"));
 		}
 		
 		userModel2 = new UserModel();
