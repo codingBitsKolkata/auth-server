@@ -29,7 +29,7 @@ public class AzureApp  {
 		String azureContainer = messageUtil.getBundle("azure.container");
 		
 		File sourceFile = new File(multipartFile.getOriginalFilename());
-		sourceFile.createNewFile(); 
+		//sourceFile.createNewFile(); 
 	    FileOutputStream fos = new FileOutputStream(sourceFile); 
 	    fos.write(multipartFile.getBytes());
 	    fos.close(); 
