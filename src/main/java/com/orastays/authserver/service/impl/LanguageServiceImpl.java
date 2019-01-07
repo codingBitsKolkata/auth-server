@@ -18,6 +18,7 @@ import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Status;
 import com.orastays.authserver.helper.Util;
 import com.orastays.authserver.model.LanguageModel;
+import com.orastays.authserver.model.UserModel;
 import com.orastays.authserver.service.LanguageService;
 
 @Service
@@ -91,5 +92,19 @@ public class LanguageServiceImpl extends BaseServiceImpl implements LanguageServ
 		}
 		
 		return languageModel;
+	}
+	
+	@Override
+	public void addHostLanguage(UserModel userModel) throws FormExceptions {
+
+		if (logger.isInfoEnabled()) {
+			logger.info("addHostLanguage -- START");
+		}
+		
+		userValidation.validateHostLanguage(userModel);
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("addHostLanguage -- END");
+		}
 	}
 }

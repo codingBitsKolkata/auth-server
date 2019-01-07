@@ -32,7 +32,7 @@ public class UserVsLanguageConverter extends CommonConverter implements BaseConv
 		
 		UserVsLanguageEntity userVsLanguageEntity = new UserVsLanguageEntity();
 		userVsLanguageEntity = (UserVsLanguageEntity) Util.transform(modelMapper, m, userVsLanguageEntity);
-		userVsLanguageEntity.setStatus(Status.INACTIVE.ordinal());
+		userVsLanguageEntity.setStatus(Status.ACTIVE.ordinal());
 		userVsLanguageEntity.setCreatedBy(Long.parseLong(String.valueOf(Status.ZERO.ordinal())));
 		userVsLanguageEntity.setCreatedDate(Util.getCurrentDateTime());
 		

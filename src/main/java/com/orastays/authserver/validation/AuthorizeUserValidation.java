@@ -18,14 +18,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orastays.authserver.converter.HostVsDomainConverter;
 import com.orastays.authserver.converter.HostVsInterestConverter;
+import com.orastays.authserver.converter.UserVsLanguageConverter;
 import com.orastays.authserver.dao.CountryDAO;
 import com.orastays.authserver.dao.DomainDAO;
 import com.orastays.authserver.dao.HostVsDomainDAO;
 import com.orastays.authserver.dao.HostVsInterestDAO;
 import com.orastays.authserver.dao.IdentityDAO;
 import com.orastays.authserver.dao.InterestDAO;
+import com.orastays.authserver.dao.LanguageDAO;
 import com.orastays.authserver.dao.LoginDetailsDAO;
 import com.orastays.authserver.dao.UserDAO;
+import com.orastays.authserver.dao.UserVsLanguageDAO;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.AzureApp;
 import com.orastays.authserver.helper.MessageUtil;
@@ -74,10 +77,19 @@ public class AuthorizeUserValidation {
 	protected InterestDAO interestDAO;
 	
 	@Autowired
+	protected LanguageDAO languageDAO;
+	
+	@Autowired
 	protected HostVsDomainDAO hostVsDomainDAO;
 	
 	@Autowired
 	protected HostVsInterestDAO hostVsInterestDAO;
+	
+	@Autowired
+	protected UserVsLanguageDAO userVsLanguageDAO;
+	
+	@Autowired
+	protected UserVsLanguageConverter userVsLanguageConverter;
 	
 	@Autowired
 	protected HostVsDomainConverter hostVsDomainConverter;

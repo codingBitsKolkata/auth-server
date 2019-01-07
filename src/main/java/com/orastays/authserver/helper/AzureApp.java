@@ -46,8 +46,6 @@ public class AzureApp  {
 
 		blob.upload(multipartFile.getInputStream(), multipartFile.getSize());
 
-		//String url = blob.getUri().getPath();
-		
 		String url = messageUtil.getBundle("azure.link") + messageUtil.getBundle("azure.container") + "/" + fileName;
 		System.err.println("url ==>> "+url);
 		

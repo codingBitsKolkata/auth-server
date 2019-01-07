@@ -31,6 +31,7 @@ import com.orastays.authserver.entity.HostVsInterestEntity;
 import com.orastays.authserver.entity.LoginDetailsEntity;
 import com.orastays.authserver.entity.UserEntity;
 import com.orastays.authserver.entity.UserVsInfoEntity;
+import com.orastays.authserver.entity.UserVsLanguageEntity;
 import com.orastays.authserver.exceptions.FormExceptions;
 import com.orastays.authserver.helper.AuthConstant;
 import com.orastays.authserver.helper.Status;
@@ -41,6 +42,7 @@ import com.orastays.authserver.model.UserActivityModel;
 import com.orastays.authserver.model.UserModel;
 import com.orastays.authserver.model.UserVsIdentityModel;
 import com.orastays.authserver.model.UserVsInfoModel;
+import com.orastays.authserver.model.UserVsLanguageModel;
 
 @Component
 @Transactional
@@ -199,29 +201,29 @@ public class UserValidation extends AuthorizeUserValidation {
 			
 			userVsInfoEntity = this.validateCheckToken(userVsInfoModel.getUserToken()).getUserVsInfoEntity();
 			
-			// Validate Country Code
-			if(Objects.nonNull(userVsInfoModel.getUserModel())) {
-				if(Objects.nonNull(userVsInfoModel.getUserModel().getCountryModel())) {
-					if(StringUtils.isBlank(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
-						exceptions.put(messageUtil.getBundle("country.id.null.code"), new Exception(messageUtil.getBundle("country.id.null.message")));
-					} else {
-						if(Util.isNumeric(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
-							if(Objects.isNull(countryDAO.find(Long.parseLong(userVsInfoModel.getUserModel().getCountryModel().getCountryId())))) {
-								exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
-							}
-						} else {
-							exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
-						}
-					}
-				}
-			}
-			
 			// Validate Alternate Mobile Number of the User
 			if(StringUtils.isNotBlank(userVsInfoModel.getAltPhno())) {
 				if(!Util.isNumeric(userVsInfoModel.getAltPhno())) {
 					exceptions.put(messageUtil.getBundle("user.alt.mobile.invalid.code"), new Exception(messageUtil.getBundle("user.alt.mobile.invalid.message")));
 				} else {
-					userVsInfoEntity.setAltPhno(userVsInfoModel.getAltPhno());
+					// Validate Country Code
+					if(Objects.nonNull(userVsInfoModel.getUserModel())) {
+						if(Objects.nonNull(userVsInfoModel.getUserModel().getCountryModel())) {
+							if(StringUtils.isBlank(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
+								exceptions.put(messageUtil.getBundle("country.id.null.code"), new Exception(messageUtil.getBundle("country.id.null.message")));
+							} else {
+								if(Util.isNumeric(userVsInfoModel.getUserModel().getCountryModel().getCountryId())) {
+									if(Objects.isNull(countryDAO.find(Long.parseLong(userVsInfoModel.getUserModel().getCountryModel().getCountryId())))) {
+										exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
+									} else {
+										userVsInfoEntity.setAltPhno(userVsInfoModel.getUserModel().getCountryModel().getCountryCode() + userVsInfoModel.getAltPhno());
+									}
+								} else {
+									exceptions.put(messageUtil.getBundle("country.id.invalid.code"), new Exception(messageUtil.getBundle("country.id.invalid.message")));
+								}
+							}
+						}
+					}
 				}
 			}
 						
@@ -486,6 +488,17 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		else {
+			// Delete Old Records If Any
+						if(CollectionUtils.isEmpty(userEntity.getHostVsDomainEntities())) {
+							for(HostVsDomainEntity hostVsDomainEntity : userEntity.getHostVsDomainEntities()) {
+								hostVsDomainEntity.setStatus(Status.DELETE.ordinal());
+								hostVsDomainEntity.setModifiedBy(userEntity.getUserId());
+								hostVsDomainEntity.setModifiedDate(Util.getCurrentDateTime());
+								hostVsDomainDAO.update(hostVsDomainEntity);
+							}
+						}	
+			
+			
 			for (HostVsDomainModel hostVsDomainModel : userModel.getHostVsDomainModels()) {
 				UserModel userModel2 = new UserModel();
 				userModel2.setUserId(String.valueOf(userEntity.getUserId()));
@@ -542,6 +555,17 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		else {
+			
+			// Delete Old Records If Any
+			if(CollectionUtils.isEmpty(userEntity.getHostVsInterestEntities())) {
+				for(HostVsInterestEntity hostVsInterestEntity : userEntity.getHostVsInterestEntities()) {
+					hostVsInterestEntity.setStatus(Status.DELETE.ordinal());
+					hostVsInterestEntity.setModifiedBy(userEntity.getUserId());
+					hostVsInterestEntity.setModifiedDate(Util.getCurrentDateTime());
+					hostVsInterestDAO.update(hostVsInterestEntity);
+				}
+			}
+			
 			for (HostVsInterestModel hostVsInterestModel : userModel.getHostVsInterestModels()) {
 				UserModel userModel2 = new UserModel();
 				userModel2.setUserId(String.valueOf(userEntity.getUserId()));
@@ -552,6 +576,7 @@ public class UserValidation extends AuthorizeUserValidation {
 				hostVsInterestDAO.save(hostVsInterestEntity);
 			}
 		}
+		
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
@@ -641,6 +666,76 @@ public class UserValidation extends AuthorizeUserValidation {
 		
 		if (logger.isDebugEnabled()) {
 			logger.debug("validateVerifiedMobileOTP -- End");
+		}
+	}
+	
+	public void validateHostLanguage(UserModel userModel) throws FormExceptions {
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateHostLanguage -- Start");
+		}
+
+		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
+		Map<String, Exception> exceptions = new LinkedHashMap<>();
+		
+		if(Objects.nonNull(userModel)) {
+			userModel.setUserId(String.valueOf(userEntity.getUserId()));
+			// Validate Language
+			if(CollectionUtils.isEmpty(userModel.getUserVsLanguageModels())) {
+				exceptions.put(messageUtil.getBundle("language.id.null.code"), new Exception(messageUtil.getBundle("language.id.null.message")));
+			} else {
+				for (UserVsLanguageModel userVsLanguageModel : userModel.getUserVsLanguageModels()) {
+					if(Objects.isNull(userVsLanguageModel.getLanguageModel())) {
+						exceptions.put(messageUtil.getBundle("language.id.null.code"), new Exception(messageUtil.getBundle("language.id.null.message")));
+					} else {
+						if(StringUtils.isBlank(userVsLanguageModel.getLanguageModel().getLanguageId())) {
+							exceptions.put(messageUtil.getBundle("language.id.null.code"), new Exception(messageUtil.getBundle("language.id.null.message")));
+						} else {
+							if(Util.isNumeric(userVsLanguageModel.getLanguageModel().getLanguageId())) {
+								if(Objects.isNull(languageDAO.find(Long.parseLong(userVsLanguageModel.getLanguageModel().getLanguageId())))) {
+									exceptions.put(messageUtil.getBundle("language.id.invalid.code"), new Exception(messageUtil.getBundle("language.id.invalid.message")));
+								}
+							} else {
+								exceptions.put(messageUtil.getBundle("language.id.invalid.code"), new Exception(messageUtil.getBundle("language.id.invalid.message")));
+							}
+						}
+						if (exceptions.size() > 0)
+							throw new FormExceptions(exceptions);
+					}
+				}
+			}
+		}
+		
+		if (exceptions.size() > 0)
+			throw new FormExceptions(exceptions);
+		else {
+			
+			// Delete Old Records If Any
+			if(CollectionUtils.isEmpty(userEntity.getUserVsLanguageEntities())) {
+				for(UserVsLanguageEntity userVsLanguageEntity : userEntity.getUserVsLanguageEntities()) {
+					userVsLanguageEntity.setStatus(Status.DELETE.ordinal());
+					userVsLanguageEntity.setModifiedBy(userEntity.getUserId());
+					userVsLanguageEntity.setModifiedDate(Util.getCurrentDateTime());
+					userVsLanguageDAO.update(userVsLanguageEntity);
+				}
+			}
+			
+			for (UserVsLanguageModel userVsLanguageModel : userModel.getUserVsLanguageModels()) {
+				UserModel userModel2 = new UserModel();
+				userModel2.setUserId(String.valueOf(userEntity.getUserId()));
+				userVsLanguageModel.setUserModel(userModel);
+				UserVsLanguageEntity userVsLanguageEntity = userVsLanguageConverter.modelToEntity(userVsLanguageModel);
+				userVsLanguageEntity.setLanguageEntity(languageDAO.find(Long.parseLong(userVsLanguageModel.getLanguageModel().getLanguageId())));
+				userVsLanguageEntity.setUserEntity(userEntity);
+				userVsLanguageDAO.save(userVsLanguageEntity);
+			}
+		}
+		
+		if (exceptions.size() > 0)
+			throw new FormExceptions(exceptions);
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("validateHostLanguage -- End");
 		}
 	}
 }
