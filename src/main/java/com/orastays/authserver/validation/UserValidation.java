@@ -292,7 +292,7 @@ public class UserValidation extends AuthorizeUserValidation {
 			}
 			
 			// construct the complete absolute path of the file
-			String fileName = multipartFile.getOriginalFilename()+"_"+new Date().getTime();
+			String fileName = new Date().getTime() +"_"+ multipartFile.getOriginalFilename();
 			String fullPath = dirStr + File.separator + fileName;
 			
 			File file = new File(fullPath);

@@ -48,7 +48,7 @@ public class AzureApp  {
 
 		//String url = blob.getUri().getPath();
 		
-		String url = messageUtil.getBundle("azure.link") + "/" + messageUtil.getBundle("azure.container") + "/" + fileName + "jpg";
+		String url = messageUtil.getBundle("azure.link") + messageUtil.getBundle("azure.container") + "/" + fileName;
 		System.err.println("url ==>> "+url);
 		
 		if (logger.isDebugEnabled()) {
