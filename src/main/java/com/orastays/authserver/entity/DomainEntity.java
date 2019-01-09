@@ -25,7 +25,7 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = false)
 public class DomainEntity extends CommonEntity {
 
-	private static final long serialVersionUID = -708781883850481967L;
+	private static final long serialVersionUID = -628556613228366657L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -21,11 +21,11 @@ import lombok.ToString;
 @JsonInclude(Include.NON_NULL)
 public class DomainModel extends CommonModel {
 
-	@JsonProperty("DomainId")
-	private String DomainId;
+	@JsonProperty("domainId")
+	private String domainId;
 	
-	@JsonProperty("DomainName")
-	private String DomainName;
+	@JsonProperty("domainName")
+	private String domainName;
 	
 	@JsonProperty("hostVsDomains")
 	private List<HostVsDomainModel> hostVsDomainModels;

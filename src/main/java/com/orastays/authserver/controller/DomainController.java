@@ -46,7 +46,7 @@ public class DomainController extends BaseController {
 			@ApiResponse(code = 321, message = "Please give User Token"),
 			@ApiResponse(code = 322, message = "Invalid user Token"),
 			@ApiResponse(code = 1010, message = "User is Inactive")})
-	public ResponseEntity<ResponseModel> fetchDomains(@RequestParam(value = "hostToken", required = true) String hostToken) {
+	public ResponseEntity<ResponseModel> fetchDomains(@RequestParam(value = "userToken", required = true) String userToken) {
 
 		if (logger.isInfoEnabled()) {
 			logger.info("fetchDomains -- START");
@@ -55,7 +55,7 @@ public class DomainController extends BaseController {
 		ResponseModel responseModel = new ResponseModel();
 		Util.printLog(responseModel, AuthConstant.OUTGOING, "Fetch Domains", request);
 		try {
-			List<DomainModel> domainModels = domainService.fetchDomains(hostToken);
+			List<DomainModel> domainModels = domainService.fetchDomains(userToken);
 			responseModel.setResponseBody(domainModels);
 			responseModel.setResponseCode(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_CODE));
 			responseModel.setResponseMessage(messageUtil.getBundle(AuthConstant.COMMON_SUCCESS_MESSAGE));
