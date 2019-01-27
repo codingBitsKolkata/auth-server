@@ -2,8 +2,7 @@
 <Configuration status="WARN" monitorInterval="30">
 	<Properties>
 		<Property name="LOG_PATTERN">
-			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName}
-			--- [%15.15t] %-40.40c{1.} : %m%n%ex
+			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
 		</Property>
 	</Properties>
 
@@ -15,8 +14,8 @@
 
 		<!-- Rolling File Appender -->
 		<RollingFile name="FileAppender"
-			fileName="logs/auth server/auth_server.log"
-			filePattern="logs/auth server/%d{yyyy-MM-dd}/auth_server-%i.log">
+			fileName="logs/auth-server/auth_server.log"
+			filePattern="logs/auth-server/%d{yyyy-MM-dd}/auth_server-%i.log">
 			<PatternLayout>
 				<Pattern>${LOG_PATTERN}</Pattern>
 			</PatternLayout>

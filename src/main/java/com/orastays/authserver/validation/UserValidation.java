@@ -53,8 +53,8 @@ public class UserValidation extends AuthorizeUserValidation {
 	
 	public UserEntity validateFetchUserByID(String userId) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateFetchUserByID -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateFetchUserByID -- Start");
 		}
 
 		UserEntity userEntity = null;
@@ -73,8 +73,8 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateFetchUserByID -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateFetchUserByID -- End");
 		}
 		
 		return userEntity;
@@ -82,8 +82,8 @@ public class UserValidation extends AuthorizeUserValidation {
 	
 	public UserEntity validateCheckToken(String userToken) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateCheckToken -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateCheckToken -- Start");
 		}
 
 		UserEntity userEntity = null;
@@ -138,8 +138,8 @@ public class UserValidation extends AuthorizeUserValidation {
 			loginDetailsDAO.update(loginDetailsEntity);
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateCheckToken -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateCheckToken -- End");
 		}
 		
 		return userEntity;
@@ -147,8 +147,8 @@ public class UserValidation extends AuthorizeUserValidation {
 	
 	public UserEntity validateUserActivity(UserActivityModel userActivityModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateUserActivity -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserActivity -- Start");
 		}
 
 		UserEntity userEntity = this.validateCheckToken(userActivityModel.getUserToken());
@@ -181,8 +181,8 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateUserActivity -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserActivity -- End");
 		}
 		
 		return userEntity;
@@ -190,8 +190,8 @@ public class UserValidation extends AuthorizeUserValidation {
 	
 	public UserVsInfoEntity validateUserInfo(UserVsInfoModel userVsInfoModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateUserInfo -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserInfo -- Start");
 		}
 
 		UserVsInfoEntity userVsInfoEntity = null;
@@ -266,8 +266,8 @@ public class UserValidation extends AuthorizeUserValidation {
 			userVsInfoEntity.setModifiedDate(Util.getCurrentDateTime());
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateUserInfo -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserInfo -- End");
 		}
 		
 		return userVsInfoEntity;
@@ -275,8 +275,8 @@ public class UserValidation extends AuthorizeUserValidation {
 	
 	private void uploadImage(MultipartFile inputFile, UserVsInfoEntity userVsInfoEntity) throws FormExceptions {
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("uploadImage -- START");
+		if (logger.isInfoEnabled()) {
+			logger.info("uploadImage -- START");
 		}
 		
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
@@ -328,15 +328,15 @@ public class UserValidation extends AuthorizeUserValidation {
 			exceptions.put("error", new Exception("Image Dimension Should Be "+messageUtil.getBundle("logo.IMG_WIDTH")+ " x "+messageUtil.getBundle("logo.IMG_HEIGHT")));
 		}*/
 			
-			if (logger.isDebugEnabled()) {
-				logger.debug("uploadImage -- End");
+			if (logger.isInfoEnabled()) {
+				logger.info("uploadImage -- End");
 			}
 	}
 	
 	private void imageFormatValidation(MultipartFile inputFile) throws FormExceptions, IOException {
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("imageFormatValidation -- START");
+		if (logger.isInfoEnabled()) {
+			logger.info("imageFormatValidation -- START");
 		}
 		
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
@@ -353,15 +353,15 @@ public class UserValidation extends AuthorizeUserValidation {
 			throw new FormExceptions(exceptions);
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("imageFormatValidation -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("imageFormatValidation -- End");
 		}
 	}
 	
 	public UserEntity validateUserIdentity(UserVsIdentityModel userVsIdentityModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateUserIdentity -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserIdentity -- Start");
 		}
 
 		UserEntity userEntity = this.validateCheckToken(userVsIdentityModel.getUserToken());
@@ -402,8 +402,8 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateUserIdentity -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateUserIdentity -- End");
 		}
 		
 		return userEntity;
@@ -411,8 +411,8 @@ public class UserValidation extends AuthorizeUserValidation {
 	
 	private void uploadFile(UserVsIdentityModel userVsIdentityModel, Long userId) throws FormExceptions {
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("uploadFile -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("uploadFile -- Start");
 		}
 		
 		Map<String, Exception> exceptions = new LinkedHashMap<>();	
@@ -443,15 +443,15 @@ public class UserValidation extends AuthorizeUserValidation {
 		}
 		
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("uploadFile -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("uploadFile -- End");
 		}
 	}
 	
 	public void validateHostDomain(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateHostDomain -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateHostDomain -- Start");
 		}
 
 		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
@@ -510,15 +510,15 @@ public class UserValidation extends AuthorizeUserValidation {
 			}
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateHostDomain -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateHostDomain -- End");
 		}
 	}
 	
 	public void validateHostInterest(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateHostInterest -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateHostInterest -- Start");
 		}
 
 		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
@@ -580,15 +580,15 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateHostInterest -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateHostInterest -- End");
 		}
 	}
 	
 	public void validateVerifiedEmailOTP(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateVerifiedEmailOTP -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateVerifiedEmailOTP -- Start");
 		}
 
 		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
@@ -622,15 +622,15 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateVerifiedEmailOTP -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateVerifiedEmailOTP -- End");
 		}
 	}
 	
 	public void validateVerifiedMobileOTP(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateVerifiedMobileOTP -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateVerifiedMobileOTP -- Start");
 		}
 
 		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
@@ -664,15 +664,15 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateVerifiedMobileOTP -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateVerifiedMobileOTP -- End");
 		}
 	}
 	
 	public void validateHostLanguage(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateHostLanguage -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateHostLanguage -- Start");
 		}
 
 		UserEntity userEntity = this.validateCheckToken(userModel.getUserToken());
@@ -734,8 +734,8 @@ public class UserValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateHostLanguage -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateHostLanguage -- End");
 		}
 	}
 }

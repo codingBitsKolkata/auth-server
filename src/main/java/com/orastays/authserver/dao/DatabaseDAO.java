@@ -80,14 +80,14 @@ public class DatabaseDAO extends BaseDAO {
 					if (!connection.isClosed())
 						connection.close();
 
-					if (logger.isDebugEnabled()) {
-						logger.debug("Connection Closed for checkTableName");
+					if (logger.isInfoEnabled()) {
+						logger.info("Connection Closed for checkTableName");
 					}
 				}
 			} catch (Exception e) {
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Connection not closed for checkTableName"
+				if (logger.isInfoEnabled()) {
+					logger.info("Connection not closed for checkTableName"
 							+ e.getMessage());
 				}
 
@@ -175,14 +175,14 @@ public class DatabaseDAO extends BaseDAO {
 					if (!connection.isClosed())
 						connection.close();
 
-					if (logger.isDebugEnabled()) {
-						logger.debug("Connection Closed for insertQuery");
+					if (logger.isInfoEnabled()) {
+						logger.info("Connection Closed for insertQuery");
 					}
 				}
 			} catch (Exception e) {
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Connection not closed for insertQuery"
+				if (logger.isInfoEnabled()) {
+					logger.info("Connection not closed for insertQuery"
 							+ e.getMessage());
 				}
 			}
@@ -238,14 +238,14 @@ public class DatabaseDAO extends BaseDAO {
 					if (!connection.isClosed())
 						connection.close();
 
-					if (logger.isDebugEnabled()) {
-						logger.debug("Connection Closed for insertQuery");
+					if (logger.isInfoEnabled()) {
+						logger.info("Connection Closed for insertQuery");
 					}
 				}
 			} catch (Exception e) {
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Connection not closed for insertQuery"
+				if (logger.isInfoEnabled()) {
+					logger.info("Connection not closed for insertQuery"
 							+ e.getMessage());
 				}
 			}
@@ -301,14 +301,14 @@ public class DatabaseDAO extends BaseDAO {
 					if (!connection.isClosed())
 						connection.close();
 
-					if (logger.isDebugEnabled()) {
-						logger.debug("Connection Closed for updateQuery");
+					if (logger.isInfoEnabled()) {
+						logger.info("Connection Closed for updateQuery");
 					}
 				}
 			} catch (Exception e) {
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Connection not closed for updateQuery"
+				if (logger.isInfoEnabled()) {
+					logger.info("Connection not closed for updateQuery"
 							+ e.getMessage());
 				}
 			}
@@ -364,14 +364,14 @@ public class DatabaseDAO extends BaseDAO {
 					if (!connection.isClosed())
 						connection.close();
 
-					if (logger.isDebugEnabled()) {
-						logger.debug("Connection Closed for deleteQuery");
+					if (logger.isInfoEnabled()) {
+						logger.info("Connection Closed for deleteQuery");
 					}
 				}
 			} catch (Exception e) {
 
-				if (logger.isDebugEnabled()) {
-					logger.debug("Connection not closed for deleteQuery"
+				if (logger.isInfoEnabled()) {
+					logger.info("Connection not closed for deleteQuery"
 							+ e.getMessage());
 				}
 			}

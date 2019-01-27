@@ -37,8 +37,8 @@ public class FileCopyServiceImpl implements FileCopyService {
 	@Override
 	public void copyFiles(ServletContextEvent arg0) {
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("copyFiles - Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("copyFiles - Start");
 		}
 		
 		ServletContext context = arg0.getServletContext();
@@ -110,16 +110,16 @@ public class FileCopyServiceImpl implements FileCopyService {
 			copyFiles(fileNamesWithPath);
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("copyFiles - End");
+		if (logger.isInfoEnabled()) {
+			logger.info("copyFiles - End");
 		}
 	}
 	
 	@Override
 	public void copyFiles(Map<String, List<File>> fileNamesWithPath) {
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("copyFiles - Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("copyFiles - Start");
 		}
 		
 		try{
@@ -145,16 +145,16 @@ public class FileCopyServiceImpl implements FileCopyService {
 			e.printStackTrace();
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("copyFiles - End");
+		if (logger.isInfoEnabled()) {
+			logger.info("copyFiles - End");
 		}
 	}
 	
 	@Override
 	public void copyFiles(File file, String fileType) {
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("copyFiles - Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("copyFiles - Start");
 		}
 		
 		try{
@@ -186,8 +186,8 @@ public class FileCopyServiceImpl implements FileCopyService {
 			e.printStackTrace();
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("copyFiles - End");
+		if (logger.isInfoEnabled()) {
+			logger.info("copyFiles - End");
 		}
 	}
 }

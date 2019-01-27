@@ -4,15 +4,20 @@
  */
 package com.orastays.authserver.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.OutputStream;
+import java.io.InputStream;
+import java.net.URLConnection;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,61 +28,76 @@ import springfox.documentation.annotations.ApiIgnore;
 @RequestMapping("/download")
 public class DownloadController {
 	
+	private static final Logger logger = LogManager.getLogger(DownloadController.class);
+	
+	@Value("${project.name}")
+	private String projectName;
+	
 	@RequestMapping("/{fileName:.+}")
-    public void downloadPDFResource( HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) {
+    public void downloadRecentLog( HttpServletRequest request, HttpServletResponse response, @PathVariable("fileName") String fileName) {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("downloadRecentLog -- START");
+		}
 		
 		try{
-         
-		// get absolute path of the application
-        ServletContext context = request.getServletContext();
-        //String appPath = context.getRealPath("");
-        //System.out.println("appPath = " + appPath);
-			
-        String workingDir = System.getProperty("user.dir");
- 	    //System.out.println("Current working directory : " + workingDir);
- 	    
-        // construct the complete absolute path of the file
-        String fullPath = workingDir + File.separator + "logs" + File.separator + fileName; 
-        //System.out.println("fullPath = " + fullPath);
-        //Authorized user will download the file
-        File downloadFile = new File(fullPath);
-        FileInputStream inputStream = new FileInputStream(downloadFile);
-	         
-	        // get MIME type of the file
-	        String mimeType = context.getMimeType(fullPath);
-	        if (mimeType == null) {
-	            // set to binary type if MIME mapping not found
-	            mimeType = "application/octet-stream";
-	        }
-	        //System.out.println("MIME type: " + mimeType);
-	 
-	        // set content attributes for the response
-	        response.setContentType(mimeType);
-	        response.setContentLength((int) downloadFile.length());
-	 
-	        // set headers for the response
-	        String headerKey = "Content-Disposition";
-	        String headerValue = String.format("attachment; filename=\"%s\"", downloadFile.getName());
-	        response.setHeader(headerKey, headerValue);
-	 
-	        // get output stream of the response
-	        OutputStream outStream = response.getOutputStream();
-	 
-	        byte[] buffer = new byte[(int) downloadFile.length()];
-	        int bytesRead = -1;
-	 
-	        // write bytes read from the input stream into the output stream
-	        while ((bytesRead = inputStream.read(buffer)) != -1) {
-	            outStream.write(buffer, 0, bytesRead);
-	        }
-	        
-	        inputStream.close();
-	        outStream.flush();
-	        outStream.close();
-	        
+			String workingDir = System.getProperty("user.dir");
+	 	    System.out.println("Current working directory : " + workingDir);
+	        String fullPath = workingDir + File.separator + "logs" + File.separator + projectName + File.separator + fileName; 
+	        System.out.println("fullPath = " + fullPath);
+			File file = new File(fullPath);
+			if (file.exists()) {
+	
+				String mimeType = URLConnection.guessContentTypeFromName(file.getName());
+				if (mimeType == null) {
+					mimeType = "application/octet-stream";
+				}
+				response.setContentType(mimeType);
+				response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
+				response.setContentLength((int) file.length());
+				InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+				FileCopyUtils.copy(inputStream, response.getOutputStream());
+			}
 		} catch(Exception e) {
-			
 			e.printStackTrace();
+		}
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("downloadRecentLog -- END");
+		}
+    }
+	
+	@RequestMapping("/old/{folderName:.+}/{fileName:.+}")
+    public void downloadOldLog( HttpServletRequest request, HttpServletResponse response, @PathVariable("folderName") String folderName, @PathVariable("fileName") String fileName) {
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("downloadOldLog -- START");
+		}
+		
+		try{
+			String workingDir = System.getProperty("user.dir");
+	 	    System.out.println("Current working directory : " + workingDir);
+	 	   String fullPath = workingDir + File.separator + "logs" + File.separator + projectName + File.separator + folderName + File.separator + fileName;
+	        System.out.println("fullPath = " + fullPath);
+			File file = new File(fullPath);
+			if (file.exists()) {
+	
+				String mimeType = URLConnection.guessContentTypeFromName(file.getName());
+				if (mimeType == null) {
+					mimeType = "application/octet-stream";
+				}
+				response.setContentType(mimeType);
+				response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file.getName() + "\""));
+				response.setContentLength((int) file.length());
+				InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
+				FileCopyUtils.copy(inputStream, response.getOutputStream());
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		if (logger.isInfoEnabled()) {
+			logger.info("downloadOldLog -- END");
 		}
     }
 }

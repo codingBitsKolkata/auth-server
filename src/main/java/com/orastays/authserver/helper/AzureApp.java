@@ -25,8 +25,8 @@ public class AzureApp  {
 	
 	public String uploadFile(MultipartFile multipartFile, String fileName) throws Exception {
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("uploadFile -- START");
+		if (logger.isInfoEnabled()) {
+			logger.info("uploadFile -- START");
 		}
 		
 		String azureKey = messageUtil.getBundle("azure.key");
@@ -49,8 +49,8 @@ public class AzureApp  {
 		String url = messageUtil.getBundle("azure.link") + messageUtil.getBundle("azure.container") + "/" + fileName;
 		System.err.println("url ==>> "+url);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("uploadFile -- END");
+		if (logger.isInfoEnabled()) {
+			logger.info("uploadFile -- END");
 		}
 
 		return url;

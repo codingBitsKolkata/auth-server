@@ -27,8 +27,8 @@ public class SignUpValidation extends AuthorizeUserValidation {
 	
 	public void validateSignUp(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateSignUp -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateSignUp -- Start");
 		}
 
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
@@ -110,15 +110,15 @@ public class SignUpValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateSignUp -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateSignUp -- End");
 		}
 	}
 	
 	public UserEntity validateSendOTP(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateSendOTP -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateSendOTP -- Start");
 		}
 
 		UserEntity userEntity = null;
@@ -189,8 +189,8 @@ public class SignUpValidation extends AuthorizeUserValidation {
 			userModel.setIp(request.getRemoteAddr());
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateSendOTP -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateSendOTP -- End");
 		}
 		
 		return userEntity;
@@ -198,8 +198,8 @@ public class SignUpValidation extends AuthorizeUserValidation {
 	
 	public UserEntity validateReSendOTP(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateReSendOTP -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateReSendOTP -- Start");
 		}
 
 		UserEntity userEntity = null;
@@ -224,8 +224,8 @@ public class SignUpValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateReSendOTP -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateReSendOTP -- End");
 		}
 		
 		return userEntity;

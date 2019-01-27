@@ -27,8 +27,8 @@ public class LoginValidation extends AuthorizeUserValidation {
 	
 	public void validateLogin(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateLogin -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateLogin -- Start");
 		}
 
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
@@ -88,16 +88,16 @@ public class LoginValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateLogin -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateLogin -- End");
 		}
 		
 	}
 	
 	public UserEntity validateLoginOTP(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateLoginOTP -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateLoginOTP -- Start");
 		}
 
 		UserEntity userEntity = null;
@@ -164,8 +164,8 @@ public class LoginValidation extends AuthorizeUserValidation {
 			userModel.setIp(request.getRemoteAddr());
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateLoginOTP -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateLoginOTP -- End");
 		}
 		
 		return userEntity;
@@ -173,8 +173,8 @@ public class LoginValidation extends AuthorizeUserValidation {
 	
 	public void validatefetchInactiveUser(UserModel userModel) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validatefetchInactiveUser -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validatefetchInactiveUser -- Start");
 		}
 
 		Map<String, Exception> exceptions = new LinkedHashMap<>();
@@ -222,15 +222,15 @@ public class LoginValidation extends AuthorizeUserValidation {
 		if (exceptions.size() > 0)
 			throw new FormExceptions(exceptions);
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validatefetchInactiveUser -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validatefetchInactiveUser -- End");
 		}
 	}
 	
 	public UserEntity validateLogout(String userToken) throws FormExceptions {
 
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateLogout -- Start");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateLogout -- Start");
 		}
 
 		UserEntity userEntity = null;
@@ -287,8 +287,8 @@ public class LoginValidation extends AuthorizeUserValidation {
 			}
 		}
 		
-		if (logger.isDebugEnabled()) {
-			logger.debug("validateLogout -- End");
+		if (logger.isInfoEnabled()) {
+			logger.info("validateLogout -- End");
 		}
 		
 		return userEntity;
