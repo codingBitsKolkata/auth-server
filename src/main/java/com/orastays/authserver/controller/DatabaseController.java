@@ -27,6 +27,23 @@ public class DatabaseController {
 	@Autowired
 	private DatabaseService databaseService;
 	
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String swaggerPage(HttpServletRequest request) {
+//
+//		if (logger.isInfoEnabled()) {
+//			logger.info("swaggerPage -- START");
+//		}
+//		
+//		String url = request.getRequestURL().toString();
+//      System.out.println(url);
+//		
+//		if (logger.isInfoEnabled()) {
+//			logger.info("swaggerPage -- END");
+//		}
+//		
+//		return "redirect:/swagger-ui.html";
+//	}
+	
 	@RequestMapping(value = "/check-api", method = RequestMethod.GET)
 	public ModelAndView CheckAPIPage(Model model) {
 
