@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @Api(value = "domain", tags = "Domain")
 public class DomainController extends BaseController {
 

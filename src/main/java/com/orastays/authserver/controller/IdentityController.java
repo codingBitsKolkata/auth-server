@@ -32,7 +32,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @Api(value = "identity", tags = "Identity")
 public class IdentityController extends BaseController {
 

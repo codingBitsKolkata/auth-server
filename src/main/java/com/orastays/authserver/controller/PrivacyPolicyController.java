@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @Api(value = "Privacy Policy", tags = "Privacy Policy")
 public class PrivacyPolicyController extends BaseController {
 

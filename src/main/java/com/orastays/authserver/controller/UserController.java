@@ -39,7 +39,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @Api(value = "User", tags = "User")
 public class UserController extends BaseController {
 

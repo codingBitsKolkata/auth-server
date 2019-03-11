@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @Api(value = "Login", tags = "Login")
 public class LoginController extends BaseController {
 
